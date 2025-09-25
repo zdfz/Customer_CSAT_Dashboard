@@ -1,0 +1,22 @@
+[build]
+  functions = "netlify/functions"
+  publish = "."
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/auth"
+  to = "/.netlify/functions/auth"
+  status = 200
+
+[[redirects]]
+  from = "/api/sheets-data"
+  to = "/.netlify/functions/sheets-data"
+  status = 200
+
+# Serve index.html for root path
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
