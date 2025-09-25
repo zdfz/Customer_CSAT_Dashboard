@@ -12,9 +12,9 @@ app.use(express.json());
 app.use(express.static('.'));
 
 // Environment variables for security
-const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY || 'AIzaSyAGJclt8C5wbo0qivboVpDiRLlGcOFWd1I';
-const DASHBOARD_PASSWORD = process.env.DASHBOARD_PASSWORD || 'admin123';
-const SPREADSHEET_ID = process.env.SPREADSHEET_ID || '1RfmLuP_XoQ_yxhMnYVnCOI_b7jUEP_UuAbabtCIy-Ns';
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY ;
+const DASHBOARD_PASSWORD = process.env.DASHBOARD_PASSWORD ;
+const SPREADSHEET_ID = process.env.SPREADSHEET_ID ;
 
 // Simple session storage (in production, use Redis or database)
 const sessions = new Map();
