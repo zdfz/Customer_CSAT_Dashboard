@@ -13,6 +13,7 @@ app.use(express.static('.'));
 
 // Environment variables for security
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+const DASHBOARD_PASSWORD = process.env.DASHBOARD_PASSWORD;
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
 
 // Google Sheets proxy endpoint
@@ -41,5 +42,5 @@ app.get('/', (_, res) => {
 });
 
 app.listen(PORT, () => {
-    // Server running
+    console.log(`Server running on http://localhost:${PORT}`);
 });
