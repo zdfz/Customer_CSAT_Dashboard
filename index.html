@@ -2182,25 +2182,14 @@
         // To use this integration:
         // 1. Create a Google Cloud Project and enable the Sheets API
         // 2. Create a service account and download the JSON key file
-        // 3. Generate an API key for the service account
-        // 4. Share your Google Sheet with the service account email
-        // 5. Replace the placeholders below with your actual values
-        // Secure configuration - no sensitive data exposed
-        // ⚠️ TESTING MODE: Direct API credentials (for testing only - will move back to server-side for production)
-        // This exposes API keys in the browser - only use for testing!
-        const GOOGLE_API_KEY = 'AIzaSyAGJclt8C5wbo0qivboVpDiRLlGcOFWd1I';
-        const SPREADSHEET_ID = '1RfmLuP_XoQ_yxhMnYVnCOI_b7jUEP_UuAbabtCIy-Ns';
+        // Secure configuration - API keys are handled server-side only
+        // No sensitive data exposed in client-side code
 
         const API_CONFIG = {
-            baseUrl: 'https://sheets.googleapis.com/v4/spreadsheets',
+            baseUrl: '/api',
             endpoints: {
-                // If opened directly from the filesystem (testing mode), call Google Sheets directly.
-                // Otherwise, use the serverless/Node proxy for production.
-                sheetsData: (function () {
-                    const range = encodeURIComponent('Customer Survey Questionnaire!A:ZZ');
-                    const directUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${range}?key=${GOOGLE_API_KEY}&valueRenderOption=UNFORMATTED_VALUE&dateTimeRenderOption=FORMATTED_STRING`;
-                    return (window.location.protocol === 'file:') ? directUrl : '/api/sheets-data';
-                })()
+                // Use server-side proxy for all requests (production-ready)
+                sheetsData: '/api/sheets-data'
             }
         };
 
