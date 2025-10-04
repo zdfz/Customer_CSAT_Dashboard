@@ -1,4 +1,4 @@
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
     // Only allow GET requests
     if (event.httpMethod !== 'GET') {
         return {
@@ -7,25 +7,16 @@ exports.handler = async (event, context) => {
         };
     }
 
-    // Simple token validation (in production, use proper JWT or session store)
-    const authHeader = event.headers.authorization;
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return {
-            statusCode: 401,
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify({ error: 'Unauthorized' })
-        };
-    }
-
     try {
         const apiKey = process.env.GOOGLE_API_KEY;
         const spreadsheetId = process.env.SPREADSHEET_ID;
-        const range = 'Customer Survey Questionnaire!A:AH';
-        
+        // Encode the range to safely handle spaces and special characters
+        const range = encodeURIComponent('Customer Survey Questionnaire!A:ZZ');
+
         const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}&valueRenderOption=UNFORMATTED_VALUE&dateTimeRenderOption=FORMATTED_STRING`;
-        
+
+        // node-fetch v3 is ESM. Use dynamic import for compatibility in Netlify functions
+        const fetch = (await import('node-fetch')).default;
         const response = await fetch(url);
         const data = await response.json();
         
@@ -33,7 +24,7 @@ exports.handler = async (event, context) => {
             statusCode: 200,
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'GET'
             },
             body: JSON.stringify(data)
