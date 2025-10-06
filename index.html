@@ -212,174 +212,286 @@
             letter-spacing: 0.05em;
         }
 
-        /* Dashboard Container - CSS Grid Layout */
+        /* Dashboard Container - Vertical Sidebar Layout */
         .dashboard-container {
             display: grid;
-            grid-template-rows: auto 1fr;
+            grid-template-columns: 280px 1fr;
             min-height: 100vh;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
         }
 
-        /* Modern Header with White Background */
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: var(--glass-backdrop);
-            -webkit-backdrop-filter: var(--glass-backdrop);
-            border-bottom: 1px solid var(--glass-border);
-            box-shadow: var(--shadow-lg);
-            position: sticky;
+        .dashboard-container::before {
+            content: '';
+            position: absolute;
             top: 0;
-            z-index: var(--z-sticky);
-            transition: all var(--transition-normal);
+            left: 280px;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, transparent 0%, rgba(16, 185, 129, 0.2) 50%, transparent 100%);
+            z-index: 1;
         }
 
-        .header:hover {
-            background: rgba(255, 255, 255, 1);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .header-content {
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            align-items: center;
-            padding: var(--spacing-lg) var(--spacing-xl);
-            max-width: 1400px;
-            margin: 0 auto;
-            gap: var(--spacing-2xl);
-        }
-
-        .logo {
+        /* Enhanced Vertical Sidebar */
+        .sidebar {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: var(--spacing-xl);
             display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xl);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+
+
+        .sidebar-header {
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: var(--spacing-md);
-            transition: transform var(--transition-fast);
+            padding-bottom: var(--spacing-2xl);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            margin-bottom: var(--spacing-lg);
+            gap: var(--spacing-lg);
         }
 
-        .logo:hover {
-            transform: scale(1.05);
+        /* Logo Styling */
+        .sidebar-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
         }
 
-        .logo-image {
-            height: 48px;
+        .sidebar-logo-image {
+            height: 50px;
             width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+            filter: brightness(0) invert(1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
         }
 
-        .logo-text {
-            font-size: 1.75rem;
-            font-weight: 700;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.025em;
+        .sidebar-logo-image:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
         }
 
-        /* Modern Navigation with Pill Design */
-        .navigation {
+        .dashboard-title {
             display: flex;
-            gap: var(--spacing-xs);
-            background: rgba(0, 0, 0, 0.05);
-            padding: var(--spacing-xs);
-            border-radius: var(--radius-2xl);
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .dashboard-title h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: var(--spacing-lg) var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            margin: 0;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+            border: 1px solid rgba(16, 185, 129, 0.3);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+        }
+
+        /* Enhanced Vertical Navigation */
+        .navigation {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            padding: 0;
+            flex: 1;
         }
 
         .nav-tab {
-            padding: var(--spacing-md) var(--spacing-xl);
+            padding: var(--spacing-lg) var(--spacing-xl);
             border: none;
-            background: transparent;
-            color: var(--neutral-700);
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.85);
             font-family: var(--font-family);
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
             border-radius: var(--radius-xl);
-            transition: all var(--transition-normal);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             position: relative;
             white-space: nowrap;
             outline: none;
-            border: 2px solid transparent;
-            min-height: 44px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            min-height: 52px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .nav-tab:hover {
-            background: rgba(0, 0, 0, 0.05);
-            color: var(--neutral-900);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            transform: translateX(6px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
 
         .nav-tab.active {
-            background: var(--primary-gradient);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+            transform: translateX(12px) scale(1.05);
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.4);
             font-weight: 600;
+            border-color: #10b981;
         }
 
         .nav-tab.active::before {
             content: '';
             position: absolute;
+            left: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 70%;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-tab.active::after {
+            content: '';
+            position: absolute;
             inset: -2px;
-            background: var(--primary-gradient);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             border-radius: var(--radius-xl);
             z-index: -1;
-            opacity: 0.3;
+            opacity: 0.6;
             filter: blur(8px);
         }
 
-        /* Modern Quarter Filter Dropdown */
-        .quarter-filter {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
+        /* Sidebar Quarter Filter */
+        .sidebar-quarter-filter {
+            margin-top: auto;
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .quarter-filter-label {
+        .sidebar-quarter-filter-label {
             font-size: 0.875rem;
             font-weight: 500;
-            color: var(--neutral-700);
-            white-space: nowrap;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: var(--spacing-sm);
+            display: block;
         }
 
-        .quarter-filter-select {
+        .sidebar-quarter-filter-wrapper {
+            position: relative;
+        }
+
+        .sidebar-quarter-filter-select {
             appearance: none;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius-xl);
-            padding: var(--spacing-md) var(--spacing-xl);
-            padding-right: var(--spacing-2xl);
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md) var(--spacing-xl) var(--spacing-md) var(--spacing-md);
             font-family: var(--font-family);
             font-size: 0.875rem;
             font-weight: 500;
-            color: var(--neutral-800);
+            color: white;
             cursor: pointer;
             transition: all var(--transition-normal);
-            min-width: 120px;
+            width: 100%;
             box-shadow: var(--shadow-md);
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right var(--spacing-md) center;
+            background-size: 16px;
         }
 
-        .quarter-filter-select:hover {
-            background: rgba(255, 255, 255, 1);
-            border-color: var(--primary-main);
-            box-shadow: var(--shadow-lg);
+        .sidebar-quarter-filter-select:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
             transform: translateY(-1px);
         }
 
-        .quarter-filter-select:focus {
+        .sidebar-quarter-filter-select:focus {
             outline: none;
             border-color: var(--primary-main);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar-quarter-filter-select option {
+            background: #1f2937;
+            color: white;
+            padding: var(--spacing-sm);
+            border: none;
+        }
+
+        /* Enhanced dropdown styling for better visibility */
+        .sidebar-quarter-filter-select::-ms-expand {
+            display: none;
+        }
+
+        /* Add a subtle glow effect when focused */
+        .sidebar-quarter-filter-select:focus {
+            outline: none;
+            border-color: var(--primary-main);
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3), 0 0 10px rgba(16, 185, 129, 0.2);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Enhanced Quarter Filter */
+        .sidebar-quarter-filter {
+            background: rgba(0, 0, 0, 0.25);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Connection Status Indicator */
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
+            margin-top: auto;
+        }
+
+
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
         }
 
         .quarter-filter-icon {
@@ -424,13 +536,75 @@
             transform: translateY(0);
         }
 
-        /* Modern Main Content Area */
+        /* Enhanced Main Content Area */
         .main-content {
-            padding: var(--spacing-xl) var(--spacing-xl);
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
+            padding: var(--spacing-2xl);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            overflow-y: auto;
+            height: 100vh;
             position: relative;
+        }
+
+        /* Custom Scrollbar */
+        .main-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .main-content::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+
+        .main-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .main-content::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        }
+
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(16, 185, 129, 0.3) 50%, transparent 100%);
+        }
+
+        .content-header {
+            background: linear-gradient(135deg, #ffffff 0%, #fefefe 100%);
+            padding: var(--spacing-xl) var(--spacing-2xl);
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: var(--spacing-2xl);
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+        }
+
+        .content-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+            letter-spacing: -0.025em;
         }
 
         /* Content Sections */
@@ -499,23 +673,64 @@
             gap: var(--spacing-lg) !important;
         }
 
-        /* Fix Question Satisfaction Breakdown grid */
-        #question-breakdown.four-column-grid {
-            display: grid !important;
-            grid-template-columns: repeat(4, 1fr) !important;
-            gap: var(--spacing-lg) !important;
-        }
 
-        /* Responsive for Question Breakdown */
-        @media (max-width: 1200px) {
-            #question-breakdown.four-column-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
+
+
+
+        /* Responsive Design for Vertical Layout */
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 240px 1fr;
+            }
+
+            .sidebar {
+                padding: var(--spacing-lg);
             }
         }
 
         @media (max-width: 768px) {
-            #question-breakdown.four-column-grid {
-                grid-template-columns: 1fr !important;
+            .dashboard-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+            }
+
+            .sidebar {
+                padding: var(--spacing-md);
+                flex-direction: row;
+                overflow-x: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--glass-border);
+            }
+
+            .sidebar-header {
+                flex-direction: row;
+                border-bottom: none;
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                padding-right: var(--spacing-lg);
+                margin-right: var(--spacing-lg);
+            }
+
+            .navigation {
+                flex-direction: row;
+                gap: var(--spacing-xs);
+            }
+
+            .nav-tab {
+                white-space: nowrap;
+                min-width: auto;
+            }
+
+            .sidebar-quarter-filter {
+                margin-top: 0;
+                padding-top: 0;
+                border-top: none;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                padding-left: var(--spacing-lg);
+                margin-left: var(--spacing-lg);
+            }
+
+            .main-content {
+                height: calc(100vh - 80px);
             }
         }
 
@@ -638,16 +853,16 @@
 
         /* Core CSS Components from Design System */
 
-        /* Modern Metric Cards for White Background */
+        /* Enhanced Modern Metric Cards */
         .metric-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: var(--glass-backdrop);
-            -webkit-backdrop-filter: var(--glass-backdrop);
-            border: 1px solid var(--glass-border);
+            background: linear-gradient(135deg, #ffffff 0%, #fefefe 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(16, 185, 129, 0.1);
             border-radius: var(--radius-2xl);
             padding: var(--spacing-2xl);
-            box-shadow: var(--shadow-xl);
-            transition: all var(--transition-normal);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
@@ -659,19 +874,36 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: var(--primary-gradient);
-            opacity: 0.8;
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+            opacity: 0.9;
+        }
+
+        .metric-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.03) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .metric-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: var(--shadow-2xl);
-            background: rgba(255, 255, 255, 0.95);
-            border-color: rgba(0, 0, 0, 0.15);
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.15);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-color: rgba(16, 185, 129, 0.2);
         }
 
         .metric-card:hover::before {
             height: 6px;
+            opacity: 1;
+            background: linear-gradient(90deg, #10b981 0%, #06d6a0 50%, #059669 100%);
+        }
+
+        .metric-card:hover::after {
             opacity: 1;
         }
 
@@ -790,14 +1022,38 @@
         }
 
         @keyframes fadeInScale {
-            from {
+            0% {
                 opacity: 0;
-                transform: scale(0.9);
+                transform: scale(0.95) translateY(30px);
             }
 
-            to {
+            100% {
                 opacity: 1;
-                transform: scale(1);
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            0% {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
 
@@ -855,7 +1111,19 @@
         }
 
         .metric-card {
-            animation: fadeInScale 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInScale 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .content-header {
+            animation: slideInFromLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar {
+            animation: slideInFromLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .main-content {
+            animation: slideInFromRight 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .data-table-container {
@@ -1392,6 +1660,100 @@
         .progress-fill.error {
             background: var(--error-gradient);
             box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+        }
+
+        /* Satisfaction Rate Color Coding */
+        .metric-value.satisfaction-red {
+            background: #ef4444 !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            color: #ef4444 !important;
+        }
+
+        .metric-value.satisfaction-orange {
+            background: #f59e0b !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            color: #f59e0b !important;
+        }
+
+        .metric-value.satisfaction-green {
+            background: #10b981 !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            color: #10b981 !important;
+        }
+
+        .progress-fill.satisfaction-red {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+        }
+
+        .progress-fill.satisfaction-orange {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+        }
+
+        .progress-fill.satisfaction-green {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Account Manager and Date Badge Styles */
+        .account-manager-badge,
+        .completion-date-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: white;
+            text-align: center;
+            min-width: 120px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .account-manager-badge:hover,
+        .completion-date-badge:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Account Manager Colors */
+        .account-manager-abdullah {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            /* Blue */
+        }
+
+        .account-manager-ahmed {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            /* Yellow/Orange */
+        }
+
+        .account-manager-ibrahim {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            /* Purple */
+        }
+
+        .account-manager-ops {
+            background: linear-gradient(135deg, #92400e 0%, #78350f 100%);
+            /* Brown */
+        }
+
+        .account-manager-default {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            /* Gray for unknown managers */
+        }
+
+        /* Completion Date Badge */
+        .completion-date-badge {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            /* Dark blue/black */
+            min-width: 140px;
         }
 
         /* Modern Skeleton Loading Animation */
@@ -1960,23 +2322,7 @@
             border: 0;
         }
 
-        /* Skip to main content link for keyboard navigation */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: var(--primary-main);
-            color: white;
-            padding: 8px;
-            text-decoration: none;
-            border-radius: 4px;
-            z-index: 1000;
-            font-weight: 600;
-        }
 
-        .skip-link:focus {
-            top: 6px;
-        }
 
         /* High contrast mode support */
         @media (prefers-contrast: high) {
@@ -2428,7 +2774,7 @@
                     // Handle both single indices and arrays of indices
                     const arIndices = Array.isArray(arIdx) ? arIdx : [arIdx];
                     const enIndices = Array.isArray(enIdx) ? enIdx : [enIdx];
-                    
+
                     // Try Arabic columns first
                     for (const idx of arIndices) {
                         if (idx >= 0) {
@@ -2436,7 +2782,7 @@
                             if (val) return val;
                         }
                     }
-                    
+
                     // Then try English columns
                     for (const idx of enIndices) {
                         if (idx >= 0) {
@@ -2444,7 +2790,7 @@
                             if (val) return val;
                         }
                     }
-                    
+
                     return '';
                 };
 
@@ -2452,7 +2798,7 @@
                     // Handle both single indices and arrays of indices
                     const arIndices = Array.isArray(arIdx) ? arIdx : [arIdx];
                     const enIndices = Array.isArray(enIdx) ? enIdx : [enIdx];
-                    
+
                     // Try Arabic columns first
                     for (const idx of arIndices) {
                         if (idx >= 0) {
@@ -2460,7 +2806,7 @@
                             if (val !== null) return val;
                         }
                     }
-                    
+
                     // Then try English columns
                     for (const idx of enIndices) {
                         if (idx >= 0) {
@@ -2468,7 +2814,7 @@
                             if (val !== null) return val;
                         }
                     }
-                    
+
                     return null;
                 };
 
@@ -2502,29 +2848,29 @@
                                 // Try main NPS columns first
                                 let npsScore = getNum(row, IDX.npsAr, IDX.npsEn, 0, 10);
                                 if (npsScore !== null) return npsScore;
-                                
+
                                 // Check additional NPS columns found in analysis
                                 // Column k (42): "How likely are you to recommend *Starlinks* to other businesses?"
                                 if (row[42] !== undefined && row[42] !== null && row[42] !== '') {
                                     const val = this.parseNumber(row[42], 0, 10);
                                     if (val !== null) return val;
                                 }
-                                
+
                                 // Check columns } (60) and ~ (61) for the last few responses
                                 // These contain some NPS responses in the final rows
                                 if (row[60] !== undefined && row[60] !== null && row[60] !== '') {
                                     const val = this.parseNumber(row[60], 0, 10);
                                     if (val !== null) return val;
                                 }
-                                
+
                                 if (row[61] !== undefined && row[61] !== null && row[61] !== '') {
                                     const val = this.parseNumber(row[61], 0, 10);
                                     if (val !== null) return val;
                                 }
-                                
+
                                 return null;
                             };
-                            
+
                             const npsScore = getNpsScore(row);
                             const lastMileSatisfaction = getNum(row, IDX.lastMileAr, IDX.lastMileEn, 1, 5);
                             const reverseDeliverySatisfaction = getNum(row, IDX.reverseAr, IDX.reverseEn, 1, 5);
@@ -2550,20 +2896,20 @@
                             }
 
                             const suggestions = getVal(row, IDX.suggestionsAr, IDX.suggestionsEn);
-                            
+
                             // New fields - combine Arabic and English responses
                             const launchpadExplanation = getVal(row, IDX.launchpadExplanationAr, IDX.launchpadExplanationEn);
                             const generalImprovement = getVal(row, IDX.generalImprovementEn, IDX.improveAr);
-                            
- // English first, then Arabic fallback
-                            
 
-                            
+                            // English first, then Arabic fallback
+
+
+
                             const language = IDX.language >= 0 ? this.sanitizeString(row[IDX.language]) : '';
 
                             // Get real submission date from Submitted At column
                             let submittedAtRaw = null;
-                            
+
                             // Helper function to check if a value looks like a timestamp
                             const looksLikeTimestamp = (val) => {
                                 if (!val) return false;
@@ -2571,7 +2917,7 @@
                                 // Check for date patterns like "7/10/2025 8:58:25" or similar
                                 return /^\d{1,2}\/\d{1,2}\/\d{4}\s+\d{1,2}:\d{2}:\d{2}$/.test(str);
                             };
-                            
+
                             // Approach 1: Use the mapped column index (most reliable)
                             if (IDX.submittedAt >= 0 && row[IDX.submittedAt]) {
                                 submittedAtRaw = row[IDX.submittedAt];
@@ -2586,7 +2932,7 @@
                                     }
                                 }
                             }
-                            
+
                             let submittedAt = this.parseDate(submittedAtRaw);
 
                             // Mark all surveys with company names as completed (100% completion rate)
@@ -4526,15 +4872,15 @@
                 // Get pending customers count
                 const pendingCustomers = this.getPendingSurveys(surveyData);
                 const pendingSurveysCount = pendingCustomers.length;
-                
+
                 const totalSurveysIncludingPending = companyMap.size + pendingSurveysCount;
                 const completedSurveys = companyMap.size; // Only completed surveys
-                
+
                 // For display: show total survey responses (only completed responses)
                 const totalSurveysForDisplay = surveyData.length;
 
                 // Calculate actual completion rate
-                const completionPercentage = totalSurveysIncludingPending > 0 
+                const completionPercentage = totalSurveysIncludingPending > 0
                     ? Math.round((completedSurveys / totalSurveysIncludingPending) * 100)
                     : 100;
 
@@ -4560,8 +4906,7 @@
                     ? perCompanyAverages.reduce((a, b) => a + b, 0) / perCompanyAverages.length
                     : 0;
 
-                // Calculate question satisfaction breakdown
-                const questionSatisfaction = MetricCalculator.calculateQuestionSatisfaction(surveyData);
+
 
                 return {
                     totalSurveys: totalSurveysForDisplay,
@@ -4572,8 +4917,7 @@
                     satisfiedCustomersPercentage,
                     averageSatisfaction: Math.round(averageSatisfaction * 10) / 10,
                     totalSurveysIncludingPending,
-                    npsData: npsData,
-                    questionSatisfaction: questionSatisfaction
+                    npsData: npsData
                 };
             }
 
@@ -4635,7 +4979,7 @@
                 // Process survey data
                 surveyData.forEach(survey => {
                     let manager = survey.accountManager;
-                    
+
                     // Normalize account manager names
                     if (manager === 'Ibrahim Fadhaly') manager = 'Ibrahim Fadaly';
                     if (manager === 'Ahmed Salem') manager = 'Ahmed Saleem';
@@ -4673,11 +5017,11 @@
                 const pendingCustomers = this.getPendingSurveys(surveyData);
                 pendingCustomers.forEach(customer => {
                     let manager = customer.accountManager;
-                    
+
                     // Normalize account manager names
                     if (manager === 'Ibrahim Fadhaly') manager = 'Ibrahim Fadaly';
                     if (manager === 'Ahmed Salem') manager = 'Ahmed Saleem';
-                    
+
                     if (manager) {
                         // Initialize manager if not in known list
                         if (!managerMetrics[manager]) {
@@ -4740,25 +5084,25 @@
                 if (currentQuarter.toLowerCase() !== 'q3') {
                     return []; // No pending customers for Q1, Q2, or All
                 }
-                
+
                 // Get Q3 pending customers and filter out those who have already submitted
                 const q3PendingCustomers = generateQ3PendingCustomers();
-                
+
                 // Get list of companies that have already submitted surveys
                 const submittedCompanies = new Set(
                     surveyData
                         .filter(survey => survey.submittedAt && survey.companyName)
                         .map(survey => survey.companyName.toLowerCase().trim())
                 );
-                
+
                 // Filter out customers who have already submitted
                 const stillPending = q3PendingCustomers.filter(customer => {
                     const customerName = customer.companyName.toLowerCase().trim();
                     return !submittedCompanies.has(customerName);
                 });
-                
+
                 // Sort alphabetically by company name
-                return stillPending.sort((a, b) => 
+                return stillPending.sort((a, b) =>
                     a.companyName.localeCompare(b.companyName)
                 );
             }
@@ -4769,7 +5113,7 @@
              */
             formatSurveyForAccordion(survey) {
 
-                
+
                 const formatDate = (date) => {
                     if (!date) return 'Not completed';
                     return date.toLocaleDateString('en-US', {
@@ -4941,46 +5285,7 @@
                 };
             }
 
-            /**
-             * Calculate question satisfaction breakdown
-             */
-            static calculateQuestionSatisfaction(surveys) {
-                const questions = {
-                    overall: { field: 'overallSatisfaction', name: 'Overall Experience' },
-                    lastMile: { field: 'lastMileSatisfaction', name: 'Last Mile Delivery' },
-                    communication: { field: 'communicationClarity', name: 'Communication Clarity' },
-                    responsiveness: { field: 'responsiveness', name: 'Account Manager' },
-                    problemResolution: { field: 'problemResolution', name: 'Problem Resolution' },
-                    customization: { field: 'customizationAbility', name: 'Customization' },
-                    systems: { field: 'systemsSatisfaction', name: 'Systems & Tools' },
-                    itSupport: { field: 'itSupportSatisfaction', name: 'IT Support' }
-                };
 
-                const results = {};
-
-                Object.keys(questions).forEach(key => {
-                    const question = questions[key];
-                    const validResponses = surveys.filter(survey =>
-                        survey.isCompleted &&
-                        survey[question.field] !== null &&
-                        survey[question.field] !== undefined &&
-                        !isNaN(survey[question.field])
-                    );
-
-                    const ratings = validResponses.map(survey => survey[question.field]);
-                    const satisfiedCount = validResponses.filter(survey => survey[question.field] >= 4).length;
-                    
-                    results[key] = {
-                        name: question.name,
-                        averageRating: this.calculateAverageRating(ratings, 1),
-                        satisfactionRate: this.calculatePercentage(satisfiedCount, validResponses.length, 1),
-                        responseCount: validResponses.length,
-                        satisfiedCount: satisfiedCount
-                    };
-                });
-
-                return results;
-            }
 
             /**
              * Group surveys by field value
@@ -5049,58 +5354,57 @@
         };
 
     </script>
-    <!-- Skip to main content link for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+
 
     <!-- Live region for screen reader announcements -->
     <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
     <div class="dashboard-container">
-        <!-- Header Section -->
-        <header class="header" role="banner">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="logo.png" alt="Customer Satisfaction Dashboard" class="logo-image">
-                    <span class="logo-text sr-only">Dashboard</span>
+        <!-- Vertical Sidebar -->
+        <aside class="sidebar" role="navigation">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="logo.png" alt="Company Logo" class="sidebar-logo-image">
                 </div>
-
-                <nav class="navigation" role="tablist" aria-label="Dashboard sections">
-                    <button class="nav-tab active" data-tab="csat-summary" role="tab" aria-selected="true"
-                        aria-controls="csat-summary-panel" id="tab-csat-summary">
-                        CSAT Summary
-                    </button>
-                    <button class="nav-tab" data-tab="customer-status" role="tab" aria-selected="false"
-                        aria-controls="customer-status-panel" id="tab-customer-status">
-                        Customer Status
-                    </button>
-                    <button class="nav-tab" data-tab="completed-surveys" role="tab" aria-selected="false"
-                        aria-controls="completed-surveys-panel" id="tab-completed-surveys">
-                        Completed Surveys
-                    </button>
-                    <button class="nav-tab" data-tab="account-manager-performance" role="tab" aria-selected="false"
-                        aria-controls="account-manager-performance-panel" id="tab-account-manager-performance">
-                        Account Manager Performance
-                    </button>
-                </nav>
-
-                <div class="quarter-filter">
-                    <label for="quarter-select" class="quarter-filter-label">Quarter:</label>
-                    <div style="position: relative;">
-                        <select id="quarter-select" class="quarter-filter-select" aria-label="Filter by quarter">
-                            <option value="all">All Quarters</option>
-                            <option value="q1">Q1 2025</option>
-                            <option value="q2">Q2 2025</option>
-                            <option value="q3">Q3 2025</option>
-                            <option value="q4">Q4 2025</option>
-                        </select>
-                        <svg class="quarter-filter-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </div>
+                <div class="dashboard-title">
+                    <h1>CSAT Tracking Dashboard</h1>
                 </div>
             </div>
-        </header>
+
+            <nav class="navigation" role="tablist" aria-label="Dashboard sections">
+                <button class="nav-tab active" data-tab="csat-summary" role="tab" aria-selected="true"
+                    aria-controls="csat-summary-panel" id="tab-csat-summary">
+                    CSAT Summary
+                </button>
+                <button class="nav-tab" data-tab="customer-status" role="tab" aria-selected="false"
+                    aria-controls="customer-status-panel" id="tab-customer-status">
+                    Customer Status
+                </button>
+                <button class="nav-tab" data-tab="completed-surveys" role="tab" aria-selected="false"
+                    aria-controls="completed-surveys-panel" id="tab-completed-surveys">
+                    Completed Surveys
+                </button>
+                <button class="nav-tab" data-tab="account-manager-performance" role="tab" aria-selected="false"
+                    aria-controls="account-manager-performance-panel" id="tab-account-manager-performance">
+                    Account Managers
+                </button>
+            </nav>
+
+            <div class="sidebar-quarter-filter">
+                <label for="quarter-select" class="sidebar-quarter-filter-label">Quarter:</label>
+                <div class="sidebar-quarter-filter-wrapper">
+                    <select id="quarter-select" class="sidebar-quarter-filter-select" aria-label="Filter by quarter">
+                        <option value="all">All Quarters</option>
+                        <option value="q1">Q1 2025</option>
+                        <option value="q2">Q2 2025</option>
+                        <option value="q3">Q3 2025</option>
+                        <option value="q4">Q4 2025</option>
+                    </select>
+                </div>
+            </div>
+
+
+        </aside>
 
         <!-- Main Content Area -->
         <main class="main-content" id="main-content" tabindex="-1">
@@ -5108,103 +5412,119 @@
             <section id="csat-summary-panel" class="content-section active" role="tabpanel"
                 aria-labelledby="tab-csat-summary" aria-hidden="false">
                 <div class="content-grid">
-                    <h1 class="heading-lg mb-lg">Customer Satisfaction Summary</h1>
+                    <div class="mt-lg">
+                        <h2 class="heading-md mb-lg">Customer Satisfaction Summary</h2>
 
-                    <!-- Loading State -->
-                    <div id="csat-loading" class="four-column-grid" style="display: none;">
-                        <div class="skeleton-card">
-                            <div class="skeleton skeleton-text title"></div>
-                            <div class="skeleton skeleton-metric"></div>
-                            <div class="skeleton skeleton-text"></div>
-                        </div>
-                        <div class="skeleton-card">
-                            <div class="skeleton skeleton-text title"></div>
-                            <div class="skeleton skeleton-metric"></div>
-                            <div class="skeleton skeleton-text"></div>
-                        </div>
-                        <div class="skeleton-card">
-                            <div class="skeleton skeleton-text title"></div>
-                            <div class="skeleton skeleton-metric"></div>
-                            <div class="skeleton skeleton-text"></div>
-                            <div class="skeleton skeleton-progress"></div>
-                        </div>
-                        <div class="skeleton-card">
-                            <div class="skeleton skeleton-text title"></div>
-                            <div class="skeleton skeleton-metric"></div>
-                            <div class="skeleton skeleton-text"></div>
-                            <div class="skeleton skeleton-progress"></div>
-                        </div>
-                    </div>
-
-                    <!-- Main Metrics Grid -->
-                    <div id="csat-metrics" class="four-column-grid">
-                        <!-- Total Responses Card (First) -->
-                        <div class="metric-card">
-                            <div class="metric-card-header">
-                                <span class="metric-card-title">Total Responses</span>
+                        <!-- Loading State -->
+                        <div id="csat-loading" class="four-column-grid" style="display: none;">
+                            <div class="skeleton-card">
+                                <div class="skeleton skeleton-text title"></div>
+                                <div class="skeleton skeleton-metric"></div>
+                                <div class="skeleton skeleton-text"></div>
                             </div>
-                            <div id="total-responses-value" class="metric-value large">0</div>
-                            <div class="metric-label">Survey Responses</div>
-                            <div class="progress-container">
-                                <div class="progress-label">
-                                    <span class="progress-label-text">Total Surveys</span>
-                                    <span id="quarter-responses-value" class="progress-label-value">0</span>
+                            <div class="skeleton-card">
+                                <div class="skeleton skeleton-text title"></div>
+                                <div class="skeleton skeleton-metric"></div>
+                                <div class="skeleton skeleton-text"></div>
+                            </div>
+                            <div class="skeleton-card">
+                                <div class="skeleton skeleton-text title"></div>
+                                <div class="skeleton skeleton-metric"></div>
+                                <div class="skeleton skeleton-text"></div>
+                                <div class="skeleton skeleton-progress"></div>
+                            </div>
+                            <div class="skeleton-card">
+                                <div class="skeleton skeleton-text title"></div>
+                                <div class="skeleton skeleton-metric"></div>
+                                <div class="skeleton skeleton-text"></div>
+                                <div class="skeleton skeleton-progress"></div>
+                            </div>
+                        </div>
+
+                        <!-- Main Metrics Grid -->
+                        <div id="csat-metrics" class="four-column-grid">
+                            <!-- Total Responses Card (First) -->
+                            <div class="metric-card">
+                                <div class="metric-card-header">
+                                    <span class="metric-card-title">Total Responses</span>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Completion Rate Card (Second) -->
-                        <div class="metric-card">
-                            <div class="metric-card-header">
-                                <span class="metric-card-title">Completion Rate</span>
-                            </div>
-                            <div id="completion-rate-value" class="metric-value success">0%</div>
-                            <div class="metric-label">Response Rate</div>
-                            <div class="progress-container">
-                                <div class="progress-bar">
-                                    <div id="completion-rate-progress" class="progress-fill success" style="width: 0%">
+                                <div id="total-responses-value" class="metric-value large">0</div>
+                                <div class="metric-label">Survey Responses</div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span class="progress-label-text">Total Surveys</span>
+                                        <span id="quarter-responses-value" class="progress-label-value">0</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Satisfaction Rate Card (Third) -->
-                        <div class="metric-card">
-                            <div class="metric-card-header">
-                                <span class="metric-card-title">Satisfaction Rate</span>
-                            </div>
-                            <div id="satisfaction-rate-value" class="metric-value">0%</div>
-                            <div class="metric-label">Customers Rating 4-5</div>
-                            <div class="progress-container">
-                                <div class="progress-bar">
-                                    <div id="satisfaction-rate-progress" class="progress-fill" style="width: 0%"></div>
+                            <!-- Completion Rate Card (Second) -->
+                            <div class="metric-card">
+                                <div class="metric-card-header">
+                                    <span class="metric-card-title">Completion Rate</span>
+                                </div>
+                                <div id="completion-rate-value" class="metric-value success">0%</div>
+                                <div class="metric-label">Response Rate</div>
+                                <div class="progress-container">
+                                    <div class="progress-bar">
+                                        <div id="completion-rate-progress" class="progress-fill success"
+                                            style="width: 0%">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span class="progress-label-text">Completed</span>
+                                        <span id="completed-customers-count" class="progress-label-value">0</span>
+                                    </div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span class="progress-label-text">Pending</span>
+                                        <span id="pending-customers-count" class="progress-label-value">0</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Net Promoter Score Card (Fourth - Far Right) -->
-                        <div class="metric-card">
-                            <div class="metric-card-header">
-                                <span class="metric-card-title">Net Promoter Score</span>
-                            </div>
-                            <div id="nps-score-value" class="metric-value large">0</div>
-                            <div class="metric-label">NPS Score</div>
-                            <div class="progress-container">
-                                <div class="progress-label">
-                                    <span class="progress-label-text">Promoters</span>
-                                    <span id="nps-promoters-value" class="progress-label-value">0% (0)</span>
+                            <!-- Satisfaction Rate Card (Third) -->
+                            <div class="metric-card">
+                                <div class="metric-card-header">
+                                    <span class="metric-card-title">Satisfaction Rate</span>
+                                </div>
+                                <div id="satisfaction-rate-value" class="metric-value">0%</div>
+                                <div class="metric-label">Customers Rating 4-5</div>
+                                <div class="progress-container">
+                                    <div class="progress-bar">
+                                        <div id="satisfaction-rate-progress" class="progress-fill" style="width: 0%">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="progress-container">
-                                <div class="progress-label">
-                                    <span class="progress-label-text">Passives</span>
-                                    <span id="nps-passives-value" class="progress-label-value">0% (0)</span>
+
+                            <!-- Net Promoter Score Card (Fourth - Far Right) -->
+                            <div class="metric-card">
+                                <div class="metric-card-header">
+                                    <span class="metric-card-title">Net Promoter Score</span>
                                 </div>
-                            </div>
-                            <div class="progress-container">
-                                <div class="progress-label">
-                                    <span class="progress-label-text">Detractors</span>
-                                    <span id="nps-detractors-value" class="progress-label-value">0% (0)</span>
+                                <div id="nps-score-value" class="metric-value large">0</div>
+                                <div class="metric-label">NPS Score</div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span class="progress-label-text">Promoters</span>
+                                        <span id="nps-promoters-value" class="progress-label-value">0% (0)</span>
+                                    </div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span class="progress-label-text">Passives</span>
+                                        <span id="nps-passives-value" class="progress-label-value">0% (0)</span>
+                                    </div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span class="progress-label-text">Detractors</span>
+                                        <span id="nps-detractors-value" class="progress-label-value">0% (0)</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -5243,28 +5563,19 @@
                                 <div class="metric-card-header">
                                     <span class="metric-card-title">Last Mile Only</span>
                                 </div>
-                                <div id="lastmile-surveys-value" class="metric-value">0</div>
-                                <div class="metric-label">Completed Surveys</div>
 
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span class="progress-label-text">Completion Rate</span>
-                                        <span id="lastmile-completion-rate" class="progress-label-value">0%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div id="lastmile-completion-progress" class="progress-fill" style="width: 0%">
-                                        </div>
-                                    </div>
-                                </div>
+                                <div class="metric-label"
+                                    style="margin-bottom: var(--spacing-md); color: var(--neutral-600); font-size: 0.875rem; font-weight: 500;">
+                                    Satisfaction Rate</div>
+                                <div id="lastmile-satisfaction-rate" class="metric-value"
+                                    style="margin-bottom: var(--spacing-md);">0%</div>
+                                <div class="metric-label" style="color: var(--neutral-500); font-size: 0.75rem;">
+                                    Customers Rating 4-5</div>
 
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span class="progress-label-text">Satisfaction Rate</span>
-                                        <span id="lastmile-satisfaction-rate" class="progress-label-value">0%</span>
-                                    </div>
+                                <div class="progress-container" style="margin-top: var(--spacing-lg);">
                                     <div class="progress-bar">
-                                        <div id="lastmile-satisfaction-progress" class="progress-fill"
-                                            style="width: 0%"></div>
+                                        <div id="lastmile-satisfaction-progress"
+                                            class="progress-fill satisfaction-progress" style="width: 0%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -5274,28 +5585,19 @@
                                 <div class="metric-card-header">
                                     <span class="metric-card-title">Fulfillment Only</span>
                                 </div>
-                                <div id="fulfillment-surveys-value" class="metric-value">0</div>
-                                <div class="metric-label">Completed Surveys</div>
 
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span class="progress-label-text">Completion Rate</span>
-                                        <span id="fulfillment-completion-rate" class="progress-label-value">0%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div id="fulfillment-completion-progress" class="progress-fill"
-                                            style="width: 0%"></div>
-                                    </div>
-                                </div>
+                                <div class="metric-label"
+                                    style="margin-bottom: var(--spacing-md); color: var(--neutral-600); font-size: 0.875rem; font-weight: 500;">
+                                    Satisfaction Rate</div>
+                                <div id="fulfillment-satisfaction-rate" class="metric-value"
+                                    style="margin-bottom: var(--spacing-md);">0%</div>
+                                <div class="metric-label" style="color: var(--neutral-500); font-size: 0.75rem;">
+                                    Customers Rating 4-5</div>
 
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span class="progress-label-text">Satisfaction Rate</span>
-                                        <span id="fulfillment-satisfaction-rate" class="progress-label-value">0%</span>
-                                    </div>
+                                <div class="progress-container" style="margin-top: var(--spacing-lg);">
                                     <div class="progress-bar">
-                                        <div id="fulfillment-satisfaction-progress" class="progress-fill"
-                                            style="width: 0%"></div>
+                                        <div id="fulfillment-satisfaction-progress"
+                                            class="progress-fill satisfaction-progress" style="width: 0%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -5305,218 +5607,26 @@
                                 <div class="metric-card-header">
                                     <span class="metric-card-title">Last Mile & Fulfillment</span>
                                 </div>
-                                <div id="combined-surveys-value" class="metric-value">0</div>
-                                <div class="metric-label">Completed Surveys</div>
 
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span class="progress-label-text">Completion Rate</span>
-                                        <span id="combined-completion-rate" class="progress-label-value">0%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div id="combined-completion-progress" class="progress-fill" style="width: 0%">
-                                        </div>
-                                    </div>
-                                </div>
+                                <div class="metric-label"
+                                    style="margin-bottom: var(--spacing-md); color: var(--neutral-600); font-size: 0.875rem; font-weight: 500;">
+                                    Satisfaction Rate</div>
+                                <div id="combined-satisfaction-rate" class="metric-value"
+                                    style="margin-bottom: var(--spacing-md);">0%</div>
+                                <div class="metric-label" style="color: var(--neutral-500); font-size: 0.75rem;">
+                                    Customers Rating 4-5</div>
 
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span class="progress-label-text">Satisfaction Rate</span>
-                                        <span id="combined-satisfaction-rate" class="progress-label-value">0%</span>
-                                    </div>
+                                <div class="progress-container" style="margin-top: var(--spacing-lg);">
                                     <div class="progress-bar">
-                                        <div id="combined-satisfaction-progress" class="progress-fill"
-                                            style="width: 0%"></div>
+                                        <div id="combined-satisfaction-progress"
+                                            class="progress-fill satisfaction-progress" style="width: 0%"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Question Satisfaction Breakdown -->
-                    <div class="mt-lg">
-                        <h2 class="heading-md mb-lg">Question Satisfaction Breakdown</h2>
 
-                        <!-- Loading State for Question Breakdown -->
-                        <div id="question-breakdown-loading" class="four-column-grid" style="display: none;">
-                            <div class="skeleton-card">
-                                <div class="skeleton skeleton-text title"></div>
-                                <div class="skeleton skeleton-metric"></div>
-                                <div class="skeleton skeleton-text"></div>
-                                <div class="skeleton skeleton-progress"></div>
-                            </div>
-                            <div class="skeleton-card">
-                                <div class="skeleton skeleton-text title"></div>
-                                <div class="skeleton skeleton-metric"></div>
-                                <div class="skeleton skeleton-text"></div>
-                                <div class="skeleton skeleton-progress"></div>
-                            </div>
-                            <div class="skeleton-card">
-                                <div class="skeleton skeleton-text title"></div>
-                                <div class="skeleton skeleton-metric"></div>
-                                <div class="skeleton skeleton-text"></div>
-                                <div class="skeleton skeleton-progress"></div>
-                            </div>
-                            <div class="skeleton-card">
-                                <div class="skeleton skeleton-text title"></div>
-                                <div class="skeleton skeleton-metric"></div>
-                                <div class="skeleton skeleton-text"></div>
-                                <div class="skeleton skeleton-progress"></div>
-                            </div>
-                        </div>
-
-                        <!-- Question Satisfaction Cards -->
-                        <div id="question-breakdown" class="four-column-grid">
-                            <!-- Overall Experience Card -->
-                            <div class="metric-card">
-                                <div class="metric-card-header">
-                                    <span class="metric-card-title">Overall Experience</span>
-                                </div>
-                                <div id="overall-responses-count" class="metric-value large">0</div>
-                                <div class="metric-label">Responses</div>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span class="progress-label-text">Satisfaction Rate</span>
-                                        <span id="overall-satisfaction-rate" class="progress-label-value">0%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div id="overall-satisfaction-progress" class="progress-fill" style="width: 0%"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Last Mile Delivery Card -->
-                            <div class="metric-card">
-                                <div class="metric-card-header">
-                                    <span class="metric-card-title">Last Mile Delivery</span>
-                                </div>
-                                <div id="lastmile-q-responses-count" class="metric-value large">0</div>
-                                <div class="metric-label">Responses</div>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span class="progress-label-text">Satisfaction Rate</span>
-                                        <span id="lastmile-q-satisfaction-rate" class="progress-label-value">0%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div id="lastmile-q-satisfaction-progress" class="progress-fill" style="width: 0%"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Communication Clarity Card -->
-                            <div class="metric-card">
-                                <div class="metric-card-header">
-                                    <span class="metric-card-title">Communication Clarity</span>
-                                </div>
-                                <div id="communication-responses-count" class="metric-value large">0</div>
-                                <div class="metric-label">Responses</div>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span class="progress-label-text">Satisfaction Rate</span>
-                                        <span id="communication-satisfaction-rate" class="progress-label-value">0%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div id="communication-satisfaction-progress" class="progress-fill" style="width: 0%"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Account Manager Responsiveness Card -->
-                            <div class="metric-card">
-                                <div class="metric-card-header">
-                                    <span class="metric-card-title">Account Manager</span>
-                                </div>
-                                <div id="responsiveness-responses-count" class="metric-value large">0</div>
-                                <div class="metric-label">Responses</div>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span class="progress-label-text">Satisfaction Rate</span>
-                                        <span id="responsiveness-satisfaction-rate" class="progress-label-value">0%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div id="responsiveness-satisfaction-progress" class="progress-fill" style="width: 0%"></div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- Problem Resolution Card -->
-                            <div class="metric-card">
-                                <div class="metric-card-header">
-                                    <span class="metric-card-title">Problem Resolution</span>
-                                </div>
-                                <div id="problem-resolution-responses-count" class="metric-value large">0</div>
-                                <div class="metric-label">Responses</div>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span class="progress-label-text">Satisfaction Rate</span>
-                                        <span id="problem-resolution-satisfaction-rate" class="progress-label-value">0%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div id="problem-resolution-satisfaction-progress" class="progress-fill" style="width: 0%"></div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- Customization Ability Card -->
-                            <div class="metric-card">
-                                <div class="metric-card-header">
-                                    <span class="metric-card-title">Customization</span>
-                                </div>
-                                <div id="customization-responses-count" class="metric-value large">0</div>
-                                <div class="metric-label">Responses</div>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span class="progress-label-text">Satisfaction Rate</span>
-                                        <span id="customization-satisfaction-rate" class="progress-label-value">0%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div id="customization-satisfaction-progress" class="progress-fill" style="width: 0%"></div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- Systems & Tools Card -->
-                            <div class="metric-card">
-                                <div class="metric-card-header">
-                                    <span class="metric-card-title">Systems & Tools</span>
-                                </div>
-                                <div id="systems-responses-count" class="metric-value large">0</div>
-                                <div class="metric-label">Responses</div>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span class="progress-label-text">Satisfaction Rate</span>
-                                        <span id="systems-satisfaction-rate" class="progress-label-value">0%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div id="systems-satisfaction-progress" class="progress-fill" style="width: 0%"></div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- IT Support Card -->
-                            <div class="metric-card">
-                                <div class="metric-card-header">
-                                    <span class="metric-card-title">IT Support</span>
-                                </div>
-                                <div id="it-support-responses-count" class="metric-value large">0</div>
-                                <div class="metric-label">Responses</div>
-                                <div class="progress-container">
-                                    <div class="progress-label">
-                                        <span class="progress-label-text">Satisfaction Rate</span>
-                                        <span id="it-support-satisfaction-rate" class="progress-label-value">0%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div id="it-support-satisfaction-progress" class="progress-fill" style="width: 0%"></div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </section>
 
@@ -5722,7 +5832,7 @@
 
                 // Re-apply the current quarter filter whenever switching tabs
 
-                
+
                 // Add delay to ensure tab content is loaded before applying filter
                 setTimeout(() => {
                     try {
@@ -5824,7 +5934,7 @@
 
                 // Re-apply current quarter filter when switching tabs
 
-                
+
                 // Add delay to ensure tab content is loaded before applying filter
                 setTimeout(() => {
                     try {
@@ -6200,9 +6310,9 @@
             return q3PendingCustomers.map((customer, index) => ({
                 id: 70 + index, // Start from 70 since we have existing surveys
                 companyName: customer.name,
-                serviceType: customer.serviceType === 'Fulfillment + Last Mile' ? 'Last Mile & Fulfillment' : 
-                           customer.serviceType === 'Last Mile' ? 'Last Mile Only' :
-                           customer.serviceType === 'Fulfillment' ? 'Fulfillment Only' : 'Last Mile & Fulfillment',
+                serviceType: customer.serviceType === 'Fulfillment + Last Mile' ? 'Last Mile & Fulfillment' :
+                    customer.serviceType === 'Last Mile' ? 'Last Mile Only' :
+                        customer.serviceType === 'Fulfillment' ? 'Fulfillment Only' : 'Last Mile & Fulfillment',
                 overallSatisfaction: null, // Pending - no rating yet
                 npsScore: null,
                 lastMileSatisfaction: null,
@@ -6341,6 +6451,7 @@
             // Calculate metrics directly
             const totalSurveys = mockData.length;
             const completedSurveys = mockData.filter(survey => !!survey.submittedAt).length;
+            const pendingSurveys = totalSurveys - completedSurveys;
             const completionPercentage = Math.round((completedSurveys / totalSurveys) * 100);
             const satisfiedCustomers = mockData.filter(survey => survey.submittedAt && survey.overallSatisfaction >= 4).length;
             const satisfactionPercentage = Math.round((satisfiedCustomers / completedSurveys) * 100);
@@ -6351,10 +6462,14 @@
             const totalElement = document.getElementById('total-surveys-value');
             const completionElement = document.getElementById('completion-rate-value');
             const satisfactionElement = document.getElementById('satisfaction-rate-value');
+            const completedElement = document.getElementById('completed-customers-count');
+            const pendingElement = document.getElementById('pending-customers-count');
 
             if (totalElement) totalElement.textContent = totalSurveys;
             if (completionElement) completionElement.textContent = completionPercentage + '%';
             if (satisfactionElement) satisfactionElement.textContent = satisfactionPercentage + '%';
+            if (completedElement) completedElement.textContent = completedSurveys;
+            if (pendingElement) pendingElement.textContent = pendingSurveys;
 
 
 
@@ -6563,8 +6678,7 @@
                     // Update product type breakdown
                     await this.updateProductTypeBreakdown(productBreakdown);
 
-                    // Update question satisfaction breakdown
-                    await this.updateQuestionSatisfaction(overallMetrics.questionSatisfaction);
+
 
                 } catch (error) {
                     this.showErrorState(error);
@@ -6581,9 +6695,9 @@
                 const npsElement = document.getElementById('nps-score-value');
                 const npsScore = metrics.npsData ? metrics.npsData.npsScore : 0;
                 const npsSign = npsScore > 0 ? '+' : '';
-                
+
                 this.animateValue('nps-score-value', 0, npsScore, '', npsSign);
-                
+
                 // Apply color coding for NPS (positive = green, neutral = orange, negative = red)
                 if (npsElement) {
                     if (npsScore > 0) {
@@ -6594,21 +6708,21 @@
                         npsElement.className = 'metric-value large error';
                     }
                 }
-                
+
                 // Update NPS breakdown
                 if (metrics.npsData) {
                     const promotersElement = document.getElementById('nps-promoters-value');
                     const passivesElement = document.getElementById('nps-passives-value');
                     const detractorsElement = document.getElementById('nps-detractors-value');
-                    
+
                     if (promotersElement) {
                         promotersElement.textContent = `${metrics.npsData.promoters.percentage}% (${metrics.npsData.promoters.count})`;
                     }
-                    
+
                     if (passivesElement) {
                         passivesElement.textContent = `${metrics.npsData.passives.percentage}% (${metrics.npsData.passives.count})`;
                     }
-                    
+
                     if (detractorsElement) {
                         detractorsElement.textContent = `${metrics.npsData.detractors.percentage}% (${metrics.npsData.detractors.count})`;
                     }
@@ -6616,7 +6730,7 @@
 
                 // Animate total responses
                 this.animateValue('total-responses-value', 0, metrics.totalSurveys, '');
-                
+
                 // Update quarter responses
                 const quarterResponsesElement = document.getElementById('quarter-responses-value');
                 if (quarterResponsesElement) {
@@ -6628,6 +6742,10 @@
 
                 this.animateValue('completion-rate-value', 0, metrics.completionPercentage, '%');
                 this.updateProgressBar('completion-rate-progress', metrics.completionPercentage);
+
+                // Update completed and pending customer counts
+                this.animateValue('completed-customers-count', 0, metrics.completedSurveys, '');
+                this.animateValue('pending-customers-count', 0, metrics.pendingSurveys, '');
 
                 // Apply color coding for completion rate (Requirements: 3.4, 3.5)
                 if (completionElement) {
@@ -6657,87 +6775,54 @@
                 }
             }
 
-            /**
-             * Update question satisfaction breakdown cards
-             */
-            async updateQuestionSatisfaction(questionData) {
-                if (!questionData) return;
 
-                const questions = [
-                    { key: 'overall', prefix: 'overall' },
-                    { key: 'lastMile', prefix: 'lastmile-q' },
-                    { key: 'communication', prefix: 'communication' },
-                    { key: 'responsiveness', prefix: 'responsiveness' },
-                    { key: 'problemResolution', prefix: 'problem-resolution' },
-                    { key: 'customization', prefix: 'customization' },
-                    { key: 'systems', prefix: 'systems' },
-                    { key: 'itSupport', prefix: 'it-support' }
-                ];
-
-                questions.forEach(question => {
-                    const data = questionData[question.key];
-                    if (!data) return;
-
-                    // Update response count as main metric
-                    this.animateValue(`${question.prefix}-responses-count`, 0, data.responseCount, '');
-
-                    // Update satisfaction rate
-                    const satisfactionRateElement = document.getElementById(`${question.prefix}-satisfaction-rate`);
-                    if (satisfactionRateElement) {
-                        satisfactionRateElement.textContent = `${data.satisfactionRate}%`;
-                    }
-
-                    // Update progress bar with color coding
-                    this.updateProgressBar(`${question.prefix}-satisfaction-progress`, data.satisfactionRate);
-                    
-                    // Apply color coding to progress bar based on satisfaction rate
-                    const progressBarElement = document.getElementById(`${question.prefix}-satisfaction-progress`);
-                    if (progressBarElement) {
-                        if (data.satisfactionRate >= 80) {
-                            progressBarElement.className = 'progress-fill success';
-                        } else if (data.satisfactionRate >= 60) {
-                            progressBarElement.className = 'progress-fill warning';
-                        } else {
-                            progressBarElement.className = 'progress-fill error';
-                        }
-                    }
-
-                    // Keep response count numbers neutral (no color coding)
-                    const responsesCountElement = document.getElementById(`${question.prefix}-responses-count`);
-                    if (responsesCountElement) {
-                        responsesCountElement.className = 'metric-value large';
-                    }
-                });
-            }
 
             /**
              * Update product type breakdown cards
              * Requirements: 3.3
              */
             async updateProductTypeBreakdown(breakdown) {
-                // Last Mile Only
-                this.animateValue('lastmile-surveys-value', 0, breakdown['Last Mile Only'].completed);
-                this.updateText('lastmile-completion-rate', breakdown['Last Mile Only'].completionRate + '%');
+                // Last Mile Only - only satisfaction rate
                 this.updateText('lastmile-satisfaction-rate', breakdown['Last Mile Only'].satisfactionRate + '%');
-                this.updateProgressBar('lastmile-completion-progress', breakdown['Last Mile Only'].completionRate);
                 this.updateProgressBar('lastmile-satisfaction-progress', breakdown['Last Mile Only'].satisfactionRate);
+                this.applySatisfactionColorCoding('lastmile-satisfaction-rate', 'lastmile-satisfaction-progress', breakdown['Last Mile Only'].satisfactionRate);
 
-                // Fulfillment Only
-                this.animateValue('fulfillment-surveys-value', 0, breakdown['Fulfillment Only'].completed);
-                this.updateText('fulfillment-completion-rate', breakdown['Fulfillment Only'].completionRate + '%');
+                // Fulfillment Only - only satisfaction rate
                 this.updateText('fulfillment-satisfaction-rate', breakdown['Fulfillment Only'].satisfactionRate + '%');
-                this.updateProgressBar('fulfillment-completion-progress', breakdown['Fulfillment Only'].completionRate);
                 this.updateProgressBar('fulfillment-satisfaction-progress', breakdown['Fulfillment Only'].satisfactionRate);
+                this.applySatisfactionColorCoding('fulfillment-satisfaction-rate', 'fulfillment-satisfaction-progress', breakdown['Fulfillment Only'].satisfactionRate);
 
-                // Last Mile & Fulfillment
-                this.animateValue('combined-surveys-value', 0, breakdown['Last Mile & Fulfillment'].completed);
-                this.updateText('combined-completion-rate', breakdown['Last Mile & Fulfillment'].completionRate + '%');
+                // Last Mile & Fulfillment - only satisfaction rate
                 this.updateText('combined-satisfaction-rate', breakdown['Last Mile & Fulfillment'].satisfactionRate + '%');
-                this.updateProgressBar('combined-completion-progress', breakdown['Last Mile & Fulfillment'].completionRate);
                 this.updateProgressBar('combined-satisfaction-progress', breakdown['Last Mile & Fulfillment'].satisfactionRate);
+                this.applySatisfactionColorCoding('combined-satisfaction-rate', 'combined-satisfaction-progress', breakdown['Last Mile & Fulfillment'].satisfactionRate);
+            }
 
-                // Apply color coding to progress bars based on performance
-                this.applyProgressBarColorCoding();
+            /**
+             * Apply color coding to satisfaction rate text and progress bar
+             * 0-59%: Red, 60-79%: Orange, 80-100%: Green
+             */
+            applySatisfactionColorCoding(textElementId, progressElementId, percentage) {
+                const textElement = document.getElementById(textElementId);
+                const progressElement = document.getElementById(progressElementId);
+
+                if (textElement && progressElement) {
+                    // Remove existing color classes
+                    textElement.classList.remove('satisfaction-red', 'satisfaction-orange', 'satisfaction-green');
+                    progressElement.classList.remove('satisfaction-red', 'satisfaction-orange', 'satisfaction-green');
+
+                    // Apply color based on satisfaction rate
+                    if (percentage >= 80) {
+                        textElement.classList.add('satisfaction-green');
+                        progressElement.classList.add('satisfaction-green');
+                    } else if (percentage >= 60) {
+                        textElement.classList.add('satisfaction-orange');
+                        progressElement.classList.add('satisfaction-orange');
+                    } else {
+                        textElement.classList.add('satisfaction-red');
+                        progressElement.classList.add('satisfaction-red');
+                    }
+                }
             }
 
             /**
@@ -6865,11 +6950,10 @@
                 const serviceTypes = ['lastmile', 'fulfillment', 'combined'];
 
                 serviceTypes.forEach(type => {
-                    this.animateValue(`${type}-surveys-value`, 0, 0);
-                    this.updateText(`${type}-completion-rate`, '0%');
                     this.updateText(`${type}-satisfaction-rate`, '0%');
-                    this.updateProgressBar(`${type}-completion-progress`, 0);
                     this.updateProgressBar(`${type}-satisfaction-progress`, 0);
+                    // Reset color coding
+                    this.applySatisfactionColorCoding(`${type}-satisfaction-rate`, `${type}-satisfaction-progress`, 0);
                 });
             }
 
@@ -7121,7 +7205,7 @@
 
                     // Separate completed and pending surveys
                     const completedSurveys = surveyData.filter(survey => survey.submittedAt); // Only completed surveys
-                    
+
                     // Create processor instance to get pending surveys
                     const processor = new SurveyDataProcessor();
                     const pendingSurveys = processor.getPendingSurveys(surveyData);
@@ -7222,9 +7306,15 @@
                                     Click to view detailed survey responses for ${this.escapeHtml(survey.companyName)}
                                 </span>
                             </td>
-                            <td role="gridcell">${this.escapeHtml(survey.accountManager || 'Not Assigned')}</td>
                             <td role="gridcell">
-                                <time datetime="${isoAttr}">${completionDate}</time>
+                                <span class="account-manager-badge ${this.getAccountManagerBadgeClass(survey.accountManager)}">
+                                    ${this.escapeHtml(survey.accountManager || 'Not Assigned')}
+                                </span>
+                            </td>
+                            <td role="gridcell">
+                                <span class="completion-date-badge">
+                                    <time datetime="${isoAttr}">${completionDate}</time>
+                                </span>
                             </td>
                             <td role="gridcell">
                                 <span class="table-status-badge completed" aria-label="Survey status: Completed">Completed</span>
@@ -7234,6 +7324,29 @@
                 }).join('');
 
                 tableBody.innerHTML = rows;
+            }
+
+            /**
+             * Get account manager badge CSS class based on name
+             */
+            getAccountManagerBadgeClass(accountManager) {
+                if (!accountManager || accountManager === 'Not Assigned') {
+                    return 'account-manager-default';
+                }
+
+                const name = accountManager.toLowerCase().trim();
+
+                if (name.includes('abdullah')) {
+                    return 'account-manager-abdullah'; // Blue
+                } else if (name.includes('ahmed') && name.includes('salem')) {
+                    return 'account-manager-ahmed'; // Yellow/Orange
+                } else if (name.includes('ibrahim')) {
+                    return 'account-manager-ibrahim'; // Purple
+                } else if (name.includes('ops')) {
+                    return 'account-manager-ops'; // Brown
+                } else {
+                    return 'account-manager-default'; // Gray for unknown
+                }
             }
 
             /**
@@ -7264,7 +7377,11 @@
                                     Customer with pending survey. Click to view details.
                                 </span>
                             </td>
-                            <td role="gridcell">${this.escapeHtml(survey.accountManager || 'Not Assigned')}</td>
+                            <td role="gridcell">
+                                <span class="account-manager-badge ${this.getAccountManagerBadgeClass(survey.accountManager)}">
+                                    ${this.escapeHtml(survey.accountManager || 'Not Assigned')}
+                                </span>
+                            </td>
                             <td role="gridcell">
                                 <span class="table-status-badge pending" aria-label="Survey status: Pending">Pending</span>
                             </td>
@@ -8029,13 +8146,13 @@
 
             handleQuarterChange(quarter) {
                 this.currentQuarter = quarter;
-                
+
                 // Ensure dropdown shows the correct value
                 const quarterSelect = document.getElementById('quarter-select');
                 if (quarterSelect && quarterSelect.value !== quarter) {
                     quarterSelect.value = quarter;
                 }
-                
+
 
 
                 // Save the selected quarter to sessionStorage
@@ -8079,7 +8196,7 @@
                     // Get original data if not cached - use shared data from main initialization
                     if (!this.originalData && window.sharedDashboardData) {
                         this.originalData = [...window.sharedDashboardData];
-                        
+
                         // Add Q3 pending customers when Q3 is selected
                         if (this.currentQuarter.toLowerCase() === 'q3') {
                             const processor = new SurveyDataProcessor();
@@ -8090,7 +8207,7 @@
                         // Fallback: load data if shared data not available yet
                         const apiData = await window.DashboardAPI.getData(true);
                         this.originalData = [...apiData];
-                        
+
                         // Add Q3 pending customers when Q3 is selected
                         if (this.currentQuarter.toLowerCase() === 'q3') {
                             const processor = new SurveyDataProcessor();
@@ -8266,20 +8383,20 @@
                 // Add Q3 pending customers to account manager metrics (only for Q3)
                 if (this.currentQuarter.toLowerCase() === 'q3') {
                     const q3PendingCustomers = generateQ3PendingCustomers();
-                    
+
                     // Get list of companies that have already submitted surveys
                     const submittedCompanies = new Set(
                         surveyData
                             .filter(survey => survey.submittedAt && survey.companyName)
                             .map(survey => survey.companyName.toLowerCase().trim())
                     );
-                    
+
                     // Filter out customers who have already submitted
                     const stillPending = q3PendingCustomers.filter(customer => {
                         const customerName = customer.companyName.toLowerCase().trim();
                         return !submittedCompanies.has(customerName);
                     });
-                    
+
                     // Add pending customers to account manager metrics
                     stillPending.forEach(customer => {
                         let manager = customer.accountManager;
