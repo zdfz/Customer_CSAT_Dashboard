@@ -715,29 +715,47 @@
             }
 
             .sidebar {
-                padding: var(--spacing-md);
+                padding: 12px 16px !important;
                 flex-direction: row;
                 overflow-x: auto;
                 border-right: none;
                 border-bottom: 1px solid var(--glass-border);
+                height: auto !important;
+                min-height: 60px;
             }
 
             .sidebar-header {
                 flex-direction: row;
                 border-bottom: none;
                 border-right: 1px solid rgba(255, 255, 255, 0.1);
-                padding-right: var(--spacing-lg);
-                margin-right: var(--spacing-lg);
+                padding-right: 16px !important;
+                margin-right: 16px !important;
+                margin-bottom: 0 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .dashboard-title h1 {
+                font-size: 1.2rem !important;
+                padding: 8px 16px !important;
+            }
+
+            .sidebar-logo-image {
+                height: 35px !important;
             }
 
             .navigation {
                 flex-direction: row;
-                gap: var(--spacing-xs);
+                gap: 8px !important;
+                flex: 1;
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding: 0 !important;
             }
 
             .nav-tab {
                 white-space: nowrap;
                 min-width: auto;
+                flex-shrink: 0;
             }
 
             .sidebar-quarter-filter {
@@ -745,8 +763,16 @@
                 padding-top: 0;
                 border-top: none;
                 border-left: 1px solid rgba(255, 255, 255, 0.1);
-                padding-left: var(--spacing-lg);
-                margin-left: var(--spacing-lg);
+                padding-left: 16px !important;
+                margin-left: 16px !important;
+                min-width: 120px;
+                flex-shrink: 0;
+            }
+
+            .sidebar-quarter-filter-select {
+                min-height: 36px !important;
+                font-size: 13px !important;
+                padding: 8px 12px !important;
             }
 
             .main-content {
@@ -777,6 +803,161 @@
         }
 
         @media (max-width: 768px) {
+
+            /* 1. NAVIGATION TABS OPTIMIZATION */
+            .nav-tab {
+                padding: 10px 16px !important;
+                min-height: 40px !important;
+                font-size: 14px !important;
+                margin-bottom: 8px !important;
+            }
+
+            .nav-tab.active {
+                border-left: 4px solid var(--primary-main) !important;
+                background: rgba(78, 205, 196, 0.15) !important;
+            }
+
+            /* 2. CONSISTENT SPACING SYSTEM (8pt Grid) */
+            .main-content {
+                padding: 16px !important;
+            }
+
+            section {
+                margin-bottom: 24px !important;
+            }
+
+            /* 3. METRIC CARDS 2-COLUMN LAYOUT */
+            .metrics-grid,
+            .four-column-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 12px !important;
+                margin-bottom: 16px !important;
+            }
+
+            .metric-card {
+                padding: 14px !important;
+                min-height: auto !important;
+            }
+
+            .metric-card-title {
+                font-size: 11px !important;
+                font-weight: 600 !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.5px !important;
+                margin-bottom: 8px !important;
+            }
+
+            .metric-value {
+                font-size: 28px !important;
+                font-weight: 700 !important;
+                margin: 8px 0 !important;
+            }
+
+            .metric-label {
+                font-size: 12px !important;
+                opacity: 0.8 !important;
+            }
+
+            /* 4. SERVICE TYPE CARDS 2-COLUMN */
+            .service-type-grid,
+            .three-column-grid {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 12px !important;
+            }
+
+            /* Last card spans full width if odd number */
+            .service-type-card:last-child:nth-child(odd) {
+                grid-column: 1 / -1 !important;
+            }
+
+            /* 5. TYPOGRAPHY IMPROVEMENTS */
+            h1,
+            .page-title {
+                font-size: 22px !important;
+                margin-bottom: 16px !important;
+            }
+
+            h2,
+            .section-title {
+                font-size: 18px !important;
+                font-weight: 600 !important;
+                margin-bottom: 12px !important;
+            }
+
+            h3,
+            .subsection-title {
+                font-size: 16px !important;
+                margin-bottom: 8px !important;
+            }
+
+            body,
+            .body-text {
+                font-size: 14px !important;
+                line-height: 1.5 !important;
+            }
+
+            /* 6. "CONNECTED" BADGE FIX */
+            .status-badge,
+            .connected-badge,
+            .connection-status {
+                position: fixed !important;
+                bottom: 16px !important;
+                right: 16px !important;
+                padding: 6px 12px !important;
+                font-size: 11px !important;
+                z-index: 100 !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+            }
+
+            /* 7. QUARTER DROPDOWN */
+            .quarter-filter-select,
+            .sidebar-quarter-filter-select {
+                width: 100% !important;
+                min-height: 44px !important;
+                font-size: 15px !important;
+                padding: 12px 16px !important;
+                margin-bottom: 16px !important;
+            }
+
+            /* 8. REDUCE EXCESSIVE WHITESPACE */
+            .dashboard-header {
+                padding: 12px 16px !important;
+                margin-bottom: 16px !important;
+            }
+
+            .logo-container {
+                margin-bottom: 12px !important;
+            }
+
+            /* 9. PROGRESS BARS */
+            .progress-bar {
+                height: 6px !important;
+                margin: 8px 0 !important;
+            }
+
+            .progress-label {
+                font-size: 12px !important;
+                margin-bottom: 4px !important;
+            }
+
+            /* 10. NPS BREAKDOWN COMPACT VIEW */
+            .nps-breakdown {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 8px !important;
+            }
+
+            .nps-item {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                padding: 8px 12px !important;
+                background: rgba(255, 255, 255, 0.05) !important;
+                border-radius: 8px !important;
+            }
+
+            /* Legacy mobile styles for compatibility */
             .header-content {
                 grid-template-columns: 1fr;
                 gap: var(--spacing-lg);
@@ -792,46 +973,38 @@
             .quarter-filter-select {
                 min-width: 140px;
             }
+
+            .navigation {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: var(--spacing-xs);
+                padding: var(--spacing-xs);
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: var(--spacing-md) var(--spacing-lg);
+            }
+
+            .accordion-header {
+                padding: var(--spacing-xl);
+            }
         }
 
-        .navigation {
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: var(--spacing-xs);
-            padding: var(--spacing-xs);
+        /* TABLET BREAKPOINT (768px) - Keep 2-column grid for most cards */
+        @media (max-width: 768px) and (min-width: 481px) {
+
+            .metrics-grid,
+            .four-column-grid {
+                grid-template-columns: 1fr 1fr !important;
+            }
+
+            .three-column-grid {
+                grid-template-columns: 1fr 1fr !important;
+            }
         }
 
-        .metrics-grid,
-        .two-column-grid,
-        .three-column-grid,
-        .four-column-grid {
-            grid-template-columns: 1fr !important;
-            gap: var(--spacing-lg) !important;
-        }
-
-        .main-content {
-            padding: var(--spacing-xl) var(--spacing-lg);
-        }
-
-        .nav-tab {
-            padding: var(--spacing-sm) var(--spacing-lg);
-            font-size: 0.8rem;
-            min-height: 40px;
-        }
-
-        .metric-card {
-            padding: var(--spacing-md);
-        }
-
-        .data-table th,
-        .data-table td {
-            padding: var(--spacing-md) var(--spacing-lg);
-        }
-
-        .accordion-header {
-            padding: var(--spacing-xl);
-        }
-
+        /* PHONE BREAKPOINT (480px and below) - Keep 2-column for metrics, stack service cards if needed */
         @media (max-width: 480px) {
             .header-content {
                 padding: var(--spacing-md);
@@ -868,6 +1041,46 @@
             .data-table td {
                 padding: var(--spacing-sm) var(--spacing-md);
                 font-size: 0.8rem;
+            }
+
+            /* Keep 2-column for metrics on phones */
+            .metrics-grid,
+            .four-column-grid {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 8px !important;
+            }
+
+            /* Stack service cards if needed on very small screens */
+            .service-type-grid,
+            .three-column-grid {
+                grid-template-columns: 1fr !important;
+                gap: 8px !important;
+            }
+        }
+
+        /* EXTRA SMALL BREAKPOINT (360px) - Ensure minimum readable sizes */
+        @media (max-width: 360px) {
+            .metric-value {
+                font-size: 24px !important;
+            }
+
+            .metric-card-title {
+                font-size: 10px !important;
+            }
+
+            .nav-tab {
+                padding: 8px 12px !important;
+                font-size: 12px !important;
+                min-height: 36px !important;
+            }
+
+            .main-content {
+                padding: 12px !important;
+            }
+
+            .metrics-grid,
+            .four-column-grid {
+                gap: 6px !important;
             }
         }
 
@@ -1752,6 +1965,73 @@
             gap: var(--spacing-xl) !important;
         }
 
+        /* Mobile-specific grid improvements */
+        @media (max-width: 768px) {
+            .content-grid {
+                gap: 16px !important;
+            }
+
+            /* Ensure service type cards work properly */
+            .service-type-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 12px !important;
+            }
+
+            /* Product breakdown cards */
+            #product-breakdown {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 12px !important;
+            }
+
+            /* Account manager cards */
+            #account-manager-cards {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 12px !important;
+            }
+
+            /* Mobile typography scale */
+            .content-title {
+                font-size: 1.5rem !important;
+            }
+
+            .content-header {
+                padding: 16px 20px !important;
+                margin-bottom: 20px !important;
+            }
+
+            /* Mobile-friendly table scrolling */
+            .data-table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* Improved mobile touch targets */
+            .accordion-header,
+            .nav-tab,
+            .quarter-filter-select {
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+                /* tap-highlight-color: rgba(0,0,0,0.1); */
+                /* Non-webkit fallback */
+            }
+
+            /* Mobile-optimized loading states */
+            .skeleton-card {
+                border-radius: 12px !important;
+            }
+
+            /* Better mobile spacing for sections */
+            .content-section {
+                padding: 0 !important;
+            }
+
+            /* Mobile-friendly status badges */
+            .table-status-badge {
+                font-size: 10px !important;
+                padding: 4px 8px !important;
+            }
+        }
+
         /* Account Manager Table Specific Styles */
         .progress-container-inline {
             display: flex;
@@ -1969,37 +2249,87 @@
 
         /* Component Responsive Adjustments */
         @media (max-width: 768px) {
+
+            /* Enhanced touch targets for mobile */
+            .nav-tab,
+            .accordion-header,
+            .quarter-filter-select {
+                min-height: 44px !important;
+                touch-action: manipulation;
+            }
+
+            /* Improved card spacing */
             .metric-card {
-                padding: var(--spacing-xs);
+                padding: 14px !important;
+                margin-bottom: 12px;
             }
 
             .metric-value {
-                font-size: 2rem;
+                font-size: 28px !important;
+                line-height: 1.1;
             }
 
             .metric-value.large {
-                font-size: 2.5rem;
+                font-size: 32px !important;
             }
 
+            /* Better table readability */
             .data-table th,
             .data-table td {
-                padding: var(--spacing-sm) var(--spacing-md);
+                padding: 12px 8px !important;
+                font-size: 13px !important;
             }
 
+            .data-table {
+                font-size: 13px !important;
+            }
+
+            /* Compact accordion for mobile */
             .accordion-header {
-                padding: var(--spacing-md);
+                padding: 16px !important;
             }
 
             .accordion-card.expanded .accordion-content {
-                padding: var(--spacing-md);
-                /* max-height will be set dynamically by JavaScript */
+                padding: 16px !important;
             }
 
             .survey-question {
                 grid-template-columns: 1fr;
-                gap: var(--spacing-xs);
+                gap: 8px !important;
+                padding: 12px 0 !important;
             }
 
+            /* Mobile-optimized progress bars */
+            .progress-container-inline {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .progress-bar-inline {
+                width: 100%;
+            }
+
+            /* Better badge positioning */
+            .account-manager-badge,
+            .completion-date-badge {
+                min-width: 100px;
+                font-size: 12px !important;
+                padding: 6px 12px !important;
+            }
+
+            /* Improved skeleton loading for mobile */
+            .skeleton-card {
+                padding: 14px !important;
+            }
+
+            .skeleton-text {
+                height: 14px !important;
+            }
+
+            .skeleton-text.large {
+                height: 20px !important;
+            }
         }
 
         /* Error Handling and User Feedback Styles */
@@ -2610,6 +2940,425 @@
             .accordion-content {
                 /* max-height will be set dynamically by JavaScript */
                 padding: var(--spacing-md) !important;
+            }
+        }
+
+        /* IMPROVED MOBILE RESPONSIVENESS */
+
+        /* Tablet Responsive Design - 768px and below */
+        @media (max-width: 768px) {
+
+            /* Dashboard Layout */
+            .dashboard-container {
+                grid-template-columns: 1fr !important;
+                grid-template-rows: auto 1fr;
+                min-height: 100vh;
+            }
+
+            /* Sidebar becomes horizontal navigation */
+            .sidebar {
+                padding: var(--spacing-md);
+                flex-direction: column;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .sidebar-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding-bottom: var(--spacing-md);
+                margin-bottom: var(--spacing-md);
+            }
+
+            .dashboard-title h1 {
+                font-size: 1.25rem;
+                padding: var(--spacing-md) var(--spacing-lg);
+            }
+
+            /* Navigation becomes horizontal scrollable */
+            .navigation {
+                flex-direction: row;
+                gap: var(--spacing-sm);
+                overflow-x: auto;
+                padding: var(--spacing-sm) 0;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .nav-tab {
+                white-space: nowrap;
+                min-width: 120px;
+                padding: var(--spacing-md) var(--spacing-lg);
+                font-size: 0.875rem;
+                min-height: 44px;
+                /* Touch-friendly size */
+            }
+
+            /* Quarter filter */
+            .sidebar-quarter-filter {
+                margin-top: var(--spacing-md);
+                padding-top: var(--spacing-md);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .sidebar-quarter-filter-select {
+                min-height: 44px;
+                /* Touch-friendly size */
+                font-size: 1rem;
+            }
+
+            /* Main content adjustments */
+            .main-content {
+                padding: var(--spacing-lg) var(--spacing-md);
+                height: auto;
+            }
+
+            /* Grid layouts stack vertically */
+            .four-column-grid,
+            .three-column-grid,
+            .two-column-grid {
+                grid-template-columns: 1fr 1fr !important;
+                gap: var(--spacing-md) !important;
+            }
+
+            /* Metric cards */
+            .metric-card {
+                padding: var(--spacing-sm);
+                border-radius: 12px;
+            }
+
+            .metric-card-title {
+                font-size: 0.7rem;
+            }
+
+            .metric-value {
+                font-size: clamp(1rem, 4vw, 1.4rem);
+                margin: var(--spacing-xs) 0;
+            }
+
+            .metric-value.large {
+                font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+            }
+
+            .metric-label {
+                font-size: 0.7rem;
+            }
+
+            /* Tables become horizontally scrollable */
+            .data-table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .data-table {
+                min-width: 600px;
+                font-size: 0.875rem;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: var(--spacing-sm) var(--spacing-md);
+                white-space: nowrap;
+            }
+
+            /* Accordion adjustments */
+            .accordion-header {
+                padding: var(--spacing-md);
+                min-height: 44px;
+                /* Touch-friendly */
+            }
+
+            .accordion-title {
+                font-size: 1rem;
+            }
+
+            .accordion-subtitle {
+                font-size: 0.8rem;
+            }
+
+            /* Progress bars */
+            .progress-bar {
+                height: 8px;
+            }
+
+            .progress-bar.large {
+                height: 12px;
+            }
+
+            /* Account manager badges */
+            .account-manager-badge,
+            .completion-date-badge {
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 0.8rem;
+                min-width: 100px;
+            }
+
+            /* Button and interactive elements */
+            .empty-state-action,
+            .retry-button {
+                min-height: 44px;
+                padding: var(--spacing-md) var(--spacing-lg);
+                font-size: 1rem;
+            }
+        }
+
+        /* Mobile Phone Responsive Design - 480px and below */
+        @media (max-width: 480px) {
+
+            /* Further reduce font sizes */
+            html {
+                font-size: 14px;
+            }
+
+            /* Dashboard adjustments */
+            .main-content {
+                padding: var(--spacing-md) var(--spacing-sm);
+            }
+
+            /* All grids become single column */
+            .four-column-grid,
+            .three-column-grid,
+            .two-column-grid {
+                grid-template-columns: 1fr !important;
+                gap: var(--spacing-sm) !important;
+            }
+
+            /* Sidebar adjustments */
+            .sidebar {
+                padding: var(--spacing-sm);
+            }
+
+            .sidebar-header {
+                padding-bottom: var(--spacing-sm);
+                margin-bottom: var(--spacing-sm);
+            }
+
+            .dashboard-title h1 {
+                font-size: 1.1rem;
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+
+            .sidebar-logo-image {
+                height: 40px;
+            }
+
+            /* Navigation */
+            .nav-tab {
+                min-width: 100px;
+                padding: var(--spacing-sm) var(--spacing-md);
+                font-size: 0.8rem;
+            }
+
+            /* Metric cards */
+            .metric-card {
+                padding: var(--spacing-xs);
+                border-radius: 8px;
+            }
+
+            .metric-card-title {
+                font-size: 0.65rem;
+                margin-bottom: 2px;
+            }
+
+            .metric-value {
+                font-size: clamp(0.9rem, 5vw, 1.2rem);
+                margin: 2px 0;
+            }
+
+            .metric-value.large {
+                font-size: clamp(1rem, 5.5vw, 1.4rem);
+            }
+
+            .metric-label {
+                font-size: 0.65rem;
+            }
+
+            /* Progress containers */
+            .progress-container {
+                margin: 2px 0;
+            }
+
+            .progress-label-text,
+            .progress-label-value {
+                font-size: 0.65rem;
+            }
+
+            /* Tables */
+            .data-table {
+                font-size: 0.8rem;
+                min-width: 500px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: var(--spacing-xs) var(--spacing-sm);
+            }
+
+            /* Accordion */
+            .accordion-header {
+                padding: var(--spacing-sm);
+            }
+
+            .accordion-title {
+                font-size: 0.9rem;
+            }
+
+            .accordion-subtitle {
+                font-size: 0.75rem;
+            }
+
+            .accordion-rating {
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 0.75rem;
+            }
+
+            /* Account manager badges */
+            .account-manager-badge,
+            .completion-date-badge {
+                padding: 4px var(--spacing-xs);
+                font-size: 0.7rem;
+                min-width: 80px;
+            }
+
+            /* Survey questions in accordion */
+            .survey-question {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-xs);
+                padding: var(--spacing-xs) 0;
+            }
+
+            .survey-question-label {
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+
+            .survey-question-answer {
+                font-size: 0.75rem;
+                padding-left: var(--spacing-sm);
+            }
+
+            /* Error messages and empty states */
+            .error-message {
+                font-size: 0.8rem;
+                padding: var(--spacing-sm);
+            }
+
+            .empty-state {
+                padding: var(--spacing-md);
+            }
+
+            .empty-state-title {
+                font-size: 1.1rem;
+            }
+
+            .empty-state-description {
+                font-size: 0.8rem;
+            }
+
+            /* Progress bars inline (account manager table) */
+            .progress-container-inline {
+                flex-direction: column;
+                align-items: stretch;
+                gap: var(--spacing-xs);
+            }
+
+            .progress-percentage {
+                text-align: center;
+                min-width: auto;
+            }
+        }
+
+        /* Extra small screens - 360px and below */
+        @media (max-width: 360px) {
+            .nav-tab {
+                min-width: 80px;
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 0.75rem;
+            }
+
+            .metric-card {
+                padding: 4px;
+            }
+
+            .metric-card-title {
+                font-size: 0.6rem;
+            }
+
+            .metric-value {
+                font-size: clamp(0.8rem, 6vw, 1rem);
+            }
+
+            .metric-value.large {
+                font-size: clamp(0.9rem, 6.5vw, 1.2rem);
+            }
+
+            .data-table {
+                min-width: 400px;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Landscape orientation adjustments for mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .sidebar {
+                flex-direction: row;
+                align-items: center;
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+
+            .sidebar-header {
+                flex-direction: row;
+                border-bottom: none;
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                padding-right: var(--spacing-md);
+                margin-right: var(--spacing-md);
+                margin-bottom: 0;
+            }
+
+            .navigation {
+                flex: 1;
+                justify-content: center;
+            }
+
+            .sidebar-quarter-filter {
+                margin-top: 0;
+                padding-top: 0;
+                border-top: none;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                padding-left: var(--spacing-md);
+                margin-left: var(--spacing-md);
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+
+            /* Increase touch targets */
+            .nav-tab,
+            .accordion-header,
+            .table-cell-link,
+            .empty-state-action,
+            .retry-button,
+            .sidebar-quarter-filter-select {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            /* Remove hover effects on touch devices */
+            .metric-card:hover,
+            .nav-tab:hover,
+            .accordion-card:hover {
+                transform: none;
+                box-shadow: inherit;
+            }
+
+            /* Improve tap highlighting */
+            .nav-tab,
+            .accordion-header,
+            .table-cell-link {
+                -webkit-tap-highlight-color: rgba(52, 211, 153, 0.3);
             }
         }
     </style>
