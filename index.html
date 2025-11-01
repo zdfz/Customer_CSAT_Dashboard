@@ -241,6 +241,7 @@
         .dashboard-container {
             display: grid;
             grid-template-columns: 280px 1fr;
+            grid-template-columns: 280px 1fr;
             min-height: 100vh;
             background: var(--bg-gradient);
             position: relative;
@@ -326,6 +327,8 @@
 
         .dashboard-title h1 {
             font-size: 1.5rem;
+        .dashboard-title h1 {
+            font-size: 1.5rem;
             font-weight: 700;
             background: var(--primary-gradient);
             color: white;
@@ -336,8 +339,10 @@
             border: 1px solid var(--primary-border);
             letter-spacing: -0.025em;
             line-height: 1.2;
+            line-height: 1.2;
         }
 
+        /* Enhanced Vertical Navigation */
         /* Enhanced Vertical Navigation */
         .navigation {
             display: flex;
@@ -353,14 +358,17 @@
             background: transparent;
             color: var(--text-secondary);
             font-family: var(--font-family);
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
             border-radius: var(--radius-xl);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
             display: flex;
+            display: flex;
             align-items: center;
+            justify-content: flex-start;
             justify-content: flex-start;
             position: relative;
             white-space: nowrap;
@@ -408,7 +416,7 @@
         }
 
         .nav-tab.active {
-            background: var(--primary-gradient);
+            background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-hover) 100%);
             color: white;
             transform: translateX(8px);
             box-shadow: var(--shadow-lg);
@@ -437,7 +445,7 @@
             content: '';
             position: absolute;
             inset: -2px;
-            background: var(--primary-gradient);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             border-radius: var(--radius-xl);
             z-index: -1;
             opacity: 0.1;
@@ -452,6 +460,7 @@
         }
 
         .sidebar-quarter-filter-label {
+        .sidebar-quarter-filter-label {
             font-size: 0.875rem;
             font-weight: 500;
             color: var(--text-secondary);
@@ -463,6 +472,7 @@
             position: relative;
         }
 
+        .sidebar-quarter-filter-select {
         .sidebar-quarter-filter-select {
             appearance: none;
             -webkit-appearance: none;
@@ -492,6 +502,7 @@
             box-shadow: var(--shadow-glow);
         }
 
+        .sidebar-quarter-filter-select:focus {
         .sidebar-quarter-filter-select:focus {
             outline: none;
             border-color: var(--primary-main);
@@ -1318,6 +1329,18 @@
 
             .sidebar {
                 padding: var(--spacing-lg);
+
+
+
+
+        /* Responsive Design for Vertical Layout */
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 240px 1fr;
+            }
+
+            .sidebar {
+                padding: var(--spacing-lg);
             }
         }
 
@@ -1601,6 +1624,7 @@
             .quarter-filter-select {
                 min-width: 140px;
             }
+            }
 
             .navigation {
                 justify-content: center;
@@ -1608,7 +1632,17 @@
                 gap: var(--spacing-xs);
                 padding: var(--spacing-xs);
             }
+            .navigation {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: var(--spacing-xs);
+                padding: var(--spacing-xs);
+            }
 
+            .data-table th,
+            .data-table td {
+                padding: var(--spacing-md) var(--spacing-lg);
+            }
             .data-table th,
             .data-table td {
                 padding: var(--spacing-md) var(--spacing-lg);
@@ -1652,6 +1686,7 @@
             }
 
             .metric-card {
+                padding: var(--spacing-sm);
                 padding: var(--spacing-sm);
             }
 
@@ -1718,6 +1753,7 @@
         /* Core CSS Components from Design System */
 
         /* Improved Visibility Metric Cards */
+        /* Improved Visibility Metric Cards */
         .metric-card {
             background: var(--bg-card);
             border: 1px solid var(--neutral-200);
@@ -1774,11 +1810,16 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: var(--spacing-xs);
+            margin-bottom: var(--spacing-xs);
         }
 
         .metric-card-title {
             font-size: 0.75rem;
             font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-xs);
             color: var(--text-secondary);
             letter-spacing: 0.05em;
             text-transform: uppercase;
@@ -1797,15 +1838,20 @@
 
         .metric-value {
             font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             font-weight: 700;
             color: var(--text-primary);
             margin: var(--spacing-xs) 0;
+            color: var(--text-primary);
+            margin: var(--spacing-xs) 0;
             line-height: 1;
+            margin-bottom: var(--spacing-xs);
             margin-bottom: var(--spacing-xs);
             font-family: var(--font-display);
         }
 
         .metric-value.large {
+            font-size: clamp(1.4rem, 3.5vw, 2rem);
             font-size: clamp(1.4rem, 3.5vw, 2rem);
         }
 
@@ -1831,6 +1877,8 @@
         }
 
         .metric-label {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
             font-size: 0.75rem;
             color: var(--text-tertiary);
             font-weight: 500;
@@ -1881,12 +1929,40 @@
 
         @keyframes fadeInScale {
             0% {
+            0% {
                 opacity: 0;
+                transform: scale(0.95) translateY(30px);
                 transform: scale(0.95) translateY(30px);
             }
 
             100% {
+            100% {
                 opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromRight {
+            0% {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
                 transform: scale(1) translateY(0);
             }
         }
@@ -2055,6 +2131,7 @@
             box-shadow: var(--shadow-sm);
             transition: all var(--transition-normal);
             border-left: 4px solid var(--primary-main);
+            border-left: 4px solid var(--primary-main);
         }
 
         .data-table-container:hover {
@@ -2129,6 +2206,7 @@
 
         .table-cell-link {
             color: var(--text-primary);
+            color: var(--text-primary);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.2s ease;
@@ -2140,6 +2218,7 @@
         }
 
         .table-cell-link:hover {
+            color: var(--primary-main);
             color: var(--primary-main);
             text-decoration: underline;
         }
@@ -2409,6 +2488,7 @@
         /* Modern Progress Bar Component */
         .progress-container {
             margin: var(--spacing-xs) 0;
+            margin: var(--spacing-xs) 0;
         }
 
         .progress-label {
@@ -2427,6 +2507,7 @@
         .progress-label-value {
             font-weight: 700;
             color: var(--text-primary);
+            color: var(--text-primary);
             font-size: 1rem;
         }
 
@@ -2434,11 +2515,14 @@
             width: 100%;
             height: 12px;
             background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: var(--radius-full);
             overflow: hidden;
             position: relative;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
         }
@@ -2449,6 +2533,7 @@
 
         .progress-fill {
             height: 100%;
+            background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-hover) 100%);
             background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-hover) 100%);
             border-radius: var(--radius-full);
             transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2901,7 +2986,19 @@
             }
 
             /* Improved card spacing */
+
+            /* Enhanced touch targets for mobile */
+            .nav-tab,
+            .accordion-header,
+            .quarter-filter-select {
+                min-height: 44px !important;
+                touch-action: manipulation;
+            }
+
+            /* Improved card spacing */
             .metric-card {
+                padding: 14px !important;
+                margin-bottom: 12px;
                 padding: 14px !important;
                 margin-bottom: 12px;
             }
@@ -2909,15 +3006,21 @@
             .metric-value {
                 font-size: 28px !important;
                 line-height: 1.1;
+                font-size: 28px !important;
+                line-height: 1.1;
             }
 
             .metric-value.large {
                 font-size: 32px !important;
+                font-size: 32px !important;
             }
 
             /* Better table readability */
+            /* Better table readability */
             .data-table th,
             .data-table td {
+                padding: 12px 8px !important;
+                font-size: 13px !important;
                 padding: 12px 8px !important;
                 font-size: 13px !important;
             }
@@ -2927,11 +3030,18 @@
             }
 
             /* Compact accordion for mobile */
+            .data-table {
+                font-size: 13px !important;
+            }
+
+            /* Compact accordion for mobile */
             .accordion-header {
+                padding: 16px !important;
                 padding: 16px !important;
             }
 
             .accordion-card.expanded .accordion-content {
+                padding: 16px !important;
                 padding: 16px !important;
             }
 
@@ -2958,8 +3068,41 @@
                 min-width: 100px;
                 font-size: 12px !important;
                 padding: 6px 12px !important;
+                gap: 8px !important;
+                padding: 12px 0 !important;
             }
 
+            /* Mobile-optimized progress bars */
+            .progress-container-inline {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .progress-bar-inline {
+                width: 100%;
+            }
+
+            /* Better badge positioning */
+            .account-manager-badge,
+            .completion-date-badge {
+                min-width: 100px;
+                font-size: 12px !important;
+                padding: 6px 12px !important;
+            }
+
+            /* Improved skeleton loading for mobile */
+            .skeleton-card {
+                padding: 14px !important;
+            }
+
+            .skeleton-text {
+                height: 14px !important;
+            }
+
+            .skeleton-text.large {
+                height: 20px !important;
+            }
             /* Improved skeleton loading for mobile */
             .skeleton-card {
                 padding: 14px !important;
@@ -3390,6 +3533,7 @@
 
 
 
+
         /* High contrast mode support */
         @media (prefers-contrast: high) {
             :root {
@@ -3582,6 +3726,425 @@
             .accordion-content {
                 /* max-height will be set dynamically by JavaScript */
                 padding: var(--spacing-md) !important;
+            }
+        }
+
+        /* IMPROVED MOBILE RESPONSIVENESS */
+
+        /* Tablet Responsive Design - 768px and below */
+        @media (max-width: 768px) {
+
+            /* Dashboard Layout */
+            .dashboard-container {
+                grid-template-columns: 1fr !important;
+                grid-template-rows: auto 1fr;
+                min-height: 100vh;
+            }
+
+            /* Sidebar becomes horizontal navigation */
+            .sidebar {
+                padding: var(--spacing-md);
+                flex-direction: column;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .sidebar-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding-bottom: var(--spacing-md);
+                margin-bottom: var(--spacing-md);
+            }
+
+            .dashboard-title h1 {
+                font-size: 1.25rem;
+                padding: var(--spacing-md) var(--spacing-lg);
+            }
+
+            /* Navigation becomes horizontal scrollable */
+            .navigation {
+                flex-direction: row;
+                gap: var(--spacing-sm);
+                overflow-x: auto;
+                padding: var(--spacing-sm) 0;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .nav-tab {
+                white-space: nowrap;
+                min-width: 120px;
+                padding: var(--spacing-md) var(--spacing-lg);
+                font-size: 0.875rem;
+                min-height: 44px;
+                /* Touch-friendly size */
+            }
+
+            /* Quarter filter */
+            .sidebar-quarter-filter {
+                margin-top: var(--spacing-md);
+                padding-top: var(--spacing-md);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .sidebar-quarter-filter-select {
+                min-height: 44px;
+                /* Touch-friendly size */
+                font-size: 1rem;
+            }
+
+            /* Main content adjustments */
+            .main-content {
+                padding: var(--spacing-lg) var(--spacing-md);
+                height: auto;
+            }
+
+            /* Grid layouts stack vertically */
+            .four-column-grid,
+            .three-column-grid,
+            .two-column-grid {
+                grid-template-columns: 1fr 1fr !important;
+                gap: var(--spacing-md) !important;
+            }
+
+            /* Metric cards */
+            .metric-card {
+                padding: var(--spacing-sm);
+                border-radius: 12px;
+            }
+
+            .metric-card-title {
+                font-size: 0.7rem;
+            }
+
+            .metric-value {
+                font-size: clamp(1rem, 4vw, 1.4rem);
+                margin: var(--spacing-xs) 0;
+            }
+
+            .metric-value.large {
+                font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+            }
+
+            .metric-label {
+                font-size: 0.7rem;
+            }
+
+            /* Tables become horizontally scrollable */
+            .data-table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .data-table {
+                min-width: 600px;
+                font-size: 0.875rem;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: var(--spacing-sm) var(--spacing-md);
+                white-space: nowrap;
+            }
+
+            /* Accordion adjustments */
+            .accordion-header {
+                padding: var(--spacing-md);
+                min-height: 44px;
+                /* Touch-friendly */
+            }
+
+            .accordion-title {
+                font-size: 1rem;
+            }
+
+            .accordion-subtitle {
+                font-size: 0.8rem;
+            }
+
+            /* Progress bars */
+            .progress-bar {
+                height: 8px;
+            }
+
+            .progress-bar.large {
+                height: 12px;
+            }
+
+            /* Account manager badges */
+            .account-manager-badge,
+            .completion-date-badge {
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 0.8rem;
+                min-width: 100px;
+            }
+
+            /* Button and interactive elements */
+            .empty-state-action,
+            .retry-button {
+                min-height: 44px;
+                padding: var(--spacing-md) var(--spacing-lg);
+                font-size: 1rem;
+            }
+        }
+
+        /* Mobile Phone Responsive Design - 480px and below */
+        @media (max-width: 480px) {
+
+            /* Further reduce font sizes */
+            html {
+                font-size: 14px;
+            }
+
+            /* Dashboard adjustments */
+            .main-content {
+                padding: var(--spacing-md) var(--spacing-sm);
+            }
+
+            /* All grids become single column */
+            .four-column-grid,
+            .three-column-grid,
+            .two-column-grid {
+                grid-template-columns: 1fr !important;
+                gap: var(--spacing-sm) !important;
+            }
+
+            /* Sidebar adjustments */
+            .sidebar {
+                padding: var(--spacing-sm);
+            }
+
+            .sidebar-header {
+                padding-bottom: var(--spacing-sm);
+                margin-bottom: var(--spacing-sm);
+            }
+
+            .dashboard-title h1 {
+                font-size: 1.1rem;
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+
+            .sidebar-logo-image {
+                height: 40px;
+            }
+
+            /* Navigation */
+            .nav-tab {
+                min-width: 100px;
+                padding: var(--spacing-sm) var(--spacing-md);
+                font-size: 0.8rem;
+            }
+
+            /* Metric cards */
+            .metric-card {
+                padding: var(--spacing-xs);
+                border-radius: 8px;
+            }
+
+            .metric-card-title {
+                font-size: 0.65rem;
+                margin-bottom: 2px;
+            }
+
+            .metric-value {
+                font-size: clamp(0.9rem, 5vw, 1.2rem);
+                margin: 2px 0;
+            }
+
+            .metric-value.large {
+                font-size: clamp(1rem, 5.5vw, 1.4rem);
+            }
+
+            .metric-label {
+                font-size: 0.65rem;
+            }
+
+            /* Progress containers */
+            .progress-container {
+                margin: 2px 0;
+            }
+
+            .progress-label-text,
+            .progress-label-value {
+                font-size: 0.65rem;
+            }
+
+            /* Tables */
+            .data-table {
+                font-size: 0.8rem;
+                min-width: 500px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: var(--spacing-xs) var(--spacing-sm);
+            }
+
+            /* Accordion */
+            .accordion-header {
+                padding: var(--spacing-sm);
+            }
+
+            .accordion-title {
+                font-size: 0.9rem;
+            }
+
+            .accordion-subtitle {
+                font-size: 0.75rem;
+            }
+
+            .accordion-rating {
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 0.75rem;
+            }
+
+            /* Account manager badges */
+            .account-manager-badge,
+            .completion-date-badge {
+                padding: 4px var(--spacing-xs);
+                font-size: 0.7rem;
+                min-width: 80px;
+            }
+
+            /* Survey questions in accordion */
+            .survey-question {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-xs);
+                padding: var(--spacing-xs) 0;
+            }
+
+            .survey-question-label {
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+
+            .survey-question-answer {
+                font-size: 0.75rem;
+                padding-left: var(--spacing-sm);
+            }
+
+            /* Error messages and empty states */
+            .error-message {
+                font-size: 0.8rem;
+                padding: var(--spacing-sm);
+            }
+
+            .empty-state {
+                padding: var(--spacing-md);
+            }
+
+            .empty-state-title {
+                font-size: 1.1rem;
+            }
+
+            .empty-state-description {
+                font-size: 0.8rem;
+            }
+
+            /* Progress bars inline (account manager table) */
+            .progress-container-inline {
+                flex-direction: column;
+                align-items: stretch;
+                gap: var(--spacing-xs);
+            }
+
+            .progress-percentage {
+                text-align: center;
+                min-width: auto;
+            }
+        }
+
+        /* Extra small screens - 360px and below */
+        @media (max-width: 360px) {
+            .nav-tab {
+                min-width: 80px;
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 0.75rem;
+            }
+
+            .metric-card {
+                padding: 4px;
+            }
+
+            .metric-card-title {
+                font-size: 0.6rem;
+            }
+
+            .metric-value {
+                font-size: clamp(0.8rem, 6vw, 1rem);
+            }
+
+            .metric-value.large {
+                font-size: clamp(0.9rem, 6.5vw, 1.2rem);
+            }
+
+            .data-table {
+                min-width: 400px;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Landscape orientation adjustments for mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .sidebar {
+                flex-direction: row;
+                align-items: center;
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+
+            .sidebar-header {
+                flex-direction: row;
+                border-bottom: none;
+                border-right: 1px solid rgba(255, 255, 255, 0.1);
+                padding-right: var(--spacing-md);
+                margin-right: var(--spacing-md);
+                margin-bottom: 0;
+            }
+
+            .navigation {
+                flex: 1;
+                justify-content: center;
+            }
+
+            .sidebar-quarter-filter {
+                margin-top: 0;
+                padding-top: 0;
+                border-top: none;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                padding-left: var(--spacing-md);
+                margin-left: var(--spacing-md);
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+
+            /* Increase touch targets */
+            .nav-tab,
+            .accordion-header,
+            .table-cell-link,
+            .empty-state-action,
+            .retry-button,
+            .sidebar-quarter-filter-select {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            /* Remove hover effects on touch devices */
+            .metric-card:hover,
+            .nav-tab:hover,
+            .accordion-card:hover {
+                transform: none;
+                box-shadow: inherit;
+            }
+
+            /* Improve tap highlighting */
+            .nav-tab,
+            .accordion-header,
+            .table-cell-link {
+                -webkit-tap-highlight-color: rgba(52, 211, 153, 0.3);
             }
         }
 
@@ -4260,6 +4823,7 @@
                     const arIndices = Array.isArray(arIdx) ? arIdx : [arIdx];
                     const enIndices = Array.isArray(enIdx) ? enIdx : [enIdx];
 
+
                     // Try Arabic columns first
                     for (const idx of arIndices) {
                         if (idx >= 0) {
@@ -4268,6 +4832,7 @@
                         }
                     }
 
+
                     // Then try English columns
                     for (const idx of enIndices) {
                         if (idx >= 0) {
@@ -4275,6 +4840,7 @@
                             if (val) return val;
                         }
                     }
+
 
                     return '';
                 };
@@ -4284,6 +4850,7 @@
                     const arIndices = Array.isArray(arIdx) ? arIdx : [arIdx];
                     const enIndices = Array.isArray(enIdx) ? enIdx : [enIdx];
 
+
                     // Try Arabic columns first
                     for (const idx of arIndices) {
                         if (idx >= 0) {
@@ -4292,6 +4859,7 @@
                         }
                     }
 
+
                     // Then try English columns
                     for (const idx of enIndices) {
                         if (idx >= 0) {
@@ -4299,6 +4867,7 @@
                             if (val !== null) return val;
                         }
                     }
+
 
                     return null;
                 };
@@ -4334,12 +4903,14 @@
                                 let npsScore = getNum(row, IDX.npsAr, IDX.npsEn, 0, 10);
                                 if (npsScore !== null) return npsScore;
 
+
                                 // Check additional NPS columns found in analysis
                                 // Column k (42): "How likely are you to recommend *Starlinks* to other businesses?"
                                 if (row[42] !== undefined && row[42] !== null && row[42] !== '') {
                                     const val = this.parseNumber(row[42], 0, 10);
                                     if (val !== null) return val;
                                 }
+
 
                                 // Check columns } (60) and ~ (61) for the last few responses
                                 // These contain some NPS responses in the final rows
@@ -4348,13 +4919,16 @@
                                     if (val !== null) return val;
                                 }
 
+
                                 if (row[61] !== undefined && row[61] !== null && row[61] !== '') {
                                     const val = this.parseNumber(row[61], 0, 10);
                                     if (val !== null) return val;
                                 }
 
+
                                 return null;
                             };
+
 
                             const npsScore = getNpsScore(row);
                             const lastMileSatisfaction = getNum(row, IDX.lastMileAr, IDX.lastMileEn, 1, 5);
@@ -4382,11 +4956,16 @@
 
                             const suggestions = getVal(row, IDX.suggestionsAr, IDX.suggestionsEn);
 
+
                             // New fields - combine Arabic and English responses
                             const launchpadExplanation = getVal(row, IDX.launchpadExplanationAr, IDX.launchpadExplanationEn);
                             const generalImprovement = getVal(row, IDX.generalImprovementEn, IDX.improveAr);
 
                             // English first, then Arabic fallback
+
+
+                            // English first, then Arabic fallback
+
 
 
 
@@ -4395,6 +4974,7 @@
                             // Get real submission date from Submitted At column
                             let submittedAtRaw = null;
 
+
                             // Helper function to check if a value looks like a timestamp
                             const looksLikeTimestamp = (val) => {
                                 if (!val) return false;
@@ -4402,6 +4982,7 @@
                                 // Check for date patterns like "7/10/2025 8:58:25" or similar
                                 return /^\d{1,2}\/\d{1,2}\/\d{4}\s+\d{1,2}:\d{2}:\d{2}$/.test(str);
                             };
+
 
                             // Approach 1: Use the mapped column index (most reliable)
                             if (IDX.submittedAt >= 0 && row[IDX.submittedAt]) {
@@ -4417,6 +4998,7 @@
                                     }
                                 }
                             }
+
 
                             let submittedAt = this.parseDate(submittedAtRaw);
 
@@ -6358,13 +6940,16 @@
                 const pendingCustomers = this.getPendingSurveys(surveyData);
                 const pendingSurveysCount = pendingCustomers.length;
 
+
                 const totalSurveysIncludingPending = companyMap.size + pendingSurveysCount;
                 const completedSurveys = companyMap.size; // Only completed surveys
+
 
                 // For display: show total survey responses (only completed responses)
                 const totalSurveysForDisplay = surveyData.length;
 
                 // Calculate actual completion rate
+                const completionPercentage = totalSurveysIncludingPending > 0
                 const completionPercentage = totalSurveysIncludingPending > 0
                     ? Math.round((completedSurveys / totalSurveysIncludingPending) * 100)
                     : 100;
@@ -6393,6 +6978,7 @@
 
 
 
+
                 return {
                     totalSurveys: totalSurveysForDisplay,
                     completedSurveys,
@@ -6402,6 +6988,7 @@
                     satisfiedCustomersPercentage,
                     averageSatisfaction: Math.round(averageSatisfaction * 10) / 10,
                     totalSurveysIncludingPending,
+                    npsData: npsData
                     npsData: npsData
                 };
             }
@@ -6467,6 +7054,7 @@
                 surveyData.forEach(survey => {
                     let manager = survey.accountManager;
 
+
                     // Normalize account manager names
                     if (manager === 'Ibrahim Fadhaly') manager = 'Ibrahim Fadaly';
                     if (manager === 'Ahmed Salem') manager = 'Ahmed Saleem';
@@ -6505,9 +7093,11 @@
                 pendingCustomers.forEach(customer => {
                     let manager = customer.accountManager;
 
+
                     // Normalize account manager names
                     if (manager === 'Ibrahim Fadhaly') manager = 'Ibrahim Fadaly';
                     if (manager === 'Ahmed Salem') manager = 'Ahmed Saleem';
+
 
                     if (manager) {
                         // Initialize manager if not in known list
@@ -6572,8 +7162,10 @@
                     return []; // No pending customers for Q2, Q4, or All
                 }
 
+
                 // Get Q3 pending customers and filter out those who have already submitted
                 const q3PendingCustomers = generateQ3PendingCustomers();
+
 
                 // Get list of companies that have already submitted surveys
                 const submittedCompanies = new Set(
@@ -6582,13 +7174,16 @@
                         .map(survey => survey.companyName.toLowerCase().trim())
                 );
 
+
                 // Filter out customers who have already submitted
                 const stillPending = q3PendingCustomers.filter(customer => {
                     const customerName = customer.companyName.toLowerCase().trim();
                     return !submittedCompanies.has(customerName);
                 });
 
+
                 // Sort alphabetically by company name
+                return stillPending.sort((a, b) =>
                 return stillPending.sort((a, b) =>
                     a.companyName.localeCompare(b.companyName)
                 );
@@ -6599,6 +7194,7 @@
              * Requirements: 5.1, 5.2, 5.3
              */
             formatSurveyForAccordion(survey) {
+
 
 
                 const formatDate = (date) => {
@@ -6774,6 +7370,7 @@
 
 
 
+
             /**
              * Group surveys by field value
              */
@@ -6843,10 +7440,21 @@
     </script>
 
 
+
     <!-- Live region for screen reader announcements -->
     <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
     <div class="dashboard-container">
+        <!-- Vertical Sidebar -->
+        <aside class="sidebar" role="navigation">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <img src="logo.png" alt="Company Logo" class="sidebar-logo-image">
+                </div>
+                <div class="dashboard-title">
+                    <h1>CSAT Tracking Dashboard</h1>
+                </div>
+            </div>
         <!-- Vertical Sidebar -->
         <aside class="sidebar" role="navigation">
             <div class="sidebar-header">
@@ -7276,6 +7884,7 @@
                                     <tr>
                                         <td colspan="4"
                                             style="text-align: center; padding: var(--spacing-xl); color: var(--text-secondary);"
+                                            style="text-align: center; padding: var(--spacing-xl); color: var(--text-secondary);"
                                             role="status" aria-live="polite">
                                             Loading customer data...
                                         </td>
@@ -7308,6 +7917,7 @@
                                     <!-- Data will be populated dynamically -->
                                     <tr>
                                         <td colspan="3"
+                                            style="text-align: center; padding: var(--spacing-xl); color: var(--text-secondary);"
                                             style="text-align: center; padding: var(--spacing-xl); color: var(--text-secondary);"
                                             role="status" aria-live="polite">
                                             Loading customer data...
@@ -7342,6 +7952,14 @@
                     <h1 class="heading-lg mb-lg">Account Manager Performance</h1>
 
                     <!-- Loading State -->
+                    <div id="account-manager-loading" class="full-width-grid" style="display: none;">
+                        <div class="data-table-container">
+                            <div style="padding: var(--spacing-lg);">
+                                <div class="skeleton skeleton-table-row"></div>
+                                <div class="skeleton skeleton-table-row"></div>
+                                <div class="skeleton skeleton-table-row"></div>
+                                <div class="skeleton skeleton-table-row"></div>
+                            </div>
                     <div id="account-manager-loading" class="full-width-grid" style="display: none;">
                         <div class="data-table-container">
                             <div style="padding: var(--spacing-lg);">
@@ -7431,6 +8049,7 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
 
                 // Re-apply the current quarter filter whenever switching tabs
+
 
 
                 // Add delay to ensure tab content is loaded before applying filter
@@ -7639,6 +8258,7 @@
                 });
 
                 // Re-apply current quarter filter when switching tabs
+
 
 
                 // Add delay to ensure tab content is loaded before applying filter
@@ -7962,27 +8582,21 @@
                 { name: 'Amazon', accountManager: 'OPS', serviceType: 'Fulfillment + Last Mile' },
                 { name: 'Biggbrands', accountManager: 'Ahmed Saleem', serviceType: 'Fulfillment + Last Mile' },
                 { name: 'Brands for Less', accountManager: 'Ibrahim Fadaly', serviceType: 'Fulfillment + Last Mile' },
+                { name: 'Bokhor Oud', accountManager: 'Abdullah Ahmed', serviceType: 'Fulfillment + Last Mile' },
                 { name: 'Call it Spring', accountManager: 'Ahmed Saleem', serviceType: 'Fulfillment + Last Mile' },
-                { name: 'Claseera', accountManager: 'Ahmed Saleem', serviceType: 'Fulfillment + Last Mile' },
                 { name: 'Decathlon', accountManager: 'Ahmed Saleem', serviceType: 'Last Mile' },
                 { name: 'DHL', accountManager: 'Ahmed Saleem', serviceType: 'Last Mile' },
                 { name: 'Flormar', accountManager: 'Ahmed Saleem', serviceType: 'Fulfillment + Last Mile' },
                 { name: 'Golden Rose', accountManager: 'Ahmed Saleem', serviceType: 'Fulfillment + Last Mile' },
                 { name: 'Homzmart', accountManager: 'Ahmed Saleem', serviceType: 'Fulfillment + Last Mile' },
                 { name: 'Hopa Design', accountManager: 'Ahmed Saleem', serviceType: 'Fulfillment + Last Mile' },
-                { name: 'Kaafmeem', accountManager: 'Abdullah Ahmed', serviceType: 'Last Mile' },
                 { name: 'Kabrita', accountManager: 'Abdullah Ahmed', serviceType: 'Fulfillment + Last Mile' },
                 { name: 'La Senza', accountManager: 'Ahmed Saleem', serviceType: 'Fulfillment + Last Mile' },
-                { name: 'Laveienrose', accountManager: 'Ahmed Saleem', serviceType: 'Fulfillment + Last Mile' },
-                { name: 'Laverne UAE', accountManager: 'Abdullah Ahmed', serviceType: 'Fulfillment + Last Mile' },
                 { name: 'LG', accountManager: 'Ahmed Saleem', serviceType: 'Last Mile' },
                 { name: 'Lipsy', accountManager: 'Ahmed Saleem', serviceType: 'Fulfillment + Last Mile' },
-                { name: 'Noon RTV', accountManager: 'Ibrahim Fadaly', serviceType: 'Fulfillment' },
-                { name: 'Ozen', accountManager: 'Abdullah Ahmed', serviceType: 'Fulfillment + Last Mile' },
                 { name: 'Rasees', accountManager: 'Abdullah Ahmed', serviceType: 'Last Mile' },
                 { name: 'Red Cactus/Asteri', accountManager: 'Abdullah Ahmed', serviceType: 'Fulfillment + Last Mile' },
-                { name: 'SACO', accountManager: 'Abdullah Ahmed', serviceType: 'Last Mile' },
-                { name: 'Shiaka Store', accountManager: 'Abdullah Ahmed', serviceType: 'Last Mile' },
+                { name: 'SACO', accountManager: 'Ahmed Saleem', serviceType: 'Last Mile' },
                 { name: 'SL Global', accountManager: 'Ahmed Saleem', serviceType: 'Last Mile' },
                 { name: 'TLC', accountManager: 'Ahmed Saleem', serviceType: 'Fulfillment + Last Mile' },
                 { name: 'Torod', accountManager: 'Ibrahim Fadaly', serviceType: 'Last Mile' },
@@ -7991,13 +8605,11 @@
                 { name: 'Her KSA', accountManager: 'Ibrahim Fadaly', serviceType: 'Fulfillment + Last Mile' },
                 { name: 'Blue Arch', accountManager: 'Abdullah Ahmed', serviceType: 'Last Mile' },
 
-                { name: 'Al Ghanem Electronics', accountManager: 'Abdullah Ahmed', serviceType: 'Last Mile' },
+                { name: 'Al Ghanem Electronics', accountManager: 'Ahmed Saleem', serviceType: 'Last Mile' },
                 { name: 'Tahour Store', accountManager: 'Ibrahim Fadaly', serviceType: 'Fulfillment + Last Mile' },
-                { name: 'Sandouq Albadaee', accountManager: 'Ibrahim Fadaly', serviceType: 'Last Mile' },
 
 
                 { name: 'Reefi', accountManager: 'Abdullah Ahmed', serviceType: 'Last Mile' },
-                { name: 'Balsam', accountManager: 'Abdullah Ahmed', serviceType: 'Last Mile' },
                 { name: 'Eyen Optics', accountManager: 'Abdullah Ahmed', serviceType: 'Last Mile' },
                 { name: 'Trendyol', accountManager: 'Ibrahim Fadaly', serviceType: 'Fulfillment + Last Mile' },
 
@@ -8007,8 +8619,7 @@
                 { name: 'Oud Al Mazim', accountManager: 'Abdullah Ahmed', serviceType: 'Fulfillment + Last Mile' },
                 { name: 'Fast Track', accountManager: 'Abdullah Ahmed', serviceType: 'Last Mile' },
                 { name: 'Alsaad home', accountManager: 'Abdullah Ahmed', serviceType: 'Last Mile' },
-                { name: 'Packman', accountManager: 'Ahmed Saleem', serviceType: 'Fulfillment + Last Mile' },
-                { name: 'Wing Star', accountManager: 'Abdullah Ahmed', serviceType: 'Last Mile' }
+                { name: 'Packman', accountManager: 'Ahmed Saleem', serviceType: 'Fulfillment + Last Mile' }
             ];
 
             const languages = ['Arabic', 'English'];
@@ -8016,6 +8627,9 @@
             return q3PendingCustomers.map((customer, index) => ({
                 id: 70 + index, // Start from 70 since we have existing surveys
                 companyName: customer.name,
+                serviceType: customer.serviceType === 'Fulfillment + Last Mile' ? 'Last Mile & Fulfillment' :
+                    customer.serviceType === 'Last Mile' ? 'Last Mile Only' :
+                        customer.serviceType === 'Fulfillment' ? 'Fulfillment Only' : 'Last Mile & Fulfillment',
                 serviceType: customer.serviceType === 'Fulfillment + Last Mile' ? 'Last Mile & Fulfillment' :
                     customer.serviceType === 'Last Mile' ? 'Last Mile Only' :
                         customer.serviceType === 'Fulfillment' ? 'Fulfillment Only' : 'Last Mile & Fulfillment',
@@ -8161,6 +8775,7 @@
             const totalSurveys = mockData.length;
             const completedSurveys = mockData.filter(survey => !!survey.submittedAt).length;
             const pendingSurveys = totalSurveys - completedSurveys;
+            const pendingSurveys = totalSurveys - completedSurveys;
             const completionPercentage = Math.round((completedSurveys / totalSurveys) * 100);
             const satisfiedCustomers = mockData.filter(survey => survey.submittedAt && survey.overallSatisfaction >= 4).length;
             const satisfactionPercentage = Math.round((satisfiedCustomers / completedSurveys) * 100);
@@ -8173,10 +8788,14 @@
             const satisfactionElement = document.getElementById('satisfaction-rate-value');
             const completedElement = document.getElementById('completed-customers-count');
             const pendingElement = document.getElementById('pending-customers-count');
+            const completedElement = document.getElementById('completed-customers-count');
+            const pendingElement = document.getElementById('pending-customers-count');
 
             if (totalElement) totalElement.textContent = totalSurveys;
             if (completionElement) completionElement.textContent = completionPercentage + '%';
             if (satisfactionElement) satisfactionElement.textContent = satisfactionPercentage + '%';
+            if (completedElement) completedElement.textContent = completedSurveys;
+            if (pendingElement) pendingElement.textContent = pendingSurveys;
             if (completedElement) completedElement.textContent = completedSurveys;
             if (pendingElement) pendingElement.textContent = pendingSurveys;
 
@@ -8389,6 +9008,7 @@
 
 
 
+
                 } catch (error) {
                     this.showErrorState(error);
                 }
@@ -8405,7 +9025,9 @@
                 const npsScore = metrics.npsData ? metrics.npsData.npsScore : 0;
                 const npsSign = npsScore > 0 ? '+' : '';
 
+
                 this.animateValue('nps-score-value', 0, npsScore, '', npsSign);
+
 
                 // Apply color coding for NPS (positive = green, neutral = orange, negative = red)
                 if (npsElement) {
@@ -8418,19 +9040,23 @@
                     }
                 }
 
+
                 // Update NPS breakdown
                 if (metrics.npsData) {
                     const promotersElement = document.getElementById('nps-promoters-value');
                     const passivesElement = document.getElementById('nps-passives-value');
                     const detractorsElement = document.getElementById('nps-detractors-value');
 
+
                     if (promotersElement) {
                         promotersElement.textContent = `${metrics.npsData.promoters.percentage}% (${metrics.npsData.promoters.count})`;
                     }
 
+
                     if (passivesElement) {
                         passivesElement.textContent = `${metrics.npsData.passives.percentage}% (${metrics.npsData.passives.count})`;
                     }
+
 
                     if (detractorsElement) {
                         detractorsElement.textContent = `${metrics.npsData.detractors.percentage}% (${metrics.npsData.detractors.count})`;
@@ -8439,6 +9065,7 @@
 
                 // Animate total responses
                 this.animateValue('total-responses-value', 0, metrics.totalSurveys, '');
+
 
                 // Update quarter responses
                 const quarterResponsesElement = document.getElementById('quarter-responses-value');
@@ -8451,6 +9078,10 @@
 
                 this.animateValue('completion-rate-value', 0, metrics.completionPercentage, '%');
                 this.updateProgressBar('completion-rate-progress', metrics.completionPercentage);
+
+                // Update completed and pending customer counts
+                this.animateValue('completed-customers-count', 0, metrics.completedSurveys, '');
+                this.animateValue('pending-customers-count', 0, metrics.pendingSurveys, '');
 
                 // Update completed and pending customer counts
                 this.animateValue('completed-customers-count', 0, metrics.completedSurveys, '');
@@ -8486,24 +9117,58 @@
 
 
 
+
             /**
              * Update product type breakdown cards
              * Requirements: 3.3
              */
             async updateProductTypeBreakdown(breakdown) {
                 // Last Mile Only - only satisfaction rate
+                // Last Mile Only - only satisfaction rate
                 this.updateText('lastmile-satisfaction-rate', breakdown['Last Mile Only'].satisfactionRate + '%');
                 this.updateProgressBar('lastmile-satisfaction-progress', breakdown['Last Mile Only'].satisfactionRate);
                 this.applySatisfactionColorCoding('lastmile-satisfaction-rate', 'lastmile-satisfaction-progress', breakdown['Last Mile Only'].satisfactionRate);
+                this.applySatisfactionColorCoding('lastmile-satisfaction-rate', 'lastmile-satisfaction-progress', breakdown['Last Mile Only'].satisfactionRate);
 
+                // Fulfillment Only - only satisfaction rate
                 // Fulfillment Only - only satisfaction rate
                 this.updateText('fulfillment-satisfaction-rate', breakdown['Fulfillment Only'].satisfactionRate + '%');
                 this.updateProgressBar('fulfillment-satisfaction-progress', breakdown['Fulfillment Only'].satisfactionRate);
                 this.applySatisfactionColorCoding('fulfillment-satisfaction-rate', 'fulfillment-satisfaction-progress', breakdown['Fulfillment Only'].satisfactionRate);
+                this.applySatisfactionColorCoding('fulfillment-satisfaction-rate', 'fulfillment-satisfaction-progress', breakdown['Fulfillment Only'].satisfactionRate);
 
+                // Last Mile & Fulfillment - only satisfaction rate
                 // Last Mile & Fulfillment - only satisfaction rate
                 this.updateText('combined-satisfaction-rate', breakdown['Last Mile & Fulfillment'].satisfactionRate + '%');
                 this.updateProgressBar('combined-satisfaction-progress', breakdown['Last Mile & Fulfillment'].satisfactionRate);
+                this.applySatisfactionColorCoding('combined-satisfaction-rate', 'combined-satisfaction-progress', breakdown['Last Mile & Fulfillment'].satisfactionRate);
+            }
+
+            /**
+             * Apply color coding to satisfaction rate text and progress bar
+             * 0-59%: Red, 60-79%: Orange, 80-100%: Green
+             */
+            applySatisfactionColorCoding(textElementId, progressElementId, percentage) {
+                const textElement = document.getElementById(textElementId);
+                const progressElement = document.getElementById(progressElementId);
+
+                if (textElement && progressElement) {
+                    // Remove existing color classes
+                    textElement.classList.remove('satisfaction-red', 'satisfaction-orange', 'satisfaction-green');
+                    progressElement.classList.remove('satisfaction-red', 'satisfaction-orange', 'satisfaction-green');
+
+                    // Apply color based on satisfaction rate
+                    if (percentage >= 80) {
+                        textElement.classList.add('satisfaction-green');
+                        progressElement.classList.add('satisfaction-green');
+                    } else if (percentage >= 60) {
+                        textElement.classList.add('satisfaction-orange');
+                        progressElement.classList.add('satisfaction-orange');
+                    } else {
+                        textElement.classList.add('satisfaction-red');
+                        progressElement.classList.add('satisfaction-red');
+                    }
+                }
                 this.applySatisfactionColorCoding('combined-satisfaction-rate', 'combined-satisfaction-progress', breakdown['Last Mile & Fulfillment'].satisfactionRate);
             }
 
@@ -8661,6 +9326,8 @@
                 serviceTypes.forEach(type => {
                     this.updateText(`${type}-satisfaction-rate`, '0%');
                     this.updateProgressBar(`${type}-satisfaction-progress`, 0);
+                    // Reset color coding
+                    this.applySatisfactionColorCoding(`${type}-satisfaction-rate`, `${type}-satisfaction-progress`, 0);
                     // Reset color coding
                     this.applySatisfactionColorCoding(`${type}-satisfaction-rate`, `${type}-satisfaction-progress`, 0);
                 });
@@ -8915,6 +9582,7 @@
                     // Separate completed and pending surveys
                     const completedSurveys = surveyData.filter(survey => survey.submittedAt); // Only completed surveys
 
+
                     // Create processor instance to get pending surveys
                     const processor = new SurveyDataProcessor();
                     const pendingSurveys = processor.getPendingSurveys(surveyData);
@@ -8980,6 +9648,7 @@
 
                 if (completedSurveys.length === 0) {
                     tableBody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: var(--spacing-xl); color: var(--text-secondary);">No completed surveys found</td></tr>';
+                    tableBody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: var(--spacing-xl); color: var(--text-secondary);">No completed surveys found</td></tr>';
                     return;
                 }
 
@@ -9024,6 +9693,14 @@
                                 <span class="completion-date-badge">
                                     <time datetime="${isoAttr}">${completionDate}</time>
                                 </span>
+                                <span class="account-manager-badge ${this.getAccountManagerBadgeClass(survey.accountManager)}">
+                                    ${this.escapeHtml(survey.accountManager || 'Not Assigned')}
+                                </span>
+                            </td>
+                            <td role="gridcell">
+                                <span class="completion-date-badge">
+                                    <time datetime="${isoAttr}">${completionDate}</time>
+                                </span>
                             </td>
                             <td role="gridcell">
                                 <span class="table-status-badge completed" aria-label="Survey status: Completed">Completed</span>
@@ -9059,6 +9736,29 @@
             }
 
             /**
+             * Get account manager badge CSS class based on name
+             */
+            getAccountManagerBadgeClass(accountManager) {
+                if (!accountManager || accountManager === 'Not Assigned') {
+                    return 'account-manager-default';
+                }
+
+                const name = accountManager.toLowerCase().trim();
+
+                if (name.includes('abdullah')) {
+                    return 'account-manager-abdullah'; // Blue
+                } else if (name.includes('ahmed') && name.includes('salem')) {
+                    return 'account-manager-ahmed'; // Yellow/Orange
+                } else if (name.includes('ibrahim')) {
+                    return 'account-manager-ibrahim'; // Purple
+                } else if (name.includes('ops')) {
+                    return 'account-manager-ops'; // Brown
+                } else {
+                    return 'account-manager-default'; // Gray for unknown
+                }
+            }
+
+            /**
              * Update pending surveys table
              * Requirements: 4.3, 4.4, 4.7
              */
@@ -9067,6 +9767,7 @@
                 if (!tableBody) return;
 
                 if (pendingSurveys.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="3" style="text-align: center; padding: var(--spacing-xl); color: var(--text-secondary);">No pending surveys found</td></tr>';
                     tableBody.innerHTML = '<tr><td colspan="3" style="text-align: center; padding: var(--spacing-xl); color: var(--text-secondary);">No pending surveys found</td></tr>';
                     return;
                 }
@@ -9084,6 +9785,11 @@
                                 </a>
                                 <span id="pending-survey-${survey.id}-description" class="sr-only">
                                     Customer with pending survey. Click to view details.
+                                </span>
+                            </td>
+                            <td role="gridcell">
+                                <span class="account-manager-badge ${this.getAccountManagerBadgeClass(survey.accountManager)}">
+                                    ${this.escapeHtml(survey.accountManager || 'Not Assigned')}
                                 </span>
                             </td>
                             <td role="gridcell">
@@ -9110,6 +9816,7 @@
                 if (!accordionContainer) return;
 
                 if (completedSurveys.length === 0) {
+                    accordionContainer.innerHTML = '<div style="text-align: center; padding: var(--spacing-xl); color: var(--text-secondary);">No completed surveys found</div>';
                     accordionContainer.innerHTML = '<div style="text-align: center; padding: var(--spacing-xl); color: var(--text-secondary);">No completed surveys found</div>';
                     return;
                 }
@@ -9444,6 +10151,7 @@
                 this.isInitialized = false;
                 this.loadingContainer = document.getElementById('account-manager-loading');
                 this.tableContainer = document.getElementById('account-manager-table');
+                this.tableContainer = document.getElementById('account-manager-table');
                 this.knownManagers = ['Abdullah Ahmed', 'Ibrahim Fadaly', 'Ahmed Saleem'];
                 this.excludedManagers = ['Joanna', 'Amjad Aljowair', 'Starlinks Team']; // Exclude invalid managers from Q3 data
             }
@@ -9476,6 +10184,8 @@
                 }
                 if (this.tableContainer) {
                     this.tableContainer.style.display = 'none';
+                if (this.tableContainer) {
+                    this.tableContainer.style.display = 'none';
                 }
             }
 
@@ -9488,14 +10198,19 @@
                 }
                 if (this.tableContainer) {
                     this.tableContainer.style.display = 'grid';
+                if (this.tableContainer) {
+                    this.tableContainer.style.display = 'grid';
                 }
             }
 
             /**
              * Render account manager performance table
+             * Render account manager performance table
              * Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6
              */
             renderAccountManagerCards(accountManagerMetrics) {
+                const tableBody = document.getElementById('account-manager-tbody');
+                if (!tableBody) return;
                 const tableBody = document.getElementById('account-manager-tbody');
                 if (!tableBody) return;
 
@@ -9537,11 +10252,14 @@
                         satisfactionRate: 0
                     };
                     // Ensure name is present for rows even when metrics object is empty
+                    // Ensure name is present for rows even when metrics object is empty
                     metrics.name = metrics.name || managerName;
 
                     return this.createManagerRow(metrics);
+                    return this.createManagerRow(metrics);
                 }).join('');
 
+                tableBody.innerHTML = rowsHTML;
                 tableBody.innerHTML = rowsHTML;
 
 
@@ -9549,10 +10267,13 @@
 
             /**
              * Create individual manager performance row
+             * Create individual manager performance row
              * Requirements: 6.2, 6.3, 6.4, 6.5, 6.6
              */
             createManagerRow(metrics) {
+            createManagerRow(metrics) {
                 const completionRateClass = this.getProgressBarClass(metrics.completionRate);
+                const managerBadgeClass = this.getManagerBadgeClass(metrics.name);
                 const managerBadgeClass = this.getManagerBadgeClass(metrics.name);
 
                 return `
@@ -9655,6 +10376,7 @@
                             <div style="color: var(--error-color); font-size: 1.125rem; margin-bottom: var(--spacing-md);">
                                 ⚠️ Error Loading Data
                             </div>
+                            <div style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
                             <div style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
                                 ${this.escapeHtml(message)}
                             </div>
@@ -9845,11 +10567,13 @@
             handleQuarterChange(quarter) {
                 this.currentQuarter = quarter;
 
+
                 // Ensure dropdown shows the correct value
                 const quarterSelect = document.getElementById('quarter-select');
                 if (quarterSelect && quarterSelect.value !== quarter) {
                     quarterSelect.value = quarter;
                 }
+
 
 
 
@@ -9895,6 +10619,7 @@
                     if (!this.originalData && window.sharedDashboardData) {
                         this.originalData = [...window.sharedDashboardData];
 
+
                         // Add Q3 pending customers when Q3 is selected
                         if (this.currentQuarter.toLowerCase() === 'q3') {
                             const processor = new SurveyDataProcessor();
@@ -9905,6 +10630,7 @@
                         // Fallback: load data if shared data not available yet
                         const apiData = await window.DashboardAPI.getData(true);
                         this.originalData = [...apiData];
+
 
                         // Add Q3 pending customers when Q3 is selected
                         if (this.currentQuarter.toLowerCase() === 'q3') {
@@ -10114,6 +10840,7 @@
                 if (this.currentQuarter.toLowerCase() === 'q3') {
                     const q3PendingCustomers = generateQ3PendingCustomers();
 
+
                     // Get list of companies that have already submitted surveys
                     const submittedCompanies = new Set(
                         surveyData
@@ -10121,11 +10848,13 @@
                             .map(survey => survey.companyName.toLowerCase().trim())
                     );
 
+
                     // Filter out customers who have already submitted
                     const stillPending = q3PendingCustomers.filter(customer => {
                         const customerName = customer.companyName.toLowerCase().trim();
                         return !submittedCompanies.has(customerName);
                     });
+
 
                     // Add pending customers to account manager metrics
                     stillPending.forEach(customer => {
