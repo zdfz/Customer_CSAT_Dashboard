@@ -1,0 +1,78 @@
+// Enhanced Customer Table Integration for index.html
+(function() {
+    'use strict';
+    console.log('🚀 Initializing Enhanced Customer Table...');
+
+    // Wait for DOM and existing scripts to load
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(initializeEnhancedTable, 2000);
+    });
+
+    async function initializeEnhancedTable() {
+        try {
+            // Find the customer status section
+            const customerStatusPanel = document.getElementById('customer-status-panel');
+            if (!customerStatusPanel) {
+                console.warn('Customer status panel not found');
+                return;
+            }
+
+            // Create enhanced table section
+            const enhancedSection = document.createElement('div');
+            enhancedSection.id = 'enhanced-customer-table-section';
+            enhancedSection.style.cssText = `margin-top: 48px;background: white;border-radius: 16px;box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);border: 1px solid #E6EFEA;overflow: hidden;`;
+
+            // Add header
+            const header = document.createElement('div');
+            header.style.cssText = `background: linear-gradient(135deg, #ECFDF5 0%, #FFFFFF 100%);padding: 24px;border-bottom: 1px solid #A7F3D0;text-align: center;`;
+            header.innerHTML = `<h2 style="font-size: 1.5rem;font-weight: 700;background: linear-gradient(135deg, #10B981 0%, #059669 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;background-clip: text;margin: 0 0 8px 0;font-family: 'Euclid Circular B', system-ui, sans-serif;">🚀 Enhanced Customer Survey Table</h2><p style="color: #5F726D;margin: 0 0 12px 0;font-size: 0.875rem;line-height: 1.5;">Advanced filtering by Account Manager • Sortable columns • Full Arabic text support</p><div style="display: flex;justify-content: center;gap: 16px;font-size: 0.75rem;color: #10B981;flex-wrap: wrap;"><span>✓ Multi-select filters</span><span>✓ Keyboard navigation</span><span>✓ Persistent state</span><span>✓ Arabic text support</span></div>`;
+
+            // Add table container
+            const tableContainer = document.createElement('div');
+            tableContainer.id = 'enhanced-customer-table-container';
+            tableContainer.style.padding = '0';
+
+            enhancedSection.appendChild(header);
+            enhancedSection.appendChild(tableContainer);
+
+            // Add to the customer status panel
+            const contentGrid = customerStatusPanel.querySelector('.content-grid');
+            if (contentGrid) {
+                contentGrid.appendChild(enhancedSection);
+            } else {
+                customerStatusPanel.appendChild(enhancedSection);
+            }
+
+            // Initialize the table
+            if (typeof CustomerTableIntegration !== 'undefined') {
+                const integration = new CustomerTableIntegration();
+                await integration.init('enhanced-customer-table-container');
+                window.enhancedCustomerTable = integration;
+                console.log('✅ Enhanced Customer Table initialized successfully');
+
+                // Show success notification
+                showSuccessNotification();
+            } else {
+                throw new Error('CustomerTableIntegration class not found');
+            }
+        } catch (error) {
+            console.error('❌ Failed to initialize enhanced table:', error);
+            showErrorMessage(error);
+        }
+    }
+
+    function showSuccessNotification() {
+        const notification = document.createElement('div');
+        notification.style.cssText = `position: fixed;top: 20px;right: 20px;background: #10B981;color: white;padding: 16px 24px;border-radius: 8px;box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);z-index: 10000;font-family: system-ui, sans-serif;font-size: 0.875rem;font-weight: 600;`;
+        notification.innerHTML = `<div style="display: flex; align-items: center; gap: 8px;"><span>🎉</span><span>Enhanced Customer Table Ready!</span></div>`;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 5000);
+    }
+
+    function showErrorMessage(error) {
+        const container = document.getElementById('enhanced-customer-table-container');
+        if (container) {
+            container.innerHTML = `<div style="padding: 40px;text-align: center;background: #FEF2F2;border: 1px solid #FECACA;margin: 24px;border-radius: 12px;"><div style="font-size: 2rem; margin-bottom: 16px;">⚠️</div><h3 style="color: #991B1B; margin: 0 0 8px 0;">Enhanced Table Error</h3><p style="color: #7F1D1D; margin: 0; font-size: 0.875rem;">${error.message}</p></div>`;
+        }
+    }
+})();

@@ -1,0 +1,497 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer CSAT Dashboard - Enhanced Survey Table</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Euclid Circular B Font Integration -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/euclid-circular-b" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Enhanced Customer Table CSS -->
+    <link rel="stylesheet" href="customer-table.css">
+    <!-- Chart.js for trend charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* Enhanced Design System - Modern Light Theme */
+        :root {
+            /* Primary brand (enhanced van green) */
+            --primary-main: #10B981;
+            --primary-surface: #ECFDF5;
+            --primary-focus: #D1FAE5;
+            --primary-border: #A7F3D0;
+            --primary-hover: #059669;
+            --primary-pressed: #047857;
+            --primary-gradient: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            --primary-light: #6EE7B7;
+            --primary-dark: #047857;
+
+            /* Secondary (amber from van accent) */
+            --secondary-main: #F59E0B;
+            --secondary-surface: #FFF6E5;
+            --secondary-focus: #FDEBCA;
+            --secondary-border: #F9E0A6;
+            --secondary-hover: #D97706;
+            --secondary-pressed: #B45309;
+            --secondary-gradient: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            --secondary-light: #FEE7BC;
+            --secondary-dark: #78350F;
+
+            /* Modern Backgrounds */
+            --bg-primary: #FAFBFB;
+            --bg-secondary: #FFFFFF;
+            --bg-tertiary: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --bg-card-hover: #F1F5F9;
+            --bg-gradient: linear-gradient(135deg, #FAFBFB 0%, #F1F5F9 100%);
+
+            /* Semantic */
+            --success-color: #16A34A;
+            --success-gradient: linear-gradient(135deg, #16A34A 0%, #15803D 100%);
+            --warning-color: #F59E0B;
+            --warning-gradient: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            --error-color: #EF4444;
+            --error-gradient: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+            --info-color: #0B9E99;
+            --info-gradient: linear-gradient(135deg, #0B9E99 0%, #0891B2 100%);
+
+            /* Typography  flip to dark text */
+            --text-primary: #0B2B23;
+            /* deep teal */
+            --text-secondary: #2F4942;
+            /* headings/strong */
+            --text-tertiary: #5F726D;
+            /* meta labels */
+            --text-muted: #7C8E88;
+            --text-accent: var(--primary-hover);
+
+            /* Neutrals (light scale) */
+            --neutral-50: #FFFFFF;
+            --neutral-100: #F7FAF9;
+            --neutral-200: #EFF3F1;
+            --neutral-300: #E6EFEA;
+            --neutral-400: #D9E5DF;
+            --neutral-500: #BFCDC6;
+            --neutral-600: #98ADA5;
+            --neutral-700: #6E8680;
+            --neutral-800: #2F4942;
+            --neutral-900: #0B2B23;
+
+            /* Glass on light */
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(11, 43, 35, 0.10);
+            --glass-shadow: 0 1px 2px rgba(6, 34, 24, 0.06), 0 8px 24px rgba(6, 34, 24, 0.08);
+            --glass-backdrop: blur(10px);
+
+            /* Typography System */
+            --font-family: 'Euclid Circular B', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Euclid Circular B', system-ui, sans-serif;
+
+            /* Modern Spacing System */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            --spacing-3xl: 64px;
+            --spacing-4xl: 80px;
+
+            /* Modern Border Radius */
+            --radius-xs: 4px;
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-2xl: 24px;
+            --radius-full: 9999px;
+
+            /* Modern Shadow System */
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+            --shadow-glow: 0 0 0 1px rgba(16, 185, 129, 0.05), 0 1px 3px rgba(16, 185, 129, 0.1);
+
+            /* Modern Transitions */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+            /* Modern Z-Index Scale */
+            --z-dropdown: 1000;
+            --z-sticky: 1020;
+            --z-fixed: 1030;
+            --z-modal-backdrop: 1040;
+            --z-modal: 1050;
+            --z-popover: 1060;
+            --z-tooltip: 1070;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Ensure all elements inherit the correct font */
+        *,
+        *::before,
+        *::after {
+            font-family: inherit;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Simple container for the enhanced table */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-2xl);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: var(--spacing-4xl);
+            padding: var(--spacing-3xl) 0;
+            background: linear-gradient(135deg, var(--primary-surface) 0%, var(--bg-secondary) 100%);
+            border-radius: var(--radius-2xl);
+            border: 1px solid var(--primary-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(14, 163, 110, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-lg);
+            letter-spacing: -0.02em;
+        }
+
+        .page-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Enhanced table section styling */
+        .enhanced-table-section {
+            margin-top: var(--spacing-2xl);
+            background: white;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--primary-border);
+            overflow: hidden;
+        }
+
+        .enhanced-table-header {
+            background: linear-gradient(135deg, #ECFDF5 0%, #FFFFFF 100%);
+            padding: var(--spacing-xl);
+            border-bottom: 1px solid var(--primary-border);
+            text-align: center;
+        }
+
+        .enhanced-table-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0 0 var(--spacing-sm) 0;
+            font-family: var(--font-display);
+        }
+
+        .enhanced-table-description {
+            color: var(--text-tertiary);
+            margin: 0 0 var(--spacing-md) 0;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .enhanced-table-features {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            font-size: 0.75rem;
+            color: var(--primary-main);
+            flex-wrap: wrap;
+        }
+
+        .enhanced-table-features span {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .enhanced-table-features span::before {
+            content: '';
+            font-weight: bold;
+        }
+
+        .enhanced-table-container {
+            padding: 0;
+        }
+
+        /* Loading state */
+        .loading-state {
+            padding: var(--spacing-4xl);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--primary-surface);
+            border-radius: 50%;
+            border-top-color: var(--primary-main);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error state */
+        .error-state {
+            padding: var(--spacing-4xl);
+            text-align: center;
+            background: #FEF2F2;
+            border: 1px solid #FECACA;
+            margin: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+        }
+
+        .error-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+            color: #991B1B;
+        }
+
+        .error-title {
+            color: #991B1B;
+            margin: 0 0 var(--spacing-sm) 0;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .error-message {
+            color: #7F1D1D;
+            margin: 0;
+            font-size: 0.875rem;
+        }
+
+        /* Success notification */
+        .success-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-main);
+            color: white;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            z-index: 10000;
+            font-family: var(--font-family);
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-lg);
+            }
+            
+            .page-header {
+                padding: var(--spacing-xl) var(--spacing-lg);
+            }
+            
+            .enhanced-table-features {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="page-header-content">
+                <h1 class="page-title">Customer Survey Dashboard</h1>
+                <p class="page-subtitle">Advanced customer satisfaction survey data with enhanced filtering and Arabic text support</p>
+            </div>
+        </div>
+
+        <!-- Enhanced Customer Survey Table Section -->
+        <div class="enhanced-table-section" id="enhanced-customer-table-section">
+            <div class="enhanced-table-header">
+                <h2 class="enhanced-table-title"> Enhanced Customer Survey Table</h2>
+                <p class="enhanced-table-description">
+                    Advanced filtering by Account Manager  Sortable columns  Full Arabic text support
+                </p>
+                <div class="enhanced-table-features">
+                    <span>Multi-select filters</span>
+                    <span>Keyboard navigation</span>
+                    <span>Persistent state</span>
+                    <span>Arabic text support</span>
+                </div>
+            </div>
+            
+            <div class="enhanced-table-container" id="enhanced-customer-table-container">
+                <div class="loading-state">
+                    <div class="loading-spinner"></div>
+                    <p>Loading enhanced customer survey table...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Customer Table Scripts (single import) -->
+    <script src="customer-table.js"></script>
+    <script src="customer-table-integration.js"></script>
+
+    <script>
+        // Enhanced Customer Table Integration - Clean Version
+        (function() {
+            'use strict';
+
+            // Initialize the enhanced table when DOM is ready
+            document.addEventListener('DOMContentLoaded', function() {
+                // Small delay to ensure all scripts are loaded
+                setTimeout(initializeEnhancedTable, 1000);
+            });
+
+            async function initializeEnhancedTable() {
+                try {
+                    console.log(' Initializing Enhanced Customer Table...');
+
+                    // Check if required classes are available
+                    if (typeof CustomerTableIntegration === 'undefined') {
+                        throw new Error('CustomerTableIntegration class not found. Please ensure customer-table-integration.js is loaded.');
+                    }
+
+                    // Initialize the table
+                    const integration = new CustomerTableIntegration();
+                    await integration.init('enhanced-customer-table-container');
+                    
+                    // Store reference globally for debugging
+                    window.enhancedCustomerTable = integration;
+                    
+                    console.log(' Enhanced Customer Table initialized successfully');
+                    showSuccessNotification();
+
+                } catch (error) {
+                    console.error(' Failed to initialize enhanced table:', error);
+                    showErrorMessage(error);
+                }
+            }
+
+            function showSuccessNotification() {
+                const notification = document.createElement('div');
+                notification.className = 'success-notification';
+                notification.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <span>Enhanced Customer Table Ready!</span>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Auto-remove after 5 seconds
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 5000);
+            }
+
+            function showErrorMessage(error) {
+                const container = document.getElementById('enhanced-customer-table-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="error-state">
+                            <div class="error-icon"></div>
+                            <h3 class="error-title">Enhanced Table Error</h3>
+                            <p class="error-message">${error.message}</p>
+                        </div>
+                    `;
+                }
+            }
+
+            // Global error handler for debugging
+            window.addEventListener('error', function(event) {
+                console.error('Global error:', event.error);
+            });
+
+            // Handle unhandled promise rejections
+            window.addEventListener('unhandledrejection', function(event) {
+                console.error('Unhandled promise rejection:', event.reason);
+            });
+
+        })();
+    </script>
+</body>
+
+</html>

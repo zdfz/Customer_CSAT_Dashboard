@@ -2553,26 +2553,6 @@
             box-shadow: 0 2px 8px rgba(52, 211, 153, 0.5);
         }
 
-        /* Overall Score Color Coding */
-        .overall-score.score-green {
-            color: var(--primary-main) !important;
-            font-weight: 600;
-        }
-
-        .overall-score.score-orange {
-            color: var(--secondary-main) !important;
-            font-weight: 600;
-        }
-
-        .overall-score.score-red {
-            color: #ef4444 !important;
-            font-weight: 600;
-        }
-
-        .overall-score.no-data {
-            color: var(--text-secondary);
-        }
-
         /* Card Accent Colors for Different Metrics */
         .metric-card.accent-green {
             border-left-color: var(--primary-main);
@@ -6446,8 +6426,6 @@
              * Requirements: 6.2, 6.4
              */
             calculateAccountManagerMetrics(surveyData) {
-                console.log("Debug - Processing", surveyData.length, "surveys for account manager metrics");
-                console.log("Debug - First survey sample:", surveyData[0]);
                 const managerMetrics = {};
 
                 // Initialize metrics for known managers
@@ -7367,7 +7345,7 @@
                                         <th role="columnheader" scope="col">Completed</th>
                                         <th role="columnheader" scope="col">Pending</th>
                                         
-                                        <th role="columnheader" scope="col">Overall Score</th>
+                                        <th role="columnheader" scope="col">CSAT Score</th>
                                     </tr>
                                 </thead>
                                 <tbody id="account-manager-tbody">
@@ -9570,7 +9548,7 @@
                         </td>
 
                         <td role="gridcell">
-                            <span class="overall-score">${metrics.overallScore !== null && metrics.overallScore !== undefined ? metrics.overallScore : "No data"}</span>
+                            <span class="csat-percentage">${metrics.satisfactionRate}%</span>
                         </td>
                     </tr>
                 `;
@@ -9606,17 +9584,6 @@
                 if (percentage >= 60) return '';
                 if (percentage >= 40) return 'warning';
                 return 'error';
-            }
-
-            /**
-             * Get color class for Overall Score based on score value
-             */
-            getOverallScoreColorClass(score) {
-                if (score === null || score === undefined) return '';
-                
-                if (score >= 4.0) return 'score-green';
-                if (score >= 3.0) return 'score-orange';
-                return 'score-red';
             }
 
 
@@ -10043,13 +10010,8 @@
                         completionRate: 0,
                         satisfactionRate: 0,
                         totalAssigned: 0,
-                        satisfiedCustomers: 0,
-                            communicationScores: [],
-                            responsivenessScores: [],
-                            problemResolutionScores: [],
-                            customizationScores: [],
-                            overallScore: null
-                        };
+                        satisfiedCustomers: 0
+                    };
                 });
 
                 // Process survey data
@@ -10066,12 +10028,7 @@
                             completionRate: 0,
                             satisfactionRate: 0,
                             totalAssigned: 0,
-                            satisfiedCustomers: 0,
-                            communicationScores: [],
-                            responsivenessScores: [],
-                            problemResolutionScores: [],
-                            customizationScores: [],
-                            overallScore: null
+                            satisfiedCustomers: 0
                         };
                     }
 
@@ -10083,27 +10040,6 @@
                         // Check if customer is satisfied (rating 4-5)
                         if (survey.overallSatisfaction >= 4) {
                             accountManagerMetrics[manager].satisfiedCustomers++;
-                        }
-
-                        // Collect scores for the 4 account manager performance metrics
-                        console.log("Debug - Survey data for", manager, ":", {
-                            communicationClarity: survey.communicationClarity,
-                            responsiveness: survey.responsiveness,
-                            problemResolution: survey.problemResolution,
-                            customizationAbility: survey.customizationAbility,
-                            hasData: !!(survey.communicationClarity || survey.responsiveness || survey.problemResolution || survey.customizationAbility)
-                        });
-                        if (survey.communicationClarity !== null && survey.communicationClarity !== undefined) {
-                            accountManagerMetrics[manager].communicationScores.push(survey.communicationClarity);
-                        }
-                        if (survey.responsiveness !== null && survey.responsiveness !== undefined) {
-                            accountManagerMetrics[manager].responsivenessScores.push(survey.responsiveness);
-                        }
-                        if (survey.problemResolution !== null && survey.problemResolution !== undefined) {
-                            accountManagerMetrics[manager].problemResolutionScores.push(survey.problemResolution);
-                        }
-                        if (survey.customizationAbility !== null && survey.customizationAbility !== undefined) {
-                            accountManagerMetrics[manager].customizationScores.push(survey.customizationAbility);
                         }
                     } else {
                         accountManagerMetrics[manager].pending++;
@@ -10141,13 +10077,8 @@
                                 completionRate: 0,
                                 satisfactionRate: 0,
                                 totalAssigned: 0,
-                                satisfiedCustomers: 0,
-                            communicationScores: [],
-                            responsivenessScores: [],
-                            problemResolutionScores: [],
-                            customizationScores: [],
-                            overallScore: null
-                        };
+                                satisfiedCustomers: 0
+                            };
                         }
 
                         accountManagerMetrics[manager].totalAssigned++;
@@ -10162,37 +10093,6 @@
                         metrics.completionRate = Math.round((metrics.completed / metrics.totalAssigned) * 100 * 10) / 10;
                         if (metrics.completed > 0) {
                             metrics.satisfactionRate = Math.round((metrics.satisfiedCustomers / metrics.completed) * 100 * 10) / 10;
-                        }
-
-                        // Calculate Overall Score from the 4 account manager performance metrics
-                        const averages = [];
-                        
-                        if (metrics.communicationScores.length > 0) {
-                            const avg = metrics.communicationScores.reduce((a, b) => a + b, 0) / metrics.communicationScores.length;
-                            averages.push(avg);
-                        }
-                        
-                        if (metrics.responsivenessScores.length > 0) {
-                            const avg = metrics.responsivenessScores.reduce((a, b) => a + b, 0) / metrics.responsivenessScores.length;
-                            averages.push(avg);
-                        }
-                        
-                        if (metrics.problemResolutionScores.length > 0) {
-                            const avg = metrics.problemResolutionScores.reduce((a, b) => a + b, 0) / metrics.problemResolutionScores.length;
-                            averages.push(avg);
-                        }
-                        
-                        if (metrics.customizationScores.length > 0) {
-                            const avg = metrics.customizationScores.reduce((a, b) => a + b, 0) / metrics.customizationScores.length;
-                            averages.push(avg);
-                        }
-                        
-                        // Calculate overall score as average of available averages
-                        if (averages.length > 0) {
-                            const overallScore = averages.reduce((a, b) => a + b, 0) / averages.length;
-                            metrics.overallScore = Math.round(overallScore * 10) / 10;
-                        } else {
-                            metrics.overallScore = null;
                         }
                     }
                 });
@@ -10578,16 +10478,6 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
 
 
 

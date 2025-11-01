@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,8 +13,6 @@
     <link href="https://fonts.cdnfonts.com/css/euclid-circular-b" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Enhanced Customer Table CSS -->
-    <link rel="stylesheet" href="customer-table.css">
     <!-- Chart.js for trend charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -1000,6 +998,218 @@
             
             .chart-wrapper {
                 height: 250px;
+            }
+        }
+
+        /* Enhanced Table Headers with Inline Filters */
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Sortable Table Headers */
+        .sortable-header {
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            transition: all var(--transition-normal);
+        }
+
+        .sortable-header:hover {
+            background: var(--primary-surface);
+            color: var(--primary-main);
+        }
+
+        .sort-icon {
+            font-size: 0.75rem;
+            opacity: 0.5;
+            transition: all var(--transition-normal);
+            color: var(--text-tertiary);
+        }
+
+        .sort-icon.active {
+            opacity: 1;
+            color: var(--primary-main);
+        }
+
+        .sortable-header:hover .sort-icon {
+            opacity: 1;
+            color: var(--primary-main);
+        }
+
+        /* Account Manager Filter Dropdown */
+        .filterable-header {
+            position: relative;
+        }
+
+        .account-manager-filter-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .filter-dropdown-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-tertiary);
+            cursor: pointer;
+            padding: var(--spacing-xs);
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-normal);
+            font-size: 0.875rem;
+        }
+
+        .filter-dropdown-btn:hover {
+            background: var(--primary-surface);
+            color: var(--primary-main);
+        }
+
+        .filter-dropdown-btn.active {
+            color: var(--primary-main);
+            background: var(--primary-surface);
+        }
+
+        .filter-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            min-width: 250px;
+            z-index: 1000;
+            display: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-dropdown-menu.show {
+            display: block;
+            animation: dropdownFadeIn 0.2s ease-out;
+        }
+
+        @keyframes dropdownFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .filter-dropdown-header {
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--neutral-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filter-dropdown-header span {
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .clear-selection-btn {
+            background: none;
+            border: none;
+            color: var(--error-color);
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: var(--spacing-xs);
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-normal);
+        }
+
+        .clear-selection-btn:hover {
+            background: var(--error-color);
+            color: white;
+        }
+
+        .filter-options {
+            padding: var(--spacing-sm);
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-sm);
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-normal);
+            font-size: 0.875rem;
+            position: relative;
+        }
+
+        .filter-option:hover {
+            background: var(--primary-surface);
+        }
+
+        .filter-option input[type="checkbox"] {
+            margin-right: var(--spacing-sm);
+            accent-color: var(--primary-main);
+        }
+
+        .checkmark {
+            margin-right: var(--spacing-sm);
+        }
+
+        .filter-dropdown-footer {
+            padding: var(--spacing-md);
+            border-top: 1px solid var(--neutral-200);
+        }
+
+        .apply-filter-btn {
+            width: 100%;
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-sm);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .apply-filter-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Responsive Design for Filters */
+        @media (max-width: 768px) {
+            .filters-section {
+                flex-direction: column;
+                align-items: stretch;
+                gap: var(--spacing-lg);
+            }
+
+            .sort-controls {
+                justify-content: center;
+            }
+
+            .sort-btn {
+                font-size: 0.7rem;
+                padding: var(--spacing-xs) var(--spacing-sm);
+            }
+
+            .filter-select {
+                min-width: 100%;
+            }
+
+            .results-info {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+                text-align: center;
             }
         }
 
@@ -2551,26 +2761,6 @@
         .progress-fill.satisfaction-green {
             background: linear-gradient(135deg, var(--primary-main) 0%, var(--primary-hover) 100%) !important;
             box-shadow: 0 2px 8px rgba(52, 211, 153, 0.5);
-        }
-
-        /* Overall Score Color Coding */
-        .overall-score.score-green {
-            color: var(--primary-main) !important;
-            font-weight: 600;
-        }
-
-        .overall-score.score-orange {
-            color: var(--secondary-main) !important;
-            font-weight: 600;
-        }
-
-        .overall-score.score-red {
-            color: #ef4444 !important;
-            font-weight: 600;
-        }
-
-        .overall-score.no-data {
-            color: var(--text-secondary);
         }
 
         /* Card Accent Colors for Different Metrics */
@@ -6446,8 +6636,6 @@
              * Requirements: 6.2, 6.4
              */
             calculateAccountManagerMetrics(surveyData) {
-                console.log("Debug - Processing", surveyData.length, "surveys for account manager metrics");
-                console.log("Debug - First survey sample:", surveyData[0]);
                 const managerMetrics = {};
 
                 // Initialize metrics for known managers
@@ -6642,9 +6830,9 @@
                         { label: 'Customization Ability', answer: formatRating(survey.customizationAbility) },
                         { label: 'Systems Satisfaction', answer: formatRating(survey.systemsSatisfaction) },
                         { label: 'IT Support Satisfaction', answer: formatRating(survey.itSupportSatisfaction) },
-                        { label: 'Suggestions for Improvment', answer: survey.suggestions || 'No suggestions provided' },
+                        { label: 'Additional Comments', answer: survey.suggestions || 'No suggestions provided' },
                         { label: 'LaunchPad Non-Usage Explanation', answer: survey.launchpadExplanation || 'Empty' },
-                        { label: 'LaunchPad Improvement Suggestions', answer: survey.generalImprovement || 'Empty' }
+                        { label: 'General Improvement Suggestions', answer: survey.generalImprovement || 'Empty' }
                     ]
                 };
             }
@@ -7223,6 +7411,8 @@
                 <div class="content-grid">
                     <h1 class="heading-lg mb-lg">Customer Status</h1>
 
+
+
                     <!-- Loading State -->
                     <div id="customer-status-loading" class="two-column-grid" style="display: none;">
                         <div class="data-table-container">
@@ -7265,9 +7455,54 @@
                                 </caption>
                                 <thead>
                                     <tr role="row">
-                                        <th role="columnheader" scope="col" aria-sort="none">Customer Name</th>
-                                        <th role="columnheader" scope="col" aria-sort="none">Account Manager</th>
-                                        <th role="columnheader" scope="col" aria-sort="descending">Completion Date</th>
+                                        <th role="columnheader" scope="col" aria-sort="ascending" class="sortable-header" data-sort="customer-name">
+                                            <div class="header-content">
+                                                <span>Customer Name</span>
+                                                <i class="fa-solid fa-sort-up sort-icon active"></i>
+                                            </div>
+                                        </th>
+                                        <th role="columnheader" scope="col" aria-sort="none" class="filterable-header">
+                                            <div class="header-content">
+                                                <span>Account Manager</span>
+                                                <div class="account-manager-filter-dropdown">
+                                                    <button class="filter-dropdown-btn" id="account-manager-dropdown-btn">
+                                                        <i class="fa-solid fa-filter"></i>
+                                                    </button>
+                                                    <div class="filter-dropdown-menu" id="account-manager-dropdown-menu">
+                                                        <div class="filter-dropdown-header">
+                                                            <span>Select Account Managers</span>
+                                                            <button class="clear-selection-btn" id="clear-account-managers">Clear</button>
+                                                        </div>
+                                                        <div class="filter-options">
+                                                            <label class="filter-option">
+                                                                <input type="checkbox" value="Abdullah Ahmed" checked>
+                                                                <span class="checkmark"></span>
+                                                                Abdullah Ahmed
+                                                            </label>
+                                                            <label class="filter-option">
+                                                                <input type="checkbox" value="Ibrahim Fadaly" checked>
+                                                                <span class="checkmark"></span>
+                                                                Ibrahim Fadaly
+                                                            </label>
+                                                            <label class="filter-option">
+                                                                <input type="checkbox" value="Ahmed Saleem" checked>
+                                                                <span class="checkmark"></span>
+                                                                Ahmed Saleem
+                                                            </label>
+                                                        </div>
+                                                        <div class="filter-dropdown-footer">
+                                                            <button class="apply-filter-btn" id="apply-account-manager-filter">Apply</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <th role="columnheader" scope="col" aria-sort="none" class="sortable-header" data-sort="completion-date">
+                                            <div class="header-content">
+                                                <span>Completion Date</span>
+                                                <i class="fa-solid fa-sort sort-icon"></i>
+                                            </div>
+                                        </th>
                                         <th role="columnheader" scope="col" aria-sort="none">Status</th>
                                     </tr>
                                 </thead>
@@ -7299,8 +7534,48 @@
                                 </caption>
                                 <thead>
                                     <tr role="row">
-                                        <th role="columnheader" scope="col" aria-sort="ascending">Customer Name</th>
-                                        <th role="columnheader" scope="col" aria-sort="none">Account Manager</th>
+                                        <th role="columnheader" scope="col" aria-sort="ascending" class="sortable-header" data-sort="customer-name">
+                                            <div class="header-content">
+                                                <span>Customer Name</span>
+                                                <i class="fa-solid fa-sort-up sort-icon active"></i>
+                                            </div>
+                                        </th>
+                                        <th role="columnheader" scope="col" aria-sort="none" class="filterable-header">
+                                            <div class="header-content">
+                                                <span>Account Manager</span>
+                                                <div class="account-manager-filter-dropdown">
+                                                    <button class="filter-dropdown-btn" id="account-manager-dropdown-btn-pending">
+                                                        <i class="fa-solid fa-filter"></i>
+                                                    </button>
+                                                    <div class="filter-dropdown-menu" id="account-manager-dropdown-menu-pending">
+                                                        <div class="filter-dropdown-header">
+                                                            <span>Select Account Managers</span>
+                                                            <button class="clear-selection-btn" id="clear-account-managers-pending">Clear</button>
+                                                        </div>
+                                                        <div class="filter-options">
+                                                            <label class="filter-option">
+                                                                <input type="checkbox" value="Abdullah Ahmed" checked>
+                                                                <span class="checkmark"></span>
+                                                                Abdullah Ahmed
+                                                            </label>
+                                                            <label class="filter-option">
+                                                                <input type="checkbox" value="Ibrahim Fadaly" checked>
+                                                                <span class="checkmark"></span>
+                                                                Ibrahim Fadaly
+                                                            </label>
+                                                            <label class="filter-option">
+                                                                <input type="checkbox" value="Ahmed Saleem" checked>
+                                                                <span class="checkmark"></span>
+                                                                Ahmed Saleem
+                                                            </label>
+                                                        </div>
+                                                        <div class="filter-dropdown-footer">
+                                                            <button class="apply-filter-btn" id="apply-account-manager-filter-pending">Apply</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </th>
                                         <th role="columnheader" scope="col" aria-sort="none">Status</th>
                                     </tr>
                                 </thead>
@@ -7366,14 +7641,14 @@
                                         <th role="columnheader" scope="col">Account Manager</th>
                                         <th role="columnheader" scope="col">Completed</th>
                                         <th role="columnheader" scope="col">Pending</th>
-                                        
-                                        <th role="columnheader" scope="col">Overall Score</th>
+                                        <th role="columnheader" scope="col">Progress</th>
+                                        <th role="columnheader" scope="col">CSAT Score</th>
                                     </tr>
                                 </thead>
                                 <tbody id="account-manager-tbody">
                                     <!-- Data will be populated dynamically -->
                                     <tr>
-                                        <td colspan="4"
+                                        <td colspan="5"
                                             style="text-align: center; padding: var(--spacing-xl); color: var(--text-secondary);"
                                             role="status" aria-live="polite">
                                             Loading account manager data...
@@ -8975,6 +9250,26 @@
              * Requirements: 4.2, 4.4, 4.5, 4.6
              */
             updateCompletedSurveysTable(completedSurveys) {
+                // Update filter system with new data
+                if (window.customerStatusFilters) {
+                    const completedData = completedSurveys.map(survey => ({
+                        customerName: survey.companyName || 'Unknown',
+                        accountManager: survey.accountManager || 'Not Assigned',
+                        completionDate: survey.submittedAt || null,
+                        id: survey.id,
+                        rawSurvey: survey // Keep original survey data for table rendering
+                    }));
+                    
+                    // Store completed data
+                    window.customerStatusFilters.originalData.completed = completedData;
+                    
+                    // If we also have pending data, apply filters, otherwise wait
+                    if (window.customerStatusFilters.originalData.pending.length >= 0) {
+                        window.customerStatusFilters.applyFiltersAndSort();
+                    }
+                    return; // Let the filter system handle the table update
+                }
+
                 const tableBody = document.querySelector('#completed-surveys-table tbody');
                 if (!tableBody) return;
 
@@ -9185,9 +9480,9 @@
                     { label: 'Customization Ability', value: this.formatRatingAnswer(survey.customizationAbility) },
                     { label: 'Systems Satisfaction', value: this.formatRatingAnswer(survey.systemsSatisfaction) },
                     { label: 'IT Support Satisfaction', value: this.formatRatingAnswer(survey.itSupportSatisfaction) },
-                    { label: 'Improvement Suggestions', value: survey.suggestions || 'No additional comments provided' },
+                    { label: 'Additional Comments', value: survey.suggestions || 'No additional comments provided' },
                     { label: 'LaunchPad Non-Usage Explanation', value: survey.launchpadExplanation || 'Empty' },
-                    { label: 'LaunchPad Improvement Suggestions', value: survey.generalImprovement || 'Empty' }
+                    { label: 'General Improvement Suggestions', value: survey.generalImprovement || 'Empty' }
                 ];
 
                 return questions.map(question => `
@@ -9521,7 +9816,7 @@
                     });
 
                 if (sortedManagers.length === 0) {
-                    tableBody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: var(--spacing-xl); color: var(--text-secondary);">No account manager data found</td></tr>';
+                    tableBody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: var(--spacing-xl); color: var(--text-secondary);">No account manager data found</td></tr>';
                     return;
                 }
 
@@ -9544,7 +9839,10 @@
 
                 tableBody.innerHTML = rowsHTML;
 
-
+                // Animate progress bars after rendering
+                setTimeout(() => {
+                    this.animateProgressBars();
+                }, 100);
             }
 
             /**
@@ -9568,9 +9866,18 @@
                         <td role="gridcell">
                             <span class="pending-count ${metrics.pending > 0 ? 'has-pending' : ''}">${metrics.pending}</span>
                         </td>
-
                         <td role="gridcell">
-                            <span class="overall-score">${metrics.overallScore !== null && metrics.overallScore !== undefined ? metrics.overallScore : "No data"}</span>
+                            <div class="progress-container-inline">
+                                <div class="progress-bar-inline">
+                                    <div class="progress-fill ${completionRateClass}" 
+                                         data-width="${metrics.completionRate}" 
+                                         style="width: 0%"></div>
+                                </div>
+                                <span class="progress-percentage">${metrics.completionRate}%</span>
+                            </div>
+                        </td>
+                        <td role="gridcell">
+                            <span class="csat-percentage">${metrics.satisfactionRate}%</span>
                         </td>
                     </tr>
                 `;
@@ -9609,17 +9916,24 @@
             }
 
             /**
-             * Get color class for Overall Score based on score value
+             * Animate progress bars with CSS-only implementation
+             * Requirements: 6.6
              */
-            getOverallScoreColorClass(score) {
-                if (score === null || score === undefined) return '';
-                
-                if (score >= 4.0) return 'score-green';
-                if (score >= 3.0) return 'score-orange';
-                return 'score-red';
+            animateProgressBars() {
+                const tableBody = document.getElementById('account-manager-tbody');
+                if (!tableBody) return;
+
+                const progressBars = tableBody.querySelectorAll('.progress-fill[data-width]');
+
+                progressBars.forEach((bar, index) => {
+                    const targetWidth = bar.getAttribute('data-width');
+
+                    // Stagger animations for visual appeal
+                    setTimeout(() => {
+                        bar.style.width = `${targetWidth}%`;
+                    }, index * 100);
+                });
             }
-
-
 
             /**
              * Animate counter from start to end value
@@ -10043,13 +10357,8 @@
                         completionRate: 0,
                         satisfactionRate: 0,
                         totalAssigned: 0,
-                        satisfiedCustomers: 0,
-                            communicationScores: [],
-                            responsivenessScores: [],
-                            problemResolutionScores: [],
-                            customizationScores: [],
-                            overallScore: null
-                        };
+                        satisfiedCustomers: 0
+                    };
                 });
 
                 // Process survey data
@@ -10066,12 +10375,7 @@
                             completionRate: 0,
                             satisfactionRate: 0,
                             totalAssigned: 0,
-                            satisfiedCustomers: 0,
-                            communicationScores: [],
-                            responsivenessScores: [],
-                            problemResolutionScores: [],
-                            customizationScores: [],
-                            overallScore: null
+                            satisfiedCustomers: 0
                         };
                     }
 
@@ -10083,27 +10387,6 @@
                         // Check if customer is satisfied (rating 4-5)
                         if (survey.overallSatisfaction >= 4) {
                             accountManagerMetrics[manager].satisfiedCustomers++;
-                        }
-
-                        // Collect scores for the 4 account manager performance metrics
-                        console.log("Debug - Survey data for", manager, ":", {
-                            communicationClarity: survey.communicationClarity,
-                            responsiveness: survey.responsiveness,
-                            problemResolution: survey.problemResolution,
-                            customizationAbility: survey.customizationAbility,
-                            hasData: !!(survey.communicationClarity || survey.responsiveness || survey.problemResolution || survey.customizationAbility)
-                        });
-                        if (survey.communicationClarity !== null && survey.communicationClarity !== undefined) {
-                            accountManagerMetrics[manager].communicationScores.push(survey.communicationClarity);
-                        }
-                        if (survey.responsiveness !== null && survey.responsiveness !== undefined) {
-                            accountManagerMetrics[manager].responsivenessScores.push(survey.responsiveness);
-                        }
-                        if (survey.problemResolution !== null && survey.problemResolution !== undefined) {
-                            accountManagerMetrics[manager].problemResolutionScores.push(survey.problemResolution);
-                        }
-                        if (survey.customizationAbility !== null && survey.customizationAbility !== undefined) {
-                            accountManagerMetrics[manager].customizationScores.push(survey.customizationAbility);
                         }
                     } else {
                         accountManagerMetrics[manager].pending++;
@@ -10141,13 +10424,8 @@
                                 completionRate: 0,
                                 satisfactionRate: 0,
                                 totalAssigned: 0,
-                                satisfiedCustomers: 0,
-                            communicationScores: [],
-                            responsivenessScores: [],
-                            problemResolutionScores: [],
-                            customizationScores: [],
-                            overallScore: null
-                        };
+                                satisfiedCustomers: 0
+                            };
                         }
 
                         accountManagerMetrics[manager].totalAssigned++;
@@ -10162,37 +10440,6 @@
                         metrics.completionRate = Math.round((metrics.completed / metrics.totalAssigned) * 100 * 10) / 10;
                         if (metrics.completed > 0) {
                             metrics.satisfactionRate = Math.round((metrics.satisfiedCustomers / metrics.completed) * 100 * 10) / 10;
-                        }
-
-                        // Calculate Overall Score from the 4 account manager performance metrics
-                        const averages = [];
-                        
-                        if (metrics.communicationScores.length > 0) {
-                            const avg = metrics.communicationScores.reduce((a, b) => a + b, 0) / metrics.communicationScores.length;
-                            averages.push(avg);
-                        }
-                        
-                        if (metrics.responsivenessScores.length > 0) {
-                            const avg = metrics.responsivenessScores.reduce((a, b) => a + b, 0) / metrics.responsivenessScores.length;
-                            averages.push(avg);
-                        }
-                        
-                        if (metrics.problemResolutionScores.length > 0) {
-                            const avg = metrics.problemResolutionScores.reduce((a, b) => a + b, 0) / metrics.problemResolutionScores.length;
-                            averages.push(avg);
-                        }
-                        
-                        if (metrics.customizationScores.length > 0) {
-                            const avg = metrics.customizationScores.reduce((a, b) => a + b, 0) / metrics.customizationScores.length;
-                            averages.push(avg);
-                        }
-                        
-                        // Calculate overall score as average of available averages
-                        if (averages.length > 0) {
-                            const overallScore = averages.reduce((a, b) => a + b, 0) / averages.length;
-                            metrics.overallScore = Math.round(overallScore * 10) / 10;
-                        } else {
-                            metrics.overallScore = null;
                         }
                     }
                 });
@@ -10489,107 +10736,304 @@
             window.trendsChartsManager = trendsChartsManager;
         });
 
-    </script>    <!-- Enhanced Customer Table Scripts -->
-    <script src="customer-table.js"></script>
-    <script src="customer-table-integration.js"></script>
-    <script>
-        // Enhanced Customer Table Integration for index.html
-        (function() {
-            'use strict';
-            console.log(' Initializing Enhanced Customer Table...');
-
-            // Wait for DOM and existing scripts to load
-            document.addEventListener('DOMContentLoaded', function() {
-                setTimeout(initializeEnhancedTable, 2000);
-            });
-
-            async function initializeEnhancedTable() {
-                try {
-                    // Find the customer status section
-                    const customerStatusPanel = document.getElementById('customer-status-panel');
-                    if (!customerStatusPanel) {
-                        console.warn('Customer status panel not found');
-                        return;
-                    }
-
-                    // Create enhanced table section
-                    const enhancedSection = document.createElement('div');
-                    enhancedSection.id = 'enhanced-customer-table-section';
-                    enhancedSection.style.cssText = `margin-top: 48px;background: white;border-radius: 16px;box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);border: 1px solid #E6EFEA;overflow: hidden;`;
-
-                    // Add header
-                    const header = document.createElement('div');
-                    header.style.cssText = `background: linear-gradient(135deg, #ECFDF5 0%, #FFFFFF 100%);padding: 24px;border-bottom: 1px solid #A7F3D0;text-align: center;`;
-                    header.innerHTML = `<h2 style="font-size: 1.5rem;font-weight: 700;background: linear-gradient(135deg, #10B981 0%, #059669 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;background-clip: text;margin: 0 0 8px 0;font-family: 'Euclid Circular B', system-ui, sans-serif;"> Enhanced Customer Survey Table</h2><p style="color: #5F726D;margin: 0 0 12px 0;font-size: 0.875rem;line-height: 1.5;">Advanced filtering by Account Manager  Sortable columns  Full Arabic text support</p><div style="display: flex;justify-content: center;gap: 16px;font-size: 0.75rem;color: #10B981;flex-wrap: wrap;"><span> Multi-select filters</span><span> Keyboard navigation</span><span> Persistent state</span><span> Arabic text support</span></div>`;
-
-                    // Add table container
-                    const tableContainer = document.createElement('div');
-                    tableContainer.id = 'enhanced-customer-table-container';
-                    tableContainer.style.padding = '0';
-
-                    enhancedSection.appendChild(header);
-                    enhancedSection.appendChild(tableContainer);
-
-                    // Add to the customer status panel
-                    const contentGrid = customerStatusPanel.querySelector('.content-grid');
-                    if (contentGrid) {
-                        contentGrid.appendChild(enhancedSection);
-                    } else {
-                        customerStatusPanel.appendChild(enhancedSection);
-                    }
-
-                    // Initialize the table
-                    if (typeof CustomerTableIntegration !== 'undefined') {
-                        const integration = new CustomerTableIntegration();
-                        await integration.init('enhanced-customer-table-container');
-                        window.enhancedCustomerTable = integration;
-                        console.log(' Enhanced Customer Table initialized successfully');
-
-                        // Show success notification
-                        showSuccessNotification();
-                    } else {
-                        throw new Error('CustomerTableIntegration class not found');
-                    }
-                } catch (error) {
-                    console.error(' Failed to initialize enhanced table:', error);
-                    showErrorMessage(error);
-                }
-            }
-
-            function showSuccessNotification() {
-                const notification = document.createElement('div');
-                notification.style.cssText = `position: fixed;top: 20px;right: 20px;background: #10B981;color: white;padding: 16px 24px;border-radius: 8px;box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);z-index: 10000;font-family: system-ui, sans-serif;font-size: 0.875rem;font-weight: 600;`;
-                notification.innerHTML = `<div style="display: flex; align-items: center; gap: 8px;"><span></span><span>Enhanced Customer Table Ready!</span></div>`;
-                document.body.appendChild(notification);
-                setTimeout(() => notification.remove(), 5000);
-            }
-
-            function showErrorMessage(error) {
-                const container = document.getElementById('enhanced-customer-table-container');
-                if (container) {
-                    container.innerHTML = `<div style="padding: 40px;text-align: center;background: #FEF2F2;border: 1px solid #FECACA;margin: 24px;border-radius: 12px;"><div style="font-size: 2rem; margin-bottom: 16px;"></div><h3 style="color: #991B1B; margin: 0 0 8px 0;">Enhanced Table Error</h3><p style="color: #7F1D1D; margin: 0; font-size: 0.875rem;">${error.message}</p></div>`;
-                }
-            }
-        })();
     </script>
 
+    <script>
+        // Enhanced Customer Status Filters and Sorting Manager
+        class CustomerStatusFiltersManager {
+            constructor() {
+                this.originalData = {
+                    completed: [],
+                    pending: []
+                };
+                this.filteredData = {
+                    completed: [],
+                    pending: []
+                };
+                this.currentSort = {
+                    field: 'customer-name',
+                    order: 'asc'
+                };
+                this.currentFilter = {
+                    accountManagers: ['Abdullah Ahmed', 'Ibrahim Fadaly', 'Ahmed Saleem'] // All selected by default
+                };
+                
+                this.initializeEventListeners();
+            }
 
-    
+            initializeEventListeners() {
+                // Sortable Headers
+                const sortableHeaders = document.querySelectorAll('.sortable-header');
+                sortableHeaders.forEach(header => {
+                    header.addEventListener('click', () => {
+                        const field = header.getAttribute('data-sort');
+                        const currentOrder = header.getAttribute('aria-sort');
+                        const newOrder = currentOrder === 'ascending' ? 'descending' : 'ascending';
+                        
+                        // Reset all headers in both tables
+                        document.querySelectorAll('.sortable-header').forEach(h => {
+                            h.setAttribute('aria-sort', 'none');
+                            const icon = h.querySelector('.sort-icon');
+                            if (icon) {
+                                icon.className = 'fa-solid fa-sort sort-icon';
+                                icon.classList.remove('active');
+                            }
+                        });
+                        
+                        // Set new sort state
+                        header.setAttribute('aria-sort', newOrder);
+                        const icon = header.querySelector('.sort-icon');
+                        if (icon) {
+                            icon.className = newOrder === 'ascending' ? 'fa-solid fa-sort-up sort-icon active' : 'fa-solid fa-sort-down sort-icon active';
+                        }
+                        
+                        this.currentSort = { 
+                            field, 
+                            order: newOrder === 'ascending' ? 'asc' : 'desc' 
+                        };
+                        this.applyFiltersAndSort();
+                    });
+                });
+
+                // Account Manager Filter Dropdowns
+                this.initializeAccountManagerDropdowns();
+            }
+
+            initializeAccountManagerDropdowns() {
+                // Initialize both dropdowns (completed and pending tables)
+                const dropdownBtns = ['account-manager-dropdown-btn', 'account-manager-dropdown-btn-pending'];
+                const dropdownMenus = ['account-manager-dropdown-menu', 'account-manager-dropdown-menu-pending'];
+                const clearBtns = ['clear-account-managers', 'clear-account-managers-pending'];
+                const applyBtns = ['apply-account-manager-filter', 'apply-account-manager-filter-pending'];
+
+                dropdownBtns.forEach((btnId, index) => {
+                    const btn = document.getElementById(btnId);
+                    const menu = document.getElementById(dropdownMenus[index]);
+                    const clearBtn = document.getElementById(clearBtns[index]);
+                    const applyBtn = document.getElementById(applyBtns[index]);
+
+                    if (btn && menu) {
+                        // Toggle dropdown
+                        btn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            // Close other dropdowns
+                            document.querySelectorAll('.filter-dropdown-menu').forEach(m => {
+                                if (m !== menu) m.classList.remove('show');
+                            });
+                            menu.classList.toggle('show');
+                        });
+
+                        // Clear selection
+                        if (clearBtn) {
+                            clearBtn.addEventListener('click', () => {
+                                const checkboxes = menu.querySelectorAll('input[type="checkbox"]');
+                                checkboxes.forEach(cb => cb.checked = false);
+                            });
+                        }
+
+                        // Apply filter
+                        if (applyBtn) {
+                            applyBtn.addEventListener('click', () => {
+                                const checkboxes = menu.querySelectorAll('input[type="checkbox"]');
+                                this.currentFilter.accountManagers = Array.from(checkboxes)
+                                    .filter(cb => cb.checked)
+                                    .map(cb => cb.value);
+                                
+                                // Update button state
+                                const allSelected = this.currentFilter.accountManagers.length === 3;
+                                btn.classList.toggle('active', !allSelected);
+                                
+                                menu.classList.remove('show');
+                                this.applyFiltersAndSort();
+                            });
+                        }
+                    }
+                });
+
+                // Close dropdowns when clicking outside
+                document.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-dropdown-menu').forEach(menu => {
+                        menu.classList.remove('show');
+                    });
+                });
+            }
+
+            setData(completedData, pendingData) {
+                this.originalData.completed = [...completedData];
+                this.originalData.pending = [...pendingData];
+                this.applyFiltersAndSort();
+            }
+
+            applyFiltersAndSort() {
+                // Apply filters
+                this.filteredData.completed = this.filterData(this.originalData.completed);
+                this.filteredData.pending = this.filterData(this.originalData.pending);
+
+                // Apply sorting
+                this.filteredData.completed = this.sortData(this.filteredData.completed);
+                this.filteredData.pending = this.sortData(this.filteredData.pending);
+
+                // Update UI
+                this.updateTables();
+                this.updateResultsInfo();
+                this.updateClearButtonVisibility();
+            }
+
+            filterData(data) {
+                let filtered = [...data];
+
+                // Account Manager Filter
+                if (this.currentFilter.accountManagers.length > 0 && this.currentFilter.accountManagers.length < 3) {
+                    filtered = filtered.filter(item => 
+                        this.currentFilter.accountManagers.includes(item.accountManager)
+                    );
+                }
+
+                return filtered;
+            }
+
+            sortData(data) {
+                return [...data].sort((a, b) => {
+                    let aValue, bValue;
+
+                    switch (this.currentSort.field) {
+                        case 'customer-name':
+                            aValue = a.customerName.toLowerCase();
+                            bValue = b.customerName.toLowerCase();
+                            break;
+                        case 'completion-date':
+                            aValue = new Date(a.completionDate || '1900-01-01');
+                            bValue = new Date(b.completionDate || '1900-01-01');
+                            break;
+                        default:
+                            return 0;
+                    }
+
+                    if (aValue < bValue) {
+                        return this.currentSort.order === 'asc' ? -1 : 1;
+                    }
+                    if (aValue > bValue) {
+                        return this.currentSort.order === 'asc' ? 1 : -1;
+                    }
+                    return 0;
+                });
+            }
+
+            updateTables() {
+                // Update completed surveys table
+                const completedTable = document.getElementById('completed-surveys-table');
+                if (completedTable) {
+                    this.populateTable(completedTable, this.filteredData.completed, 'completed');
+                }
+
+                // Update pending surveys table
+                const pendingTable = document.getElementById('pending-surveys-table');
+                if (pendingTable) {
+                    this.populateTable(pendingTable, this.filteredData.pending, 'pending');
+                }
+            }
+
+            populateTable(table, data, type) {
+                const tbody = table.querySelector('tbody');
+                if (!tbody) return;
+
+                if (data.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="${type === 'completed' ? '4' : '3'}" 
+                                style="text-align: center; padding: var(--spacing-xl); color: var(--text-tertiary);">
+                                No ${type} surveys match the current filters
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                tbody.innerHTML = data.map(item => {
+                    if (type === 'completed') {
+                        return `
+                            <tr>
+                                <td>${item.customerName}</td>
+                                <td><span class="account-manager-badge">${item.accountManager}</span></td>
+                                <td>${item.completionDate}</td>
+                                <td><span class="status-badge completed">Completed</span></td>
+                            </tr>
+                        `;
+                    } else {
+                        return `
+                            <tr>
+                                <td>${item.customerName}</td>
+                                <td><span class="account-manager-badge">${item.accountManager}</span></td>
+                                <td><span class="status-badge pending">Pending</span></td>
+                            </tr>
+                        `;
+                    }
+                }).join('');
+            }
+
+            updateResultsInfo() {
+                // Results info is now handled by the existing system
+                // This method can be used for future enhancements
+            }
+
+            updateClearButtonVisibility() {
+                // Clear button functionality is now handled by the dropdown clear buttons
+            }
+
+            isFiltered() {
+                return this.currentFilter.accountManagers.length < 3;
+            }
+
+            clearAllFilters() {
+                // Reset filters
+                this.currentFilter.accountManagers = ['Abdullah Ahmed', 'Ibrahim Fadaly', 'Ahmed Saleem'];
+                
+                // Reset all checkboxes
+                document.querySelectorAll('.filter-dropdown-menu input[type="checkbox"]').forEach(cb => {
+                    cb.checked = true;
+                });
+
+                // Reset dropdown button states
+                document.querySelectorAll('.filter-dropdown-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+
+                // Reset sort to default
+                this.currentSort = { field: 'customer-name', order: 'asc' };
+                
+                // Reset sort headers
+                document.querySelectorAll('.sortable-header').forEach(header => {
+                    header.setAttribute('aria-sort', 'none');
+                    const icon = header.querySelector('.sort-icon');
+                    if (icon) {
+                        icon.className = 'fa-solid fa-sort sort-icon';
+                        icon.classList.remove('active');
+                    }
+                });
+
+                // Set default sort on customer name
+                const customerNameHeaders = document.querySelectorAll('.sortable-header[data-sort="customer-name"]');
+                customerNameHeaders.forEach(header => {
+                    header.setAttribute('aria-sort', 'ascending');
+                    const icon = header.querySelector('.sort-icon');
+                    if (icon) {
+                        icon.className = 'fa-solid fa-sort-up sort-icon active';
+                    }
+                });
+
+                // Apply changes
+                this.applyFiltersAndSort();
+            }
+        }
+
+        // Initialize Customer Status Filters
+        let customerStatusFilters;
+        document.addEventListener('DOMContentLoaded', function() {
+            customerStatusFilters = new CustomerStatusFiltersManager();
+            window.customerStatusFilters = customerStatusFilters;
+        });
+
+    </script>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

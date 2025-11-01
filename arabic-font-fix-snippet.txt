@@ -1,0 +1,24 @@
+Add these lines to the head section of index.html after the existing font imports:
+
+<!-- Arabic Font Support -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Arabic Font Fix CSS -->
+<style>
+:root {
+    --font-family: 'Noto Sans Arabic', 'Cairo', 'Euclid Circular B', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    --font-display: 'Noto Sans Arabic', 'Cairo', 'Euclid Circular B', system-ui, sans-serif !important;
+}
+
+body {
+    font-family: 'Noto Sans Arabic', 'Cairo', 'Euclid Circular B', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+#customer-status-panel .table-cell-link,
+#customer-status-panel td,
+#completed-surveys-accordion .accordion-title {
+    font-family: 'Noto Sans Arabic', 'Cairo', sans-serif !important;
+    text-rendering: optimizeLegibility;
+}
+</style>

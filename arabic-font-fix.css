@@ -1,0 +1,53 @@
+/* Arabic Font Fix for Customer Status Section */
+/* Add this CSS to fix Arabic text rendering issues */
+
+/* Import Arabic fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap');
+
+/* Update CSS variables to include Arabic fonts */
+:root {
+    --font-family: 'Noto Sans Arabic', 'Cairo', 'Euclid Circular B', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    --font-display: 'Noto Sans Arabic', 'Cairo', 'Euclid Circular B', system-ui, sans-serif !important;
+}
+
+/* Specific fixes for Arabic text in tables and customer names */
+.table-cell-link,
+.accordion-title,
+.customer-name,
+td[role="gridcell"] {
+    font-family: 'Noto Sans Arabic', 'Cairo', 'Inter', sans-serif !important;
+    direction: auto;
+    unicode-bidi: plaintext;
+}
+
+/* Ensure proper text direction for mixed content */
+body {
+    font-family: 'Noto Sans Arabic', 'Cairo', 'Euclid Circular B', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Fix for Customer Status section specifically */
+#customer-status-panel .table-cell-link,
+#customer-status-panel td,
+#completed-surveys-accordion .accordion-title {
+    font-family: 'Noto Sans Arabic', 'Cairo', sans-serif !important;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure Arabic text displays correctly in all contexts */
+[lang="ar"], 
+.arabic-text,
+*:lang(ar) {
+    font-family: 'Noto Sans Arabic', 'Cairo', sans-serif !important;
+    direction: rtl;
+    text-align: right;
+}
+
+/* Mixed content (Arabic + English) */
+.mixed-content {
+    font-family: 'Noto Sans Arabic', 'Cairo', 'Inter', sans-serif !important;
+    direction: auto;
+    unicode-bidi: plaintext;
+}

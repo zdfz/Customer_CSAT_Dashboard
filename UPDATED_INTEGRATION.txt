@@ -1,0 +1,289 @@
+<!-- UPDATED INTEGRATION CODE FOR PROMINENT POSITIONING -->
+
+<!-- ADD THIS SCRIPT TO YOUR INDEX.HTML (REPLACE THE PREVIOUS INTEGRATION SCRIPT) -->
+
+<script>
+// Enhanced Customer Table Integration - Prominent Position
+(function() {
+    'use strict';
+    
+    console.log('🚀 Initializing Enhanced Customer Table in prominent position...');
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(initializeEnhancedTable, 2000);
+    });
+    
+    async function initializeEnhancedTable() {
+        try {
+            // Find the customer status tables (the two-column grid)
+            const customerStatusTables = document.getElementById('customer-status-tables');
+            if (!customerStatusTables) {
+                console.warn('Customer status tables not found');
+                return;
+            }
+            
+            // Create enhanced table section with prominent positioning
+            const enhancedSection = document.createElement('div');
+            enhancedSection.id = 'enhanced-customer-table-section';
+            enhancedSection.style.cssText = `
+                margin: 32px 0;
+                background: white;
+                border-radius: 16px;
+                box-shadow: 0 8px 25px -5px rgba(16, 185, 129, 0.15);
+                border: 2px solid #A7F3D0;
+                overflow: hidden;
+                grid-column: 1 / -1;
+                position: relative;
+            `;
+            
+            // Add a subtle glow effect
+            enhancedSection.style.setProperty('--glow', '0 0 20px rgba(16, 185, 129, 0.2)');
+            
+            // Add header with enhanced styling
+            const header = document.createElement('div');
+            header.style.cssText = `
+                background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 50%, #FFFFFF 100%);
+                padding: 24px;
+                border-bottom: 2px solid #A7F3D0;
+                text-align: center;
+                position: relative;
+            `;
+            
+            // Add a decorative element
+            header.innerHTML = `
+                <div style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    height: 4px;
+                    background: linear-gradient(90deg, #10B981, #059669, #047857, #059669, #10B981);
+                    background-size: 200% 100%;
+                    animation: shimmer 3s ease-in-out infinite;
+                "></div>
+                <h2 style="
+                    font-size: 1.75rem;
+                    font-weight: 700;
+                    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    margin: 0 0 12px 0;
+                    font-family: 'Euclid Circular B', system-ui, sans-serif;
+                    text-shadow: 0 2px 4px rgba(16, 185, 129, 0.1);
+                ">🚀 Enhanced Customer Survey Table</h2>
+                <p style="
+                    color: #047857;
+                    margin: 0 0 16px 0;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    font-weight: 500;
+                ">Advanced filtering by Account Manager • Sortable columns • Full Arabic text support • Responsive design</p>
+                <div style="
+                    display: flex;
+                    justify-content: center;
+                    gap: 20px;
+                    font-size: 0.875rem;
+                    color: #059669;
+                    flex-wrap: wrap;
+                    font-weight: 600;
+                ">
+                    <span style="display: flex; align-items: center; gap: 4px;">
+                        <span style="color: #10B981;">✓</span> Multi-select filters
+                    </span>
+                    <span style="display: flex; align-items: center; gap: 4px;">
+                        <span style="color: #10B981;">✓</span> Keyboard navigation
+                    </span>
+                    <span style="display: flex; align-items: center; gap: 4px;">
+                        <span style="color: #10B981;">✓</span> Persistent state
+                    </span>
+                    <span style="display: flex; align-items: center; gap: 4px;">
+                        <span style="color: #10B981;">✓</span> Arabic text support
+                    </span>
+                </div>
+            `;
+            
+            // Add table container
+            const tableContainer = document.createElement('div');
+            tableContainer.id = 'enhanced-customer-table-container';
+            tableContainer.style.cssText = `
+                padding: 0;
+                min-height: 400px;
+                background: white;
+            `;
+            
+            enhancedSection.appendChild(header);
+            enhancedSection.appendChild(tableContainer);
+            
+            // Insert RIGHT AFTER the customer status tables (prominent position)
+            customerStatusTables.parentNode.insertBefore(enhancedSection, customerStatusTables.nextSibling);
+            
+            // Add animations CSS
+            addAnimationStyles();
+            
+            // Initialize the table
+            if (typeof CustomerTableIntegration !== 'undefined') {
+                const integration = new CustomerTableIntegration();
+                await integration.init('enhanced-customer-table-container');
+                
+                window.enhancedCustomerTable = integration;
+                console.log('✅ Enhanced Customer Table initialized in prominent position');
+                
+                // Add entrance animation
+                enhancedSection.style.animation = 'slideInUp 0.8s ease-out';
+                
+                // Show success notification
+                showSuccessNotification();
+                
+                // Add subtle pulse effect after load
+                setTimeout(() => {
+                    enhancedSection.style.animation = 'gentlePulse 2s ease-in-out 3';
+                }, 1000);
+                
+            } else {
+                throw new Error('CustomerTableIntegration class not found');
+            }
+            
+        } catch (error) {
+            console.error('❌ Failed to initialize enhanced table:', error);
+            showErrorMessage(error);
+        }
+    }
+    
+    function addAnimationStyles() {
+        if (document.getElementById('enhanced-table-animations')) return;
+        
+        const style = document.createElement('style');
+        style.id = 'enhanced-table-animations';
+        style.textContent = `
+            @keyframes slideInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            @keyframes gentlePulse {
+                0%, 100% { 
+                    box-shadow: 0 8px 25px -5px rgba(16, 185, 129, 0.15);
+                    border-color: #A7F3D0;
+                }
+                50% { 
+                    box-shadow: 0 12px 35px -5px rgba(16, 185, 129, 0.25);
+                    border-color: #6EE7B7;
+                }
+            }
+            
+            @keyframes shimmer {
+                0% { background-position: -200% 0; }
+                100% { background-position: 200% 0; }
+            }
+            
+            #enhanced-customer-table-section:hover {
+                box-shadow: 0 12px 35px -5px rgba(16, 185, 129, 0.2) !important;
+                transform: translateY(-2px);
+                transition: all 0.3s ease;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    function showSuccessNotification() {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: white;
+            padding: 20px 28px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            z-index: 10000;
+            font-family: system-ui, sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        `;
+        
+        notification.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 1.2rem;">🎉</span>
+                <div>
+                    <div>Enhanced Customer Table Ready!</div>
+                    <div style="font-size: 0.75rem; opacity: 0.9; margin-top: 2px;">
+                        Now positioned prominently in your dashboard
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Animate in
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            notification.style.transition = 'transform 0.4s ease-out';
+            notification.style.transform = 'translateX(0)';
+        }, 100);
+        
+        // Remove after 6 seconds
+        setTimeout(() => {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => notification.remove(), 400);
+        }, 6000);
+    }
+    
+    function showErrorMessage(error) {
+        const container = document.getElementById('enhanced-customer-table-container');
+        if (container) {
+            container.innerHTML = `
+                <div style="
+                    padding: 40px;
+                    text-align: center;
+                    background: linear-gradient(135deg, #FEF2F2 0%, #FECACA 100%);
+                    border: 2px solid #F87171;
+                    margin: 24px;
+                    border-radius: 12px;
+                ">
+                    <div style="font-size: 2.5rem; margin-bottom: 16px;">⚠️</div>
+                    <h3 style="color: #991B1B; margin: 0 0 8px 0; font-size: 1.25rem;">Enhanced Table Error</h3>
+                    <p style="color: #7F1D1D; margin: 0; font-size: 0.875rem; max-width: 400px; margin: 0 auto;">${error.message}</p>
+                    <button onclick="location.reload()" style="
+                        margin-top: 16px;
+                        background: #EF4444;
+                        color: white;
+                        border: none;
+                        padding: 12px 24px;
+                        border-radius: 8px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        font-size: 0.875rem;
+                    ">🔄 Reload Page</button>
+                </div>
+            `;
+        }
+    }
+    
+})();
+</script>
+
+<!-- END OF UPDATED INTEGRATION CODE -->
+
+INSTRUCTIONS:
+1. Replace the previous integration script in your index.html with this updated version
+2. This will position the Enhanced Customer Table right after the existing Customer Status tables
+3. You'll see it immediately without scrolling down
+4. The table now has enhanced styling with animations and better visual prominence
+
+WHAT'S NEW:
+✨ Positioned right after existing Customer Status tables (no scrolling needed)
+✨ Enhanced visual styling with gradient borders and shadows
+✨ Smooth entrance animations
+✨ Hover effects and subtle pulse animations
+✨ More prominent header with better typography
+✨ Success notification shows positioning confirmation

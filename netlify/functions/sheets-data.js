@@ -23,6 +23,7 @@ exports.handler = async (event) => {
         return {
             statusCode: 200,
             headers: {
+                'Content-Type': 'application/json; charset=utf-8',
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'GET'
@@ -33,6 +34,7 @@ exports.handler = async (event) => {
         return {
             statusCode: 500,
             headers: {
+                'Content-Type': 'application/json; charset=utf-8',
                 'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify({ error: 'Failed to fetch data' })
