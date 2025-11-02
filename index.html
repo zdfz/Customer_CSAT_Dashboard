@@ -1929,13 +1929,10 @@
 
         @keyframes fadeInScale {
             0% {
-            0% {
                 opacity: 0;
-                transform: scale(0.95) translateY(30px);
                 transform: scale(0.95) translateY(30px);
             }
 
-            100% {
             100% {
                 opacity: 1;
                 transform: scale(1) translateY(0);
@@ -6950,7 +6947,6 @@
 
                 // Calculate actual completion rate
                 const completionPercentage = totalSurveysIncludingPending > 0
-                const completionPercentage = totalSurveysIncludingPending > 0
                     ? Math.round((completedSurveys / totalSurveysIncludingPending) * 100)
                     : 100;
 
@@ -6988,7 +6984,6 @@
                     satisfiedCustomersPercentage,
                     averageSatisfaction: Math.round(averageSatisfaction * 10) / 10,
                     totalSurveysIncludingPending,
-                    npsData: npsData
                     npsData: npsData
                 };
             }
@@ -7184,7 +7179,6 @@
 
                 // Sort alphabetically by company name
                 return stillPending.sort((a, b) =>
-                return stillPending.sort((a, b) =>
                     a.companyName.localeCompare(b.companyName)
                 );
             }
@@ -7204,18 +7198,18 @@
                         month: 'short',
                         day: 'numeric'
                     });
-                };
+                }
 
                 const getRatingColor = (rating) => {
                     if (rating >= 4) return 'excellent';
                     if (rating === 3) return 'average';
                     if (rating >= 1) return 'poor';
                     return 'unknown';
-                };
+                }
 
                 const formatRating = (rating) => {
                     return rating !== null && rating !== undefined ? `${rating}/5` : 'N/A';
-                };
+                }
 
                 return {
                     id: survey.id,
@@ -8775,7 +8769,6 @@
             const totalSurveys = mockData.length;
             const completedSurveys = mockData.filter(survey => !!survey.submittedAt).length;
             const pendingSurveys = totalSurveys - completedSurveys;
-            const pendingSurveys = totalSurveys - completedSurveys;
             const completionPercentage = Math.round((completedSurveys / totalSurveys) * 100);
             const satisfiedCustomers = mockData.filter(survey => survey.submittedAt && survey.overallSatisfaction >= 4).length;
             const satisfactionPercentage = Math.round((satisfiedCustomers / completedSurveys) * 100);
@@ -8786,8 +8779,6 @@
             const totalElement = document.getElementById('total-surveys-value');
             const completionElement = document.getElementById('completion-rate-value');
             const satisfactionElement = document.getElementById('satisfaction-rate-value');
-            const completedElement = document.getElementById('completed-customers-count');
-            const pendingElement = document.getElementById('pending-customers-count');
             const completedElement = document.getElementById('completed-customers-count');
             const pendingElement = document.getElementById('pending-customers-count');
 
@@ -10184,8 +10175,6 @@
                 }
                 if (this.tableContainer) {
                     this.tableContainer.style.display = 'none';
-                if (this.tableContainer) {
-                    this.tableContainer.style.display = 'none';
                 }
             }
 
@@ -10198,8 +10187,6 @@
                 }
                 if (this.tableContainer) {
                     this.tableContainer.style.display = 'grid';
-                if (this.tableContainer) {
-                    this.tableContainer.style.display = 'grid';
                 }
             }
 
@@ -10209,8 +10196,6 @@
              * Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6
              */
             renderAccountManagerCards(accountManagerMetrics) {
-                const tableBody = document.getElementById('account-manager-tbody');
-                if (!tableBody) return;
                 const tableBody = document.getElementById('account-manager-tbody');
                 if (!tableBody) return;
 
@@ -10252,14 +10237,11 @@
                         satisfactionRate: 0
                     };
                     // Ensure name is present for rows even when metrics object is empty
-                    // Ensure name is present for rows even when metrics object is empty
                     metrics.name = metrics.name || managerName;
 
                     return this.createManagerRow(metrics);
-                    return this.createManagerRow(metrics);
                 }).join('');
 
-                tableBody.innerHTML = rowsHTML;
                 tableBody.innerHTML = rowsHTML;
 
 
@@ -10267,13 +10249,10 @@
 
             /**
              * Create individual manager performance row
-             * Create individual manager performance row
              * Requirements: 6.2, 6.3, 6.4, 6.5, 6.6
              */
             createManagerRow(metrics) {
-            createManagerRow(metrics) {
                 const completionRateClass = this.getProgressBarClass(metrics.completionRate);
-                const managerBadgeClass = this.getManagerBadgeClass(metrics.name);
                 const managerBadgeClass = this.getManagerBadgeClass(metrics.name);
 
                 return `
@@ -10376,7 +10355,6 @@
                             <div style="color: var(--error-color); font-size: 1.125rem; margin-bottom: var(--spacing-md);">
                                 ⚠️ Error Loading Data
                             </div>
-                            <div style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
                             <div style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
                                 ${this.escapeHtml(message)}
                             </div>
@@ -11302,23 +11280,6 @@
         })();
     </script>
 
-
     
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
