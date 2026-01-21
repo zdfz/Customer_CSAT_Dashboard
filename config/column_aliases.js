@@ -1,0 +1,235 @@
+window.COLUMN_ALIASES = {
+    "language": [
+        "اختر اللغة | Choose your Language",
+        "choose your language",
+        "language"
+    ],
+    "companyNameAr": [
+        "فضلًا، أدخل اسم الشركة",
+        "اسم الشركة",
+        "Company Name",
+        "اسم العميل"
+    ],
+    "companyNameEn": [
+        "please provide your company name",
+        "Company Name"
+    ],
+    "serviceTypeAr": [
+        "نوع الخدمة",
+        "Service Type",
+        "نوع الخدمة"
+    ],
+    "serviceTypeEn": [
+        "service type",
+        "Service Type"
+    ],
+    "overallAr": [
+        "ما مدى رضاك عن تجربتك العامة مع ستارلينكس؟",
+        "Overall Satisfaction"
+    ],
+    "overallEn": [
+        "how satisfied are you with the overall experience with starlinks",
+        "how satisfied are you with the overall experience with starlinks?",
+        "how satisfied are you with the overall experience with starlinks ",
+        "how satisfied are you with the overall experience with starlinks? ",
+        "Overall Satisfaction"
+    ],
+    "npsAr": [
+        "ما مدى احتمالية أن تنصح الآخرين بخدمات ستارلينكس؟",
+        "NPS"
+    ],
+    "npsEn": [
+        "how likely are you to recommend starlinks to other businesses?",
+        "how likely are you to recommend starlinks to other businesses",
+        "how likely are you to recommend starlinks to other businesses ",
+        "how likely are you to recommend starlinks to other businesses? ",
+        "how likely are you to recommend *starlinks* to other businesses?",
+        "how likely are you to recommend *starlinks* to other businesses",
+        "how likely are you to recommend *starlinks* to other businesses?",
+        "NPS"
+    ],
+    "lastMileAr": [
+        "ما مدى رضاك عن خدمات التوصيل؟",
+        "Last Mile Satisfaction"
+    ],
+    "lastMileEn": [
+        "how satisfied are you with the last mile delivery services",
+        "how satisfied are you with the *last-mile *delivery services?",
+        "how satisfied are you with the last mile delivery services",
+        "how satisfied are you with the *last-mile *delivery services",
+        "how satisfied are you with the *last-mile *delivery services?",
+        "Last Mile Satisfaction"
+    ],
+    "reverseAr": [
+        "ما مدى رضاك عن خدمات الإرجاع؟ (إن وجدت)",
+        "ما مدى رضاك عن خدمات الإرجاع؟ (إن وجدت",
+        "Reverse Logistics Satisfaction"
+    ],
+    "reverseEn": [
+        "how satisfied are you with the *reverse* delivery services? (if applicable)",
+        "how satisfied are you with the reverse delivery services (if applicable)",
+        "how satisfied are you with the *reverse* delivery services? *(if applicable",
+        "how satisfied are you with the *reverse* delivery services? (if applicable) ",
+        "how satisfied are you with the *reverse* delivery services? *(if applicable)*",
+        "Reverse Logistics Satisfaction"
+    ],
+    "fulfillmentAr": [
+        "ما مدى رضاك عن خدمات تخزين وتجهيز الطلبات؟ (إن وجدت)",
+        "ما مدى رضاك عن خدمات تخزين وتجهيز الطلبات؟ (إن وجدت",
+        "Fulfillment Satisfaction"
+    ],
+    "fulfillmentEn": [
+        "how satisfied are you with the *fulfillment* services?* (if applicable)",
+        "how satisfied are you with the *fulfillment* services?* (if applicable) *",
+        "how satisfied are you with the fulfillment services (if applicable)",
+        "how satisfied are you with the *fulfillment* services? *(if applicable)*",
+        "Fulfillment Satisfaction"
+    ],
+    "commAr": [
+        "وضوح عملية التواصل؟",
+        "Communication Clarity"
+    ],
+    "commEn": [
+        "clarity of communication you receive",
+        "Communication Clarity"
+    ],
+    "respAr": [
+        "سرعة استجابة واحترافية مدير الحساب؟",
+        "Responsiveness"
+    ],
+    "respEn": [
+        "responsiveness and professionalism of your account manager",
+        "responsiveness and professionalism of your account manager ",
+        "Responsiveness"
+    ],
+    "probAr": [
+        "الفعالية في حل المشاكل أو المخاوف التي تواجهها؟",
+        "Problem Resolution"
+    ],
+    "probEn": [
+        "effectiveness at resolving the issues or concerns you bring up",
+        "Problem Resolution"
+    ],
+    "custAr": [
+        "القدرة على تخصيص أسلوبه ليتناسب مع احتياجاتك وتفضيلاتك الخاصة؟",
+        "Customization"
+    ],
+    "custEn": [
+        "ability to tailor their approach to meet your specific needs and preferences",
+        "Customization"
+    ],
+    "systemsAr": [
+        "ما مدى رضاك عن أنظمة وأدوات ستارلنكس المستخدمة في العمليات اليومية؟",
+        "Systems Satisfaction"
+    ],
+    "systemsEn": [
+        "how satisfied are you with starlinks? systems and tools used in daily operations? (this includes the customer portal shipsy and mintsoft), dashboards, performance tracking, etc.)",
+        "how satisfied are you with starlinks' systems and tools used in daily operations?",
+        "how satisfied are you with live dashboard",
+        "how satisfied are you with *live dashboard *",
+        "how satisfied are you with starlinks? systems and tools used in daily operations this includes the customer portal shipsy and mintsoft dashboards performance tracking etc",
+        "Systems Satisfaction"
+    ],
+    "itAr": [
+        "ما مدى رضاك عن الدعم المقدم من فريق تقنية المعلومات في التعامل مع المشكلات وتنفيذ طلبات التغيير؟",
+        "IT Support Satisfaction"
+    ],
+    "itEn": [
+        "how satisfied are you with the it operations support team in handling issues and processing change requests",
+        "how satisfied are you with the it operations support team in handling issues and processing change requests?",
+        "IT Support Satisfaction"
+    ],
+    "suggestionsAr": [
+        "هل لديك أي اقتراحات لتحسين خدماتنا؟",
+        "Suggestions"
+    ],
+    "suggestionsEn": [
+        "do you have any suggestions for improving our services?",
+        "Suggestions"
+    ],
+    "managerAr": [
+        "اسم مدير الحساب المعيّن",
+        "Account Manager"
+    ],
+    "managerEn": [
+        "name of designated account manager:",
+        "name of designated account manager: ",
+        "Account Manager"
+    ],
+    "trackingAr": [
+        "ما مدى رضاك عن نظام التتبع؟",
+        "ما مدى رضاك عن نظام التتبع؟",
+        "Tracking System"
+    ],
+    "trackingEn": [
+        "how satisfied are you with *tracking system *?",
+        "how satisfied are you with tracking system",
+        "Tracking System"
+    ],
+    "inventoryAr": [
+        "ما مدى رضاك عن نظام المخزون و الطلبات؟",
+        "ما مدى رضاك عن نظام المخزون و الطلبات؟",
+        "Inventory System"
+    ],
+    "inventoryEn": [
+        "how satisfied are you with *warehouse* and *inventory system* ?",
+        "how satisfied are you with warehouse and inventory system",
+        "Inventory System"
+    ],
+    "reportingAr": [
+        "ما مدى رضاك عن نظام التقارير؟",
+        "ما مدى رضاك عن نظام التقارير؟",
+        "Reporting System"
+    ],
+    "reportingEn": [
+        "how satisfied are you with *reporting system *?",
+        "how satisfied are you with reporting system",
+        "Reporting System"
+    ],
+    "launchpadAr": [
+        " هل تستخدم \" LaunchPad\" ?",
+        " هل تستخدم  launchpad  ",
+        " هل تستخدم launchpad",
+        "Use Launchpad"
+    ],
+    "launchpadEn": [
+        "do you use *lanchpad (cx portal)?*",
+        "do you use lanchpad (cx portal)?",
+        "do you use launchpad",
+        "Use Launchpad"
+    ],
+    "dashboardsAr": [
+        "ما مدى رضاك عن نظام اللوحات المباشرة لمؤشرات أداء العمليات؟",
+        "Live Dashboard"
+    ],
+    "dashboardsEn": [
+        "how satisfied are you with *live dashboard *?",
+        "how satisfied are you with live dashboard",
+        "Live Dashboard"
+    ],
+    "improveAr": [
+        "ما الذي تود رؤيته أو تحسينه ؟",
+        "Improvements"
+    ],
+    "launchpadExplanationAr": [
+        "؟ LaunchPad (CX Portal) نرجو منك توضيح سبب عدم استخدامك",
+        "نرجو منك توضيح سبب عدم استخدامك ؟ LaunchPad (CX Portal)",
+        "Launchpad Explanation"
+    ],
+    "launchpadExplanationEn": [
+        "please explain why you are not using the *launchpad (cx portal)*?",
+        "please explain why you are not using the launchpad",
+        "please explain why you are not using the *launchpad (cx portal)*",
+        "Launchpad Explanation"
+    ],
+    "generalImprovementEn": [
+        "what would you like to see *improved *or added to it ?",
+        "what would you like to see improved or added to it",
+        "what would you like to see *improved *or added to it",
+        "General Improvements"
+    ],
+    "submittedAt": [
+        "submitted at",
+        "Timestamp"
+    ]
+};
