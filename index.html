@@ -4556,14 +4556,11 @@
         // No sensitive data exposed in client-side code
 
         // Serverless Configuration
-        const SPREADSHEET_ID = '1RfmLuP_XoQ_yxhMnYVnCOI_b7jUEP_UuAbabtCIy-Ns';
-        const API_KEY = 'AIzaSyAGJclt8C5wbo0qivboVpDiRLlGcOFWd1I';
-
+        // Serverless Configuration
         const API_CONFIG = {
-            baseUrl: 'https://sheets.googleapis.com/v4/spreadsheets',
             endpoints: {
-                // Direct connection to Google Sheets API
-                sheetsData: `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/Customer Survey Questionnaire!A:ZZ?key=${API_KEY}&valueRenderOption=UNFORMATTED_VALUE&dateTimeRenderOption=FORMATTED_STRING`
+                // Secure connection via Netlify Function
+                sheetsData: '/.netlify/functions/sheets-data'
             }
         };
         const CACHE_CONFIG = {
