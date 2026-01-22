@@ -6892,6 +6892,11 @@
                     // Normalize account manager names using the robust method
                     manager = this.normalizeAccountManager(manager);
 
+                    // [Fix] Override Brands For Less to Ibrahim Fadaly
+                    if (survey.companyName && survey.companyName.toString().toLowerCase().trim() === 'brands for less') {
+                        manager = 'Ibrahim Fadaly';
+                    }
+
                     // [NEW] Skip OPS data for Q4
                     if (isQ4 && manager === 'OPS') return; // Determine if we should count this data at all. 
                     // If we skip here, it won't be in the table. If we want to hide it but keep data, we'd handle it differently.
@@ -11205,11 +11210,17 @@
         function processCompletedSurveys(surveyData) {
             return surveyData
                 .filter(survey => survey.submittedAt) // Only surveys with submission dates
-                .map(survey => ({
-                    customerName: survey.companyName || 'Unknown Company',
-                    accountManager: normalizeAccountManager(survey.accountManager),
-                    completionDate: formatCompletionDate(survey.submittedAt)
-                }))
+                .map(survey => {
+                    const accountManager = (survey.companyName && survey.companyName.toString().toLowerCase().trim() === 'brands for less')
+                        ? 'Ibrahim Fadaly'
+                        : normalizeAccountManager(survey.accountManager);
+
+                    return {
+                        customerName: survey.companyName || 'Unknown Company',
+                        accountManager: accountManager,
+                        completionDate: formatCompletionDate(survey.submittedAt)
+                    };
+                })
                 .sort((a, b) => {
                     // Sort by completion date (most recent first)
                     const dateA = new Date(a.completionDate);
