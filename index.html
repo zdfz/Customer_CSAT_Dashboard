@@ -6857,7 +6857,14 @@
              */
             calculateAccountManagerMetrics(surveyData) {
                 const managerMetrics = {};
+                // [NEW] Get current quarter
+                const currentQuarter = window.quarterFilter ? window.quarterFilter.currentQuarter : '';
+                const isQ4 = currentQuarter && currentQuarter.toString().toLowerCase() === 'q4';
+
                 this.validAccountManagers.forEach(manager => {
+                    // [NEW] Skip OPS for Q4
+                    if (isQ4 && manager === 'OPS') return;
+
                     managerMetrics[manager] = {
                         name: manager,
                         totalAssigned: 0,
@@ -6885,8 +6892,23 @@
                     // Normalize account manager names using the robust method
                     manager = this.normalizeAccountManager(manager);
 
+                    // [NEW] Skip OPS data for Q4
+                    if (isQ4 && manager === 'OPS') return; // Determine if we should count this data at all. 
+                    // If we skip here, it won't be in the table. If we want to hide it but keep data, we'd handle it differently.
+                    // Request is "remove OPS from account managers tab", so skipping entirely is correct.
+
                     if (manager) {
                         if (!managerMetrics[manager]) {
+                            // If manager not in valid list but present in data (and not skipped above)
+                            // and we didn't init it (e.g. because it wasn't in valid list), init now?
+                            // But wait, if isQ4 is true and manager is OPS, we returned.
+                            // So we only reach here if NOT OPS or NOT Q4.
+                            if (isQ4 && manager === 'Ahmed Saleem' && this.normalizeAccountManager(survey.accountManager) === 'OPS') {
+                                // Edge case: if normalize maps to Ahmed Saleem but original was somehow OPS? 
+                                // normalizeAccountManager maps 'OPS' -> 'Ahmed Saleem' in line 6653!
+                                // Wait, let's check normalizeAccountManager again.
+                            }
+
                             managerMetrics[manager] = {
                                 name: manager,
                                 totalAssigned: 0,

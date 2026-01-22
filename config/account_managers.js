@@ -2,6 +2,7 @@ window.ACCOUNT_MANAGERS = {
     "Ibrahim Fadaly": "Ibrahim Fadaly",
     "Ibrahim Fadhaly": "Ibrahim Fadaly",
     "ابراهيم فضالي": "Ibrahim Fadaly",
+    "Brands For Less": "Ibrahim Fadaly",
     "Ahmed Saleem": "Ahmed Saleem",
     "Ahmed Salem": "Ahmed Saleem",
     "احمد سليم": "Ahmed Saleem",
